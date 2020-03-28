@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.mainMenu.MainMenu">
+   <children>
+      <ImageView fitHeight="798.0" fitWidth="1309.0" layoutX="-50.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-10.3125" AnchorPane.leftAnchor="-50.0" AnchorPane.rightAnchor="-179.0" AnchorPane.topAnchor="-6.0">
+         <image>
+            <Image url="@../../IMAGES/MainMenuBackground.jpg" />
+         </image>
+      </ImageView>
+      <VBox layoutX="48.0" layoutY="479.0" prefHeight="218.0" prefWidth="203.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="479.0">
+         <children>
+            <Text fx:id="btnPlay" fill="WHITE" onMouseClicked="#playClicked" stroke="#171717" strokeLineCap="ROUND" strokeType="OUTSIDE" text="Play">
+               <font>
+                  <Font name="System Font" size="31.0" />
+               </font>
+            </Text>
+            <Text fx:id="btnCompendium" fill="WHITE" onMouseClicked="#compendiumClicked" stroke="#171717" strokeLineCap="ROUND" strokeType="OUTSIDE" text="Compendium">
+               <font>
+                  <Font name="System Font" size="31.0" />
+               </font>
+            </Text>
+            <Text fx:id="btnSettings" fill="WHITE" onMouseClicked="#settingsClicked" stroke="#171717" strokeLineCap="ROUND" strokeType="OUTSIDE" text="Settings">
+               <font>
+                  <Font name="System Font" size="31.0" />
+               </font>
+            </Text>
+            <Text fx:id="btnQuit" fill="WHITE" onMouseClicked="#quitClicked" stroke="#171717" strokeLineCap="ROUND" strokeType="OUTSIDE" text="Quit">
+               <font>
+                  <Font name="System Font" size="31.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
