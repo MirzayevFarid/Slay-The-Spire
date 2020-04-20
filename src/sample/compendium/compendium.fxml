@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.compendium.Compendium">
+
+<AnchorPane prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.compendium.Compendium">
    <children>
       <Text layoutX="316.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMPENDIUM SCREEN" AnchorPane.bottomAnchor="317.8125" AnchorPane.leftAnchor="316.0" AnchorPane.rightAnchor="315.265625" AnchorPane.topAnchor="317.390625">
          <font>

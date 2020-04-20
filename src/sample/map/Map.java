@@ -1,7 +1,6 @@
 package sample.map;
 
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -22,10 +21,10 @@ public class Map {
     @FXML
     private GridPane pn;
 
-    int width = 1080;
-    int height = 720;
+    int width = 1440;
+    int height = 900;
 
-    public void run(MouseEvent mouseEvent) {
+    public void initialize(){
         addCirclesToGridPane(pn);
 
         for(int i = 0; i < numberOfRows; i++) {
@@ -36,7 +35,6 @@ public class Map {
         }
 
         drawLines();
-
     }
 
     private void drawLines() {

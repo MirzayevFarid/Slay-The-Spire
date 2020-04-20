@@ -30,42 +30,42 @@
             <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="158.0" text="Leave" GridPane.columnSpan="3" GridPane.rowIndex="1" />
             <ImageView fitHeight="236.0" fitWidth="154.0" pickOnBounds="true" smooth="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <image>
-                  <Image url="@../../../black.jpeg" />
+                  <Image url="@../../IMAGES/play/bar.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="236.0" fitWidth="154.0" pickOnBounds="true" smooth="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <image>
-                  <Image url="@../../../black.jpeg" />
+                  <Image url="@../../IMAGES/play/bar.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="236.0" fitWidth="154.0" pickOnBounds="true" smooth="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <image>
-                  <Image url="@../../../black.jpeg" />
+                  <Image url="@../../IMAGES/play/bar.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="236.0" fitWidth="154.0" pickOnBounds="true" smooth="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <image>
-                  <Image url="@../../../black.jpeg" />
+                  <Image url="@../../IMAGES/play/bar.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="236.0" fitWidth="154.0" pickOnBounds="true" smooth="false" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <image>
-                  <Image url="@../../../black.jpeg" />
+                  <Image url="@../../IMAGES/play/bar.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="236.0" fitWidth="154.0" pickOnBounds="true" smooth="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <image>
-                  <Image url="@../../../black.jpeg" />
+                  <Image url="@../../IMAGES/play/bar.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="236.0" fitWidth="154.0" pickOnBounds="true" smooth="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <image>
-                  <Image url="@../../../black.jpeg" />
+                  <Image url="@../../IMAGES/play/bar.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="236.0" fitWidth="154.0" pickOnBounds="true" smooth="false" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <image>
-                  <Image url="@../../../black.jpeg" />
+                  <Image url="@../../IMAGES/play/bar.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="62.0" fitWidth="62.0" pickOnBounds="true" smooth="false" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
@@ -73,12 +73,12 @@
                   <Insets bottom="30.0" left="30.0" right="30.0" top="65.0" />
                </GridPane.margin>
                <image>
-                  <Image url="@../../../black.jpeg" />
+                  <Image url="@../../IMAGES/play/bar.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="62.0" fitWidth="62.0" pickOnBounds="true" smooth="false" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                <image>
-                  <Image url="@../../../black.jpeg" />
+                  <Image url="@../../IMAGES/play/bar.png" />
                </image>
                <GridPane.margin>
                   <Insets top="65.0" />
@@ -86,7 +86,7 @@
             </ImageView>
             <ImageView fitHeight="62.0" fitWidth="62.0" pickOnBounds="true" smooth="false" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                <image>
-                  <Image url="@../../../black.jpeg" />
+                  <Image url="@../../IMAGES/play/bar.png" />
                </image>
                <GridPane.margin>
                   <Insets top="65.0" />

@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("mainMenu/mainMenu.fxml"));
         primaryStage.setTitle("Slay The Spire");
-        primaryStage.setScene(new Scene(root, 1080, 720));
+        primaryStage.setScene(new Scene(root, 1440 , 900));
         primaryStage.show();
 
         primaryStage.setResizable(false);

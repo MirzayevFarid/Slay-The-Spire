@@ -13,24 +13,24 @@ import java.io.IOException;
 public class MainMenu {
 
     @FXML
-    private Text btnPlay;
+    private Text txtPlay;
 
     @FXML
-    private Text btnCompendium;
+    private Text txtCompendium;
 
     @FXML
-    private Text btnSettings;
+    private Text txtSettings;
 
     @FXML
-    private Text btnQuit;
+    private Text txtQuit;
 
 
     public void playClicked(MouseEvent mouseEvent) throws IOException {
-        changeScreen("../map/map.fxml");
+        changeScreen("../play/play.fxml");
     }
 
     public void compendiumClicked(MouseEvent mouseEvent) throws IOException {
-        changeScreen("../compendium/compendium.fxml");
+        changeScreen("../map/map.fxml");
     }
 
     public void settingsClicked(MouseEvent mouseEvent) throws IOException {
@@ -38,7 +38,7 @@ public class MainMenu {
     }
 
     public void quitClicked(MouseEvent mouseEvent) {
-        Stage stage = (Stage) btnQuit.getScene().getWindow();
+        Stage stage = (Stage) txtQuit.getScene().getWindow();
         stage.close();
     }
 
