@@ -54,8 +54,9 @@ public class Map {
 
         int [] arr = distributeCandies(currentCount, previousCount);
 
-        for (int value : arr) {
-            System.out.print(value + "\t");
+        for(int i = 0; i<arr.length; i++){
+            System.out.println("array printed");
+            System.out.print(arr[i] + "\t");
         }
 
         int index = 0;
@@ -172,23 +173,6 @@ public class Map {
 
         return arr;
     }
-//    public int[] distributeCandies(int candies, int previousCount) {
-//        int arr[]=new int[previousCount];
-//        int j=1,sum=0;
-//        for(int i=0; candies-sum>0;i=(previousCount+i)%previousCount){
-//            if(candies-sum>=j){
-//                arr[i]=arr[i]+j;
-//                sum+=j;
-//                j++;
-//                i++;
-//            }
-//            else{
-//                arr[i]=arr[i]+candies-sum;
-//                sum=sum+arr[i]+j;
-//            }
-//        }
-//        return arr;
-//    }
 
 
     public void addCirclesToGridPane(GridPane gridPane)
