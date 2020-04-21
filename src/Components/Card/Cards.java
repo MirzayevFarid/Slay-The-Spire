@@ -1,4 +1,4 @@
-package sample.play.Card;
+package Components.Card;
 
 import java.util.ArrayList;
 
