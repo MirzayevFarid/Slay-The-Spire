@@ -47,17 +47,6 @@ public class ParseCardJSONObjects {
         return new Cards(cardList);
     }
 
-    public Class<?> typeToClass(String className){
-
-        Class<?> cls = null;
-        try {
-            cls = Class.forName(className);
-        }
-        catch (ClassNotFoundException ignored){
-        }
-        return cls;
-    }
-
     public Cards getCardDeck() {
         return cardDeck;
     }
