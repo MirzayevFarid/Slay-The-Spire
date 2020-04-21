@@ -1,4 +1,4 @@
-package sample.play.Card;
+package Components.Card;
 
 public class CardDeneme {
     public static void main(String[] args) throws Exception {

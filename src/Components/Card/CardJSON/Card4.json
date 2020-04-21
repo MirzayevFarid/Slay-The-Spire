@@ -4,5 +4,6 @@
   "character": "Ironclad",
   "damage": 0,
   "defence": 2,
-  "description": "Dogac Ozturk Hayratı!"
+  "description": "Dogac Ozturk Hayratı!",
+  "image": "Images/cards/attack/Anger.png"
 }

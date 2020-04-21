@@ -54,8 +54,8 @@ public class Map {
 
         int [] arr = distributeCandies(currentCount, previousCount);
 
-        for(int i = 0; i<arr.length; i++){
-            System.out.print(arr[i] + "\t");
+        for (int value : arr) {
+            System.out.print(value + "\t");
         }
 
         int index = 0;

@@ -1,11 +1,10 @@
-package sample.play.Card;
+package Components.Card;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -17,10 +16,10 @@ public class ParseCardJSONObjects {
     private String path;// File path that includes json libraries
     private Cards cardDeck;
 
-    ParseCardJSONObjects() throws Exception {
+    public ParseCardJSONObjects() throws Exception {
         gson = new GsonBuilder().create();                     //creating gson
         directory = System.getProperty("user.dir");
-        path = directory + "\\src\\sample\\play\\Card\\CardJSON";              //path for json files
+        path = directory + "/src/Components/Card/CardJSON";              //path for json files
         cardDeck = new Cards(parseJSONFiles());
     }
 
@@ -54,9 +53,13 @@ public class ParseCardJSONObjects {
         try {
             cls = Class.forName(className);
         }
-        catch (ClassNotFoundException e){
+        catch (ClassNotFoundException ignored){
         }
         return cls;
+    }
+
+    public Cards getCardDeck() {
+        return cardDeck;
     }
 
     @Override

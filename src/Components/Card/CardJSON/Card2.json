@@ -4,5 +4,6 @@
   "character": "Ironclad",
   "damage": 2,
   "defence": 0,
-  "description": "sdflkj"
+  "description": "sdflkj",
+  "image": "Images/cards/attack/Anger.png"
 }
