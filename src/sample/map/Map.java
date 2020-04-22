@@ -120,10 +120,6 @@ public class Map {
     }
 
 
-
-
-
-
     public void addCirclesToGridPane(GridPane gridPane)
     {
         Random random = new Random();

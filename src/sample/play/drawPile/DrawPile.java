@@ -24,7 +24,6 @@ public class DrawPile {
 
          ParseCardJSONObjects cards = new ParseCardJSONObjects();
 
-
          for (int i = 0; i <= 5; i++){
                 for (int j = 0; j <= 6; j++){
                     ImageView cardView = new ImageView(new Image(getClass().getResourceAsStream("../../../" + cards.getCardDeck().getCardList().get(1).getImage())));
@@ -32,5 +31,4 @@ public class DrawPile {
             }
          }
      }
-
 }

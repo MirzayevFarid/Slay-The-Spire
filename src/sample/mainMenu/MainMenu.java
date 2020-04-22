@@ -28,7 +28,7 @@ public class MainMenu {
     }
 
     public void compendiumClicked(MouseEvent mouseEvent) throws IOException {
-        Methods.changeScreen("map/map.fxml", txtCompendium);
+        Methods.changeScreen("rest/Rest.fxml", txtCompendium);
     }
 
     public void settingsClicked(MouseEvent mouseEvent) throws IOException {
