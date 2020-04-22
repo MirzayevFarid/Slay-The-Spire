@@ -18,10 +18,10 @@ public class ParseMonsterJSONObjects {
     private String path;// File path that includes json libraries
     private Monsters monsters;
 
-    ParseMonsterJSONObjects() throws Exception {
+    public ParseMonsterJSONObjects() throws Exception {
         gson = new GsonBuilder().create();                     //creating gson
         directory = System.getProperty("user.dir");
-        path = directory + "\\src\\Components\\Monster\\MonsterJSON";              //path for json files
+        path = directory + "/src/Components/Monster/MonsterJSON";              //path for json files
         monsters = new Monsters(parseJSONFiles());
     }
     public Monsters parseJSONFiles() throws Exception{
@@ -48,6 +48,15 @@ public class ParseMonsterJSONObjects {
         }
         return new Monsters(monsters);
     }
+
+    public Monsters getMonsters() {
+        return monsters;
+    }
+
+    public void setMonsters(Monsters monsters) {
+        this.monsters = monsters;
+    }
+
     @Override
     public String toString() {
         return "ParseMonsterJSONObjects{" +

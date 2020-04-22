@@ -2,6 +2,7 @@ package Components.Character.CharacterJSON;
 
 import Components.Card.Card;
 import Components.Card.Cards;
+import Components.Card.ParseCardJSONObjects;
 import Components.Character.Character;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -24,24 +25,30 @@ public class ParseCharacterJSONObjects {
         this.characterType = characterType;
         gson = new GsonBuilder().create();                     //creating gson
         directory = System.getProperty("user.dir");
-        path = directory + "\\src\\Components\\Character\\CharacterJSON\\" + characterType + ".json";              //path for json files
+        path = directory + "/src/Components/Character/CharacterJSON/" + characterType + ".json";              //path for json files
         parseCharacterJSONFiles();
     }
 
     public void parseCharacterJSONFiles() throws Exception{
         File file = new File(path);
-        try {
-            Object object = gson.fromJson(new FileReader(file.getAbsolutePath()), Character.class);
-            if(object instanceof Character) {
-                character = new Character((Character) object);
-            }
+        Object object = gson.fromJson(new FileReader(file.getAbsolutePath()), Character.class);
+        if(object instanceof Character) {
+            character = new Character((Character) object);
+        }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        addCards();
+
+    }
+
+    private void addCards() throws Exception {
+        ParseCardJSONObjects cards = new ParseCardJSONObjects();
+        // TODO: Change Default Card Count
+        for(int i = 0; i <= 3; i++){
+            this.character.getCardsOfPlayer().getCardList().add(cards.getCardDeck().getCardList().get(i));
         }
     }
 
-    public Character getCardDeck() {
+    public Character getCharacter() {
         return character;
     }
 

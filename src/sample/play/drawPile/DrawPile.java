@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 
 public class DrawPile {
@@ -17,24 +18,17 @@ public class DrawPile {
     private AnchorPane insideAnchor;
 
     @FXML
-    private GridPane drawGrid;
-
-    @FXML
-    private  ImageView imageView;
-
+    private GridPane gridPane;
 
      public void initialize() throws Exception {
 
          ParseCardJSONObjects cards = new ParseCardJSONObjects();
-         System.out.println(cards.toString());
 
-         Image image = new Image("IMAGES/play/black.jpeg");
-         imageView.setImage(image);
-         for (int i = 0; i <= 4; i++){
-                for (int j = 0; j <= 15; j++){
-                    System.out.println(" i: " + i +  "j: " + j);
+
+         for (int i = 0; i <= 5; i++){
+                for (int j = 0; j <= 6; j++){
                     ImageView cardView = new ImageView(new Image(getClass().getResourceAsStream("../../../" + cards.getCardDeck().getCardList().get(1).getImage())));
-                      drawGrid.add(cardView, i, j);
+                      gridPane.add(cardView, i, j);
             }
          }
      }

@@ -19,7 +19,7 @@ public class ParsePotionJSONObjects {
     ParsePotionJSONObjects() throws Exception {
         gson = new GsonBuilder().create();                     //creating gson
         directory = System.getProperty("user.dir");
-        path = directory + "\\src\\Components\\Potion\\PotionJSON";              //path for json files
+        path = directory + "/src/Components/Potion/PotionJSON";              //path for json files
         potions = new Potions(parseJSONFiles());
     }
     public Potions parseJSONFiles() throws Exception{

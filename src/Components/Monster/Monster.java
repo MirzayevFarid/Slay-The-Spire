@@ -6,6 +6,7 @@ public class Monster {
     private int defencePoint;
     private int hp;
     private int level;
+    private String image;
 
 
     public Monster() {
@@ -13,12 +14,14 @@ public class Monster {
         this.defencePoint = 0;
         this.hp = 0;
         this.level = 0;
+        this.image = "";
     }
     public Monster(Monster otherMonster) {
         this.attackPoint = otherMonster.attackPoint;
         this.defencePoint = otherMonster.defencePoint;
         this.hp = otherMonster.hp;
         this.level = otherMonster.level;
+        this.image = otherMonster.image;
     }
     public void initialMonster() {
 
@@ -69,6 +72,7 @@ public class Monster {
             this.attackPoint = ThreadLocalRandom.current().nextInt(20, 25 + 1);
         }
     }
+
     public void defence(){
         if(level == 1){
             this.defencePoint = ThreadLocalRandom.current().nextInt(2, 5 + 1);
@@ -114,6 +118,8 @@ public class Monster {
         return level;
     }
 
+    public String getImage() {return image;}
+
     public void setLevel(int level) {
         this.level = level;
     }
@@ -125,6 +131,7 @@ public class Monster {
                 ", defencePoint=" + defencePoint +
                 ", hp=" + hp +
                 ", level=" + level +
+                ", image=" + image +
                 '}';
     }
 }

@@ -14,6 +14,8 @@ public class Character {
     private String name;
     private int energy;
     private int hp;
+    private String image;
+
     private Cards cardsOfPlayer = new Cards(new ArrayList<>());
     private Relics relicsOfPlayer = new Relics(new ArrayList<>());
     private Potions potionsOfPlayer = new Potions(new ArrayList<>());
@@ -23,18 +25,21 @@ public class Character {
     public Character() {
         this.name = "";
         this.energy = 0;
+        this.image = "";
     }
 
-    public Character(String name, int energy, int hp) {
+    public Character(String name, int energy, int hp, String image) {
         this.name = name;
         this.energy = energy;
         this.hp = hp;
+        this.image = image;
     }
 
-    public Character(String name, int energy, int hp, Cards cardsOfPlayer, Relics relicsOfPlayer, Potions potionsOfPlayer) {
+    public Character(String name, int energy, int hp, String image, Cards cardsOfPlayer, Relics relicsOfPlayer, Potions potionsOfPlayer) {
         this.name = name;
         this.energy = energy;
         this.hp = hp;
+        this.image = image;
         for(Card card: cardsOfPlayer.getCardList())
             this.cardsOfPlayer.getCardList().add(card);
         for(Relic relic: relicsOfPlayer.getRelics())
@@ -47,6 +52,7 @@ public class Character {
         this.name = character.name;
         this.energy = character.energy;
         this.hp = character.hp;
+        this.image = character.image;
         for(Card card: character.cardsOfPlayer.getCardList())
             this.cardsOfPlayer.getCardList().add(card);
         for(Relic relic: character.relicsOfPlayer.getRelics())
@@ -103,6 +109,10 @@ public class Character {
         this.potionsOfPlayer = potionsOfPlayer;
     }
 
+    public String getImage() { return image; }
+
+    public void setImage(String image) { this.image = image; }
+
     public void addCard(Card card){
         this.cardsOfPlayer.getCardList().add(card);
     }
@@ -115,6 +125,8 @@ public class Character {
         this.potionsOfPlayer.getPotions().add(potion);
     }
 
+
+
     @Override
     public String toString() {
         return "Character{" + "\n" +
@@ -124,6 +136,7 @@ public class Character {
                 ", cardsOfPlayer=" + cardsOfPlayer.toString() + "\n" +
                 ", relicsOfPlayer=" + relicsOfPlayer.toString() + "\n" +
                 ", potionsOfPlayer=" + potionsOfPlayer.toString() + "\n" +
+                ", image=" + image + "\n" +
                 '}' + "\n";
     }
 }
