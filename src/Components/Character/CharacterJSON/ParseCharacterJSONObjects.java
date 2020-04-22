@@ -43,7 +43,8 @@ public class ParseCharacterJSONObjects {
     private void addCards() throws Exception {
         ParseCardJSONObjects cards = new ParseCardJSONObjects();
         // TODO: Change Default Card Count
-        for(int i = 0; i <= 3; i++){
+        for(int i = 0; i <= 9; i++){
+
             this.character.getCardsOfPlayer().getCardList().add(cards.getCardDeck().getCardList().get(i));
         }
     }

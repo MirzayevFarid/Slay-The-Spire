@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Cards {
     private ArrayList<Card> cardList = new ArrayList<Card>();
+    private ArrayList<Card> discardList = new ArrayList<Card>();
 
     public Cards(ArrayList<Card> cardList){
         for ( int i = 0 ; i < cardList.size() ; i++ )
@@ -16,6 +17,14 @@ public class Cards {
 
     public ArrayList<Card> getCardList() {
         return cardList;
+    }
+
+    public ArrayList<Card> getDiscardList() {
+        return discardList;
+    }
+
+    public void addDiscardList(Card card) {
+        discardList.add(card);
     }
 
     @Override
