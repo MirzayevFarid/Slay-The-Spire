@@ -75,6 +75,8 @@ public class Play {
 
     public void initialize() throws Exception {
         addElements();
+        File file = new File("src/sample/play/drawPile/JSONFiles");
+        deleteFolder(file);
         createCharacter();
         createMonster();
     }
@@ -164,18 +166,16 @@ public class Play {
     }
 
     void saveCharacterData() throws IOException {
-
-        String jsonName = "";
         int index = 0;
-        Writer writer = null;
+        FileWriter writer = null;
         File file = new File("src/sample/play/drawPile/JSONFiles");
         deleteFolder(file);
         for(Card card: character.getCharacter().getCardsOfPlayer().getCardList()){
             writer = new FileWriter("src/sample/play/drawPile/JSONFiles/Card" + index + ".json");
             new Gson().toJson(card, writer);
             index++;
+            writer.close();
         }
-        writer.close();
     }
 
     public static void deleteFolder(File folder) {

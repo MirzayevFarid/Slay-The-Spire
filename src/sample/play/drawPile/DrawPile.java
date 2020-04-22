@@ -1,26 +1,17 @@
 package sample.play.drawPile;
 
 import Components.Card.Card;
-import Components.Card.Cards;
-import Components.Card.ParseCardJSONObjects;
-import Components.Character.Character;
-import Components.TopBar;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonStreamParser;
-import com.google.gson.stream.JsonReader;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
 
 public class DrawPile {
@@ -62,7 +53,7 @@ public class DrawPile {
 
          int index = 0;
          for (Card card: cardsOfPlayer){
-             ImageView cardView = new ImageView(new Image(getClass().getResourceAsStream("../../../" + cardsOfPlayer.get(index).getImage())));
+             ImageView cardView = new ImageView(new Image(getClass().getResourceAsStream("../../../" + card.getImage())));
              gridPane.add(cardView, 0, index);
              index++;
          }
