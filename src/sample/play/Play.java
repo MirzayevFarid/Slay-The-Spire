@@ -1,11 +1,13 @@
 package sample.play;
 
 import Components.Card.Card;
-import Components.Card.ParseCardJSONObjects;
 import Components.Character.CharacterJSON.ParseCharacterJSONObjects;
 import Components.Monster.ParseMonsterJSONObjects;
 import Components.TopBar;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -13,7 +15,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import sample.Methods;
+
 import java.io.IOException;
 
 
@@ -112,7 +116,22 @@ public class Play {
         drawButton.onMouseClickedProperty().set((MouseEvent t) -> {
             try {
                 // TODO: Add drawCard.fxml path
-                Methods.changeScreen("play/drawPile/DrawPile.fxml",drawButton);
+
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("DrawPile.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+
+                DrawPile dp = loader.load();
+                for(Card card: character.getCharacter().getCardsOfPlayer().getCardList()){
+                    dp.addCard(card);
+                }
+                System.out.println("FROM MAIN" + dp.getCard().getImage());
+
+                Stage stage = (Stage) drawButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
