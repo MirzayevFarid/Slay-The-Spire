@@ -32,7 +32,7 @@ public class MainMenu {
     }
 
     public void settingsClicked(MouseEvent mouseEvent) throws IOException {
-        Methods.changeScreen("sample/play/drawPile/DrawPile.fxml", txtSettings);
+        Methods.changeScreen("settings/settings.fxml", txtSettings);
     }
 
     public void quitClicked(MouseEvent mouseEvent) {
