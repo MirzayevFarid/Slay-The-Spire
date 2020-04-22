@@ -75,8 +75,10 @@ public class Play {
 
     public void initialize() throws Exception {
         addElements();
-        File file = new File("src/sample/play/drawPile/JSONFiles");
-        deleteFolder(file);
+        File drawFile = new File("src/sample/play/drawPile/JSONFiles");
+        deleteFolder(drawFile);
+        File discardFile = new File("src/sample/play/discardPile/JSONFiles");
+        deleteFolder(discardFile);
         createCharacter();
         createMonster();
     }
@@ -93,18 +95,23 @@ public class Play {
         characterImg.setImage(new Image(getClass().getResourceAsStream("../../" + character.getCharacter().getImage())));
     }
 
-    private void addCards(ParseCharacterJSONObjects character) throws Exception {
-        for(Card card: character.getCharacter().getCardsOfPlayer().getCardList()) {
+    private void addCards(ParseCharacterJSONObjects character) {
+        for(int i = 0; i<= 4; i++) {
+            Card card = character.getCharacter().getCardsOfPlayer().getCardList().get(i);
+            character.getCharacter().getCardsOfPlayer().getCardList().remove(i);
             ImageView cardView = new ImageView(new Image(getClass().getResourceAsStream("../../" + card.getImage())));
             cardView.onMouseClickedProperty().set((MouseEvent t) -> {
-                playCard(card);
+                try {
+                    playCard(card);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 refreshScreen();
             });
             cardBox.getChildren().add(cardView);
             cardBox.onMouseClickedProperty().set((MouseEvent t) -> {
                 int imageWidth = (int) cardView.getImage().getWidth();
                 int index = (int) ((t.getX())/imageWidth);
-                character.getCharacter().getCardsOfPlayer().getCardList().remove(index);
                 try {
                     saveCharacterData();
                 } catch (IOException e) {
@@ -119,7 +126,9 @@ public class Play {
         monsterHP.setText((monster.getMonsters().getMonsters().get(2).getHp() + "") );
     }
 
-    private void playCard(Card card) {
+    private void playCard(Card card) throws IOException {
+        character.getCharacter().getCardsOfPlayer().addDiscardList(card);
+        updateDiscardJson();
         int updatedHP = monster.getMonsters().getMonsters().get(2).getHp() - card.getDamage();
         monster.getMonsters().getMonsters().get(2).setHp(updatedHP);
     }
@@ -138,7 +147,7 @@ public class Play {
         discardButton.onMouseClickedProperty().set((MouseEvent t) -> {
             try {
                 // TODO: Add discard.fxml path
-                Methods.changeScreen("",drawButton);
+                Methods.changeScreen("play/discardPile/DiscardPile.fxml", discardButton);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -165,13 +174,27 @@ public class Play {
         addListeners();
     }
 
+
+    private void updateDiscardJson() throws IOException {
+        int index = 0;
+        FileWriter writer = null;
+        File file = new File("src/sample/play/discardPile/JSONFiles");
+        deleteFolder(file);
+        for(Card card: character.getCharacter().getCardsOfPlayer().getDiscardList()){
+            writer = new FileWriter("src/sample/play/discardPile/JSONFiles/" + card.getName() + ".json");
+            new Gson().toJson(card, writer);
+            index++;
+            writer.close();
+        }
+    }
+
     void saveCharacterData() throws IOException {
         int index = 0;
         FileWriter writer = null;
         File file = new File("src/sample/play/drawPile/JSONFiles");
         deleteFolder(file);
         for(Card card: character.getCharacter().getCardsOfPlayer().getCardList()){
-            writer = new FileWriter("src/sample/play/drawPile/JSONFiles/Card" + index + ".json");
+            writer = new FileWriter("src/sample/play/drawPile/JSONFiles/" + card.getName() + ".json");
             new Gson().toJson(card, writer);
             index++;
             writer.close();

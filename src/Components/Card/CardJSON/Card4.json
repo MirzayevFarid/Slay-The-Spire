@@ -2,7 +2,7 @@
   "name": "Card4",
   "energyCost": 1,
   "character": "Ironclad",
-  "damage": 0,
+  "damage": 4,
   "defence": 2,
   "description": "Dogac Ozturk Hayratı!",
   "image": "IMAGES/cards/attack/Anger.png"

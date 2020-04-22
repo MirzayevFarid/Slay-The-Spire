@@ -1,4 +1,4 @@
-package sample.play.drawPile;
+package sample.play.discardPile;
 
 import Components.Card.Card;
 import com.google.gson.Gson;
@@ -16,7 +16,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 
-public class DrawPile {
+public class DiscardPile {
     @FXML
     private AnchorPane drawAnchor;
 
@@ -38,12 +38,14 @@ public class DrawPile {
      public void initialize() {
          gson = new GsonBuilder().create();                     //creating gson
          directory = System.getProperty("user.dir");
-         path = directory + "/src/sample/play/drawPile/JSONFiles";              //path for json files
+         path = directory + "/src/sample/play/discardPile/JSONFiles";              //path for json files
          File folder = new File(path);
          File[] files = folder.listFiles();
          int index = 0;
 
          for (File file: files) {
+             System.out.println("Girdi");
+
              try {
                  Object object = gson.fromJson(new FileReader(file.getAbsolutePath()), Card.class);
 
@@ -71,14 +73,6 @@ public class DrawPile {
                  e.printStackTrace();
              }
          }
-     }
-
-     public Card getCard(){
-         return cardsOfPlayer.get(0);
-     }
-
-     public void addCard(Card card){
-         cardsOfPlayer.add(card);
      }
 
 }
