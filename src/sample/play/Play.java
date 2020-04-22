@@ -4,6 +4,7 @@ import Components.Card.Card;
 import Components.Character.CharacterJSON.ParseCharacterJSONObjects;
 import Components.Monster.ParseMonsterJSONObjects;
 import Components.TopBar;
+import com.google.gson.Gson;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,7 +19,11 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import sample.Methods;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
+import java.util.ArrayList;
 
 
 public class Play {
@@ -81,6 +86,7 @@ public class Play {
 
     private void createCharacter() throws Exception {
         addCards(character);
+        saveCharacterData();
         characterHP.setText(String.valueOf(character.getCharacter().getHp()));
         characterImg.setImage(new Image(getClass().getResourceAsStream("../../" + character.getCharacter().getImage())));
     }
@@ -97,6 +103,11 @@ public class Play {
                 int imageWidth = (int) cardView.getImage().getWidth();
                 int index = (int) ((t.getX())/imageWidth);
                 character.getCharacter().getCardsOfPlayer().getCardList().remove(index);
+                try {
+                    saveCharacterData();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 cardBox.getChildren().remove(index);
             });
         }
@@ -116,22 +127,7 @@ public class Play {
         drawButton.onMouseClickedProperty().set((MouseEvent t) -> {
             try {
                 // TODO: Add drawCard.fxml path
-
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("DrawPile.fxml"));
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
-
-                DrawPile dp = loader.load();
-                for(Card card: character.getCharacter().getCardsOfPlayer().getCardList()){
-                    dp.addCard(card);
-                }
-                System.out.println("FROM MAIN" + dp.getCard().getImage());
-
-                Stage stage = (Stage) drawButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-
+                Methods.changeScreen("play/drawPile/DrawPile.fxml", drawButton);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -165,5 +161,37 @@ public class Play {
         endTurnButton.setGraphic(endTurnImg);
         endTurnButton.setStyle("-fx-background-color: transparent;");
         addListeners();
+    }
+
+    void saveCharacterData() throws IOException {
+
+        String jsonName = "";
+        int index = 0;
+        Writer writer = null;
+        File file = new File("src/sample/play/drawPile/JSONFiles");
+        deleteFolder(file);
+        for(Card card: character.getCharacter().getCardsOfPlayer().getCardList()){
+            writer = new FileWriter("src/sample/play/drawPile/JSONFiles/Card" + index + ".json");
+            new Gson().toJson(card, writer);
+            index++;
+        }
+        writer.close();
+    }
+
+    public static void deleteFolder(File folder) {
+        File[] files = folder.listFiles();
+        if(files!=null) { //some JVMs return null for empty dirs
+            for(File f: files) {
+                if(f.isDirectory()) {
+                    deleteFolder(f);
+                } else {
+                    f.delete();
+                }
+            }
+        }
+    }
+
+    public ArrayList<Card> getCharacterCards(){
+        return character.getCharacter().getCardsOfPlayer().getCardList();
     }
 }
