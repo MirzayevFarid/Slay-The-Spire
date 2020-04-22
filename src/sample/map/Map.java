@@ -7,6 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Map {
@@ -34,145 +35,93 @@ public class Map {
             System.out.println();
         }
 
-        drawLines();
+        drawLines2();
     }
 
-    private void drawLines() {
+    private void drawLines2(){
+        int singleX = width / (numberOfColumns*2);
+        int doubleX = width / numberOfColumns;
+        int singleY = height / (numberOfRows*2);
+        int doubleY = height / numberOfRows;
 
-        int previousCount = 0;
-        int currentCount = 0;
-
-
-        for(int i = 0; i<numberOfColumns; i++) {
-            if(map[9][i] == 1){
-                previousCount++;
-            }
-            if(map[8][i] == 1){
-                currentCount++;
-            }
-        }
-
-        int [] arr = distributeCandies(currentCount, previousCount);
-
-        for(int i = 0; i<arr.length; i++){
-            System.out.println("array printed");
-            System.out.print(arr[i] + "\t");
-        }
-
-        int index = 0;
-        for(int i = 0; i< numberOfColumns; i++){
-            if(map[9][i] == 1){
-            int count = arr[index];
-                for(int j = 0; j < numberOfColumns && count> 0; j++) {
-                    if(map[8][j] == 1){
-
-                        int singleX = width/(numberOfColumns*2);
-                        int doubleX = width/numberOfColumns;
-                        int singleY = height/(numberOfRows*2);
-                        int doubleY = height/numberOfRows;
-
-                        int strtLocX = singleX + (i * doubleX);
-                        int strtLocY = height - (singleY);
-
-                        int endLocX = singleX + (j * doubleX);
-                        int endLocY = height - (singleY + (doubleY));
-
-                        window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX,endLocY));
-                        map[8][j] = 0;
-                        count--;
-                    }
+        for (int i = 0; i < numberOfRows-1 ; i++) {
+            ArrayList<Integer> above = new ArrayList<>();
+            ArrayList<Integer> bottom = new ArrayList<>();
+            for(int j = 0; j < numberOfColumns; j++){
+                if (map[i][j] == 1){
+                    above.add(j);
                 }
-                index++;
+                if (map[i+1][j] == 1){
+                    bottom.add(j);
+                }
             }
-        }
+            System.out.println("above size: " + above.size());
+            System.out.println("bottom size: " + bottom.size());
 
-        System.out.println();
+                if (above.size() > 1 && bottom.size() > 1){
+                    while (above.size() > 1 && bottom.size() > 1 ){
+                        System.out.println("above > 1 , bottom > 1");
+                        System.out.println("above.get0 : " + above.get(0) + " Bottom 0 : " + bottom.get(0));
 
-        for(int i = 0; i < numberOfRows; i++) {
-            for (int j = 0; j < numberOfColumns; j++) {
-                System.out.print(map[i][j] + ", ");
-            }
-            System.out.println();
+
+
+                        int strtLocX = singleX + (above.get(0) * doubleX);
+                        int strtLocY =  doubleY * i + singleY;
+
+                        int endLocX = singleX + (bottom.get(0) * doubleX);
+                        int endLocY = (doubleY * (i + 1) + singleY);
+                        above.remove(0);
+                        bottom.remove(0);
+                        window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX,endLocY));
+                    }
+
+                }
+                if (above.size() == 1 && bottom.size() > 1){
+                    System.out.println( "above 1 bottom > 1");
+                    System.out.println("above.get0 : " + above.get(0) + " Bottom 0 : " + bottom.get(0));
+                    while (bottom.size() != 0){
+                        int strtLocX = singleX + (above.get(0) * doubleX);
+                        int strtLocY =  (doubleY * i + singleY);
+
+                        int endLocX = singleX + (bottom.get(0) * doubleX);
+                        int endLocY = (doubleY * (i + 1) + singleY);
+                        bottom.remove(0);
+                        window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX,endLocY));
+                    }
+                    above.remove(0);
+                }
+                 if (above.size() > 1 && bottom.size() == 1){
+                     System.out.println( "above > 1 bottom = 1");
+                     System.out.println("above.get0 : " + above.get(0) + " Bottom 0 : " + bottom.get(0));
+                    while (above.size() != 0){
+                        int strtLocX = singleX + (above.get(0) * doubleX);
+                        int strtLocY = (doubleY * i + singleY);
+
+                        int endLocX = singleX + (bottom.get(0) * doubleX);
+                        int endLocY = (doubleY * (i + 1) + singleY);
+                        above.remove(0);
+                        window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX,endLocY));
+                    }
+                    bottom.remove(0);
+                }
+                if(above.size() == 1 && bottom.size() == 1) {
+                    System.out.println( "above 1 bottom 1");
+                    System.out.println("above.get0 : " + above.get(0) + " Bottom 0 : " + bottom.get(0));
+                    int strtLocX = singleX + (above.get(0) * doubleX);
+                    int strtLocY =  (doubleY * i + singleY);
+
+                    int endLocX = singleX + (bottom.get(0) * doubleX);
+                    int endLocY = (doubleY * (i + 1) + singleY);
+                    bottom.remove(0);
+                    above.remove(0);
+                    window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX,endLocY));
+                }
         }
     }
 
-    static int [] distributeCandies(int n, int k)
-    {
-        // Count number of complete turns
-        int count = 0;
 
-        // Get the last term
-        int ind = 1;
 
-        // Stores the number of candies
-        int []arr=new int[k];
 
-        for(int i=0;i<k;i++)
-            arr[i]=0;
-
-        int low = 0, high = n;
-
-        // Do a binary search to find the number whose
-        // sum is less than N.
-        while (low <= high) {
-
-            // Get mide
-            int mid = (low + high) >> 1;
-            int sum = (mid * (mid + 1)) >> 1;
-
-            // If sum is below N
-            if (sum <= n) {
-
-                // Find number of complete turns
-                count = mid / k;
-
-                // Right halve
-                low = mid + 1;
-            }
-            else {
-
-                // Left halve
-                high = mid - 1;
-            }
-        }
-
-        // Last term of last complete series
-        int last = (count * k);
-
-        // Subtract the sum till
-        n -= (last * (last + 1)) / 2;
-
-        int j = 0;
-
-        // First term of incomplete series
-        int term = (count * k) + 1;
-
-        while (n > 0) {
-            if (term <= n) {
-                arr[j++] = term;
-                n -= term;
-                term++;
-            }
-            else {
-                arr[j] += n;
-                n = 0;
-            }
-        }
-
-        // Count the total candies
-        for (int i = 0; i < k; i++)
-            arr[i] += (count * (i + 1))
-                    + (k * (count * (count - 1)) / 2);
-
-        // Print the total candies
-        System.out.println("*************************");
-        for (int i = 0; i < k; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println("*************************");
-
-        return arr;
-    }
 
 
     public void addCirclesToGridPane(GridPane gridPane)
@@ -197,10 +146,9 @@ public class Map {
 
         System.out.println("OTHER ROWS");
         for (; ranY >= 0; ranY--) {
-            rowNumber = random.nextInt( 6);
+            rowNumber = random.nextInt( 2);
             rowNumber++;
 
-            ranY--;
             for  (int i = 0; i<= rowNumber; i++){
                 int ranX = random.nextInt(numberOfColumns);  // random value from 0 to width
                 gridPane.add(new Circle(10, Color.RED), ranX, ranY);
