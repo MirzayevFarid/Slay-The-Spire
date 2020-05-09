@@ -31,3 +31,7 @@ Slay the Spire has numerous stages to be overcomed by players. Consecutive stage
 
 [Iteration 1 - Project Design Report](https://docs.google.com/document/d/1VqTgeWK2fTIdBjjjGbGEHOI42KC8dM62Tpf5bTpkchU/edit?usp=sharing)
 
+[Iteration 2 - Project Analysis Report](https://docs.google.com/document/d/1nEiZlLqKQPNkVNmW84WLGqNWuTkxyio9eq07-fjDxbk/edit)
+
+[Iteration 2 - Project Design Report](https://docs.google.com/document/d/1yAIJ5ioQJ2sGaDIt_e5FETZt68Na7FgL/edit)
+
