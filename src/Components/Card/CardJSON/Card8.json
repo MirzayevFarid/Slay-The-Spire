@@ -2,8 +2,8 @@
   "name": "Card8",
   "energyCost": 2,
   "character": "Ironclad",
-  "damage": 8,
+  "damage": 12,
   "defence": 0,
-  "description": "jfsldkfjsldkfjsldkfj",
-  "image": "IMAGES/cards/attack/Bash.png"
+  "description": "Deal 12 damage. Apply 2 weak.",
+  "image": "IMAGES/cards/attack/Clothesline.png"
 }

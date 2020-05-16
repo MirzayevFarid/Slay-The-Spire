@@ -1,9 +1,9 @@
 {
   "name": "Card6",
-  "energyCost": 2,
+  "energyCost": 0,
   "character": "Ironclad",
-  "damage": 6,
+  "damage": 14,
   "defence": 0,
-  "description": "jfsldkfjsldkfjsldkfj",
-  "image": "IMAGES/cards/attack/Bash.png"
+  "description": "Deal 14 damage",
+  "image": "IMAGES/cards/attack/Clash.png"
 }

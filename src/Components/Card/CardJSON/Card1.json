@@ -1,9 +1,9 @@
 {
   "name": "Card1",
-  "energyCost": 2,
+  "energyCost": 0,
   "character": "Ironclad",
-  "damage": 1,
+  "damage": 6,
   "defence": 0,
-  "description": "jfsldkfjsldkfjsldkfj",
-  "image": "IMAGES/cards/attack/Bash.png"
+  "description": "Deal 6 damage. Add a copy of this card into your discard pile.",
+  "image": "IMAGES/cards/attack/Anger.png"
 }

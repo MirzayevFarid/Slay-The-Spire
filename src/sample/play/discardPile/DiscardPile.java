@@ -44,7 +44,6 @@ public class DiscardPile {
          int index = 0;
 
          for (File file: files) {
-             System.out.println("Girdi");
 
              try {
                  Object object = gson.fromJson(new FileReader(file.getAbsolutePath()), Card.class);

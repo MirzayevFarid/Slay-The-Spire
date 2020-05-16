@@ -1,0 +1,9 @@
+{
+  "name": "Card20",
+  "energyCost": 1,
+  "character": "Ironclad",
+  "damage": 8,
+  "defence": 0,
+  "description": "Deal 8 damage. Increase this card's damage by 5 this combat.",
+  "image": "IMAGES/cards/attack/Rampage.png"
+}

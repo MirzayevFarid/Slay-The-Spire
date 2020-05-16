@@ -2,8 +2,8 @@
   "name": "Card5",
   "energyCost": 2,
   "character": "Ironclad",
-  "damage": 5,
+  "damage": 20,
   "defence": 0,
-  "description": "jfsldkfjsldkfjsldkfj",
-  "image": "IMAGES/cards/attack/Bash.png"
+  "description": "Deal 20 damage.",
+  "image": "IMAGES/cards/attack/Carnage.png"
 }

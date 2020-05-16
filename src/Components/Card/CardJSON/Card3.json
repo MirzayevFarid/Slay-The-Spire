@@ -1,9 +1,9 @@
 {
   "name": "Card3",
-  "energyCost": 2,
+  "energyCost": 4,
   "character": "Ironclad",
-  "damage": 3,
-  "defence": 4,
-  "description": "fşlsdlfksşdlfsdşflskdşfskldşfsldkfş",
-  "image": "IMAGES/cards/attack/Anger.png"
+  "damage": 18,
+  "defence": 0,
+  "description": "Costs 1 less energy for each time you lose HP this combat. Deal 18 damage.",
+  "image": "IMAGES/cards/attack/BloodforBlood.png"
 }

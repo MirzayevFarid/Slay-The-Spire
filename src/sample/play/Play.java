@@ -137,7 +137,6 @@ public class Play {
     private void addListeners() {
         drawButton.onMouseClickedProperty().set((MouseEvent t) -> {
             try {
-                // TODO: Add drawCard.fxml path
                 Methods.changeScreen("play/drawPile/DrawPile.fxml", drawButton);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -146,7 +145,6 @@ public class Play {
 
         discardButton.onMouseClickedProperty().set((MouseEvent t) -> {
             try {
-                // TODO: Add discard.fxml path
                 Methods.changeScreen("play/discardPile/DiscardPile.fxml", discardButton);
             } catch (IOException e) {
                 e.printStackTrace();
