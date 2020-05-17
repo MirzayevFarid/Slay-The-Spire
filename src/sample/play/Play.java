@@ -6,9 +6,6 @@ import Components.Monster.ParseMonsterJSONObjects;
 import Components.TopBar;
 import com.google.gson.Gson;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -16,13 +13,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import sample.Methods;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 import java.util.ArrayList;
 
 
@@ -57,12 +52,17 @@ public class Play {
     @FXML
     Label characterHP;
 
+    @FXML
+    Label characterEnergy;
+
+
 
     ImageView drawCard = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/drawImage.png")));
     ImageView discardCard = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/discardImage.png")));
     ImageView endTurnImg = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/endTurnImage.png"),150,150,false,false));
     ParseMonsterJSONObjects monster;
     ParseCharacterJSONObjects character;
+    ArrayList<Card> cards = new ArrayList<>();
 
     {
         try {
@@ -74,6 +74,7 @@ public class Play {
     }
 
     public void initialize() throws Exception {
+        characterEnergy.setId("characterEnergy");
         addElements();
         File drawFile = new File("src/sample/play/drawPile/JSONFiles");
         deleteFolder(drawFile);
@@ -83,7 +84,8 @@ public class Play {
         createMonster();
     }
 
-    private void createMonster() throws Exception {
+
+        private void createMonster() throws Exception {
         monsterImg.setImage(new Image(getClass().getResourceAsStream("../../" + monster.getMonsters().getMonsters().get(2).getImage())));
         monsterHP.setText(String.valueOf(monster.getMonsters().getMonsters().get(2).getHp()));
     }
@@ -93,33 +95,42 @@ public class Play {
         saveCharacterData();
         characterHP.setText(String.valueOf(character.getCharacter().getHp()));
         characterImg.setImage(new Image(getClass().getResourceAsStream("../../" + character.getCharacter().getImage())));
+        characterEnergy.setText(character.getCharacter().getEnergy() + "/" + character.getCharacter().getEnergy());
     }
 
     private void addCards(ParseCharacterJSONObjects character) {
         for(int i = 0; i<= 4; i++) {
             Card card = character.getCharacter().getCardsOfPlayer().getCardList().get(i);
             character.getCharacter().getCardsOfPlayer().getCardList().remove(i);
+            cards.add(card);
             ImageView cardView = new ImageView(new Image(getClass().getResourceAsStream("../../" + card.getImage())));
             cardView.onMouseClickedProperty().set((MouseEvent t) -> {
-                try {
-                    playCard(card);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                int leftEnergy = Integer.parseInt(characterEnergy.getText().substring(0,1));
+                if(leftEnergy >= card.getEnergyCost()) {
+                    try {
+                        playCard(card);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    refreshScreen();
                 }
-                refreshScreen();
             });
             cardBox.getChildren().add(cardView);
-            cardBox.onMouseClickedProperty().set((MouseEvent t) -> {
-                int imageWidth = (int) cardView.getImage().getWidth();
-                int index = (int) ((t.getX())/imageWidth);
-                try {
-                    saveCharacterData();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                cardBox.getChildren().remove(index);
-            });
         }
+
+        cardBox.onMouseClickedProperty().set((MouseEvent t) -> {
+            int imageWidth = 155;
+            int index = (int) ((t.getX()) / imageWidth);
+            int leftEnergy = Integer.parseInt(characterEnergy.getText().substring(0,1));
+            Card card = cards.get(index);
+            int charEnergy = character.getCharacter().getEnergy();
+            if(leftEnergy >= card.getEnergyCost()) {
+                cardBox.getChildren().remove(cardBox.getChildren().get(index));
+                leftEnergy = leftEnergy - card.getEnergyCost();
+                characterEnergy.setText(leftEnergy + "/" + charEnergy);
+                cards.remove(index);
+            }
+        });
     }
 
     private void refreshScreen() {
@@ -127,10 +138,10 @@ public class Play {
     }
 
     private void playCard(Card card) throws IOException {
-        character.getCharacter().getCardsOfPlayer().addDiscardList(card);
-        updateDiscardJson();
-        int updatedHP = monster.getMonsters().getMonsters().get(2).getHp() - card.getDamage();
-        monster.getMonsters().getMonsters().get(2).setHp(updatedHP);
+            character.getCharacter().getCardsOfPlayer().addDiscardList(card);
+            updateDiscardJson();
+            int updatedHP = monster.getMonsters().getMonsters().get(2).getHp() - card.getDamage();
+            monster.getMonsters().getMonsters().get(2).setHp(updatedHP);
     }
 
 

@@ -1,7 +1,5 @@
 package Components.Character.CharacterJSON;
 
-import Components.Card.Card;
-import Components.Card.Cards;
 import Components.Card.ParseCardJSONObjects;
 import Components.Character.Character;
 import com.google.gson.Gson;
@@ -9,10 +7,6 @@ import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.FileReader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.stream.Stream;
 
 public class ParseCharacterJSONObjects {
     private String characterType;
@@ -35,7 +29,6 @@ public class ParseCharacterJSONObjects {
         if(object instanceof Character) {
             character = new Character((Character) object);
         }
-
         addCards();
 
     }

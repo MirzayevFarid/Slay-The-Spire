@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.play.Play">
    <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" />
@@ -33,4 +34,9 @@
          <Label fx:id="monsterHP" text="100" />
       </children>
    </VBox>
+   <Label fx:id="characterEnergy" layoutX="193.0" layoutY="650.0" text="3/3" textFill="#ff5200">
+      <font>
+         <Font size="36.0" />
+      </font>
+   </Label>
 </AnchorPane>

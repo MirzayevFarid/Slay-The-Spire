@@ -1,6 +1,6 @@
 {
   "name": "Ironclad",
   "image": "IMAGES/play/character.png",
-  "energy": 5,
+  "energy": 3,
   "hp": 120
 }

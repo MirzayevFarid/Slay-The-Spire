@@ -7,14 +7,18 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Map {
 
-    int numberOfColumns = 7;
-    int numberOfRows = 10;
+    static int numberOfColumns = 7;
+    static int numberOfRows = 10;
     int[][] map = new int[numberOfRows][numberOfColumns];     // 2D integer array with 4 rows
+    static int[][] map2 = new int[numberOfRows][numberOfColumns];
 
     @FXML
     private AnchorPane window;
@@ -24,19 +28,38 @@ public class Map {
 
     int width = 1440;
     int height = 900;
+    String txt = "";
+    String path = "src/sample/map/map.txt";
+    File file = new File(path);
+    static boolean control = false;
+    public void initialize() throws IOException {
+        if (!control){
+            addCirclesToGridPane(pn);
+            textWriter();
+            control = true;
+        }
+        System.out.println("////////icinde");
+        drawLines2();
+    }
 
-    public void initialize(){
-        addCirclesToGridPane(pn);
+    private void textWriter() throws IOException {
+        FileWriter fw = new FileWriter(file);
+        for(int i = 0; i < numberOfRows; i++) {
+            for (int j = 0; j < numberOfColumns; j++) {
+                txt += map[i][j];
+            }
+            txt += "\n";
+        }
 
         for(int i = 0; i < numberOfRows; i++) {
             for (int j = 0; j < numberOfColumns; j++) {
-                System.out.print(map[i][j] + ", ");
+                map2 [i][j] = map[i][j];
             }
-            System.out.println();
         }
-
-        drawLines2();
+        fw.write(txt);
+        fw.close();
     }
+
 
     private void drawLines2(){
         int singleX = width / (numberOfColumns*2);
@@ -48,74 +71,72 @@ public class Map {
             ArrayList<Integer> above = new ArrayList<>();
             ArrayList<Integer> bottom = new ArrayList<>();
             for(int j = 0; j < numberOfColumns; j++){
-                if (map[i][j] == 1){
+                if (map2[i][j] == 1){
                     above.add(j);
                 }
-                if (map[i+1][j] == 1){
+                if (map2[i+1][j] == 1){
                     bottom.add(j);
                 }
             }
             System.out.println("above size: " + above.size());
             System.out.println("bottom size: " + bottom.size());
 
-                if (above.size() > 1 && bottom.size() > 1){
-                    while (above.size() > 1 && bottom.size() > 1 ){
-                        System.out.println("above > 1 , bottom > 1");
-                        System.out.println("above.get0 : " + above.get(0) + " Bottom 0 : " + bottom.get(0));
-
-
-
-                        int strtLocX = singleX + (above.get(0) * doubleX);
-                        int strtLocY =  doubleY * i + singleY;
-
-                        int endLocX = singleX + (bottom.get(0) * doubleX);
-                        int endLocY = (doubleY * (i + 1) + singleY);
-                        above.remove(0);
-                        bottom.remove(0);
-                        window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX,endLocY));
-                    }
-
-                }
-                if (above.size() == 1 && bottom.size() > 1){
-                    System.out.println( "above 1 bottom > 1");
+            if (above.size() > 1 && bottom.size() > 1){
+                while (above.size() > 1 && bottom.size() > 1 ){
+                    System.out.println("above > 1 , bottom > 1");
                     System.out.println("above.get0 : " + above.get(0) + " Bottom 0 : " + bottom.get(0));
-                    while (bottom.size() != 0){
-                        int strtLocX = singleX + (above.get(0) * doubleX);
-                        int strtLocY =  (doubleY * i + singleY);
 
-                        int endLocX = singleX + (bottom.get(0) * doubleX);
-                        int endLocY = (doubleY * (i + 1) + singleY);
-                        bottom.remove(0);
-                        window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX,endLocY));
-                    }
+                    int strtLocX = singleX + (above.get(0) * doubleX);
+                    int strtLocY =  doubleY * i + singleY;
+
+                    int endLocX = singleX + (bottom.get(0) * doubleX);
+                    int endLocY = (doubleY * (i + 1) + singleY);
                     above.remove(0);
-                }
-                 if (above.size() > 1 && bottom.size() == 1){
-                     System.out.println( "above > 1 bottom = 1");
-                     System.out.println("above.get0 : " + above.get(0) + " Bottom 0 : " + bottom.get(0));
-                    while (above.size() != 0){
-                        int strtLocX = singleX + (above.get(0) * doubleX);
-                        int strtLocY = (doubleY * i + singleY);
-
-                        int endLocX = singleX + (bottom.get(0) * doubleX);
-                        int endLocY = (doubleY * (i + 1) + singleY);
-                        above.remove(0);
-                        window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX,endLocY));
-                    }
                     bottom.remove(0);
+                    window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX,endLocY));
                 }
-                if(above.size() == 1 && bottom.size() == 1) {
-                    System.out.println( "above 1 bottom 1");
-                    System.out.println("above.get0 : " + above.get(0) + " Bottom 0 : " + bottom.get(0));
+
+            }
+            if (above.size() == 1 && bottom.size() > 1){
+                System.out.println( "above 1 bottom > 1");
+                System.out.println("above.get0 : " + above.get(0) + " Bottom 0 : " + bottom.get(0));
+                while (bottom.size() != 0){
                     int strtLocX = singleX + (above.get(0) * doubleX);
                     int strtLocY =  (doubleY * i + singleY);
 
                     int endLocX = singleX + (bottom.get(0) * doubleX);
                     int endLocY = (doubleY * (i + 1) + singleY);
                     bottom.remove(0);
+                    window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX,endLocY));
+                }
+                above.remove(0);
+            }
+            if (above.size() > 1 && bottom.size() == 1){
+                System.out.println( "above > 1 bottom = 1");
+                System.out.println("above.get0 : " + above.get(0) + " Bottom 0 : " + bottom.get(0));
+                while (above.size() != 0){
+                    int strtLocX = singleX + (above.get(0) * doubleX);
+                    int strtLocY = (doubleY * i + singleY);
+
+                    int endLocX = singleX + (bottom.get(0) * doubleX);
+                    int endLocY = (doubleY * (i + 1) + singleY);
                     above.remove(0);
                     window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX,endLocY));
                 }
+                bottom.remove(0);
+            }
+            if(above.size() == 1 && bottom.size() == 1) {
+                System.out.println( "above 1 bottom 1");
+                System.out.println("above.get0 : " + above.get(0) + " Bottom 0 : " + bottom.get(0));
+                int strtLocX = singleX + (above.get(0) * doubleX);
+                int strtLocY =  (doubleY * i + singleY);
+
+                int endLocX = singleX + (bottom.get(0) * doubleX);
+                int endLocY = (doubleY * (i + 1) + singleY);
+                bottom.remove(0);
+                above.remove(0);
+                window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX,endLocY));
+            }
         }
     }
 
@@ -127,6 +148,7 @@ public class Map {
         rowNumber++;
 
         int ranY = 9;
+        String str;
 
         System.out.println("FIRST ROW");
         for(int i = 0; i <= rowNumber; i++){
