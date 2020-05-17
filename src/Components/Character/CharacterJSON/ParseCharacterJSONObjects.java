@@ -38,6 +38,7 @@ public class ParseCharacterJSONObjects {
         // TODO: Change Default Card Count
         for(int i = 0; i <= 9; i++){
             this.character.getCardsOfPlayer().getCardList().add(cards.getCardDeck().getCardList().get(i));
+            this.character.getCardsOfPlayer().getDrawList().add(cards.getCardDeck().getCardList().get(i));
         }
     }
 

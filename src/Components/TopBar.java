@@ -8,6 +8,7 @@ import com.sun.javafx.sg.prism.NGNode;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -15,7 +16,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import sample.Main;
 import sample.Methods;
 
@@ -37,7 +37,12 @@ public class TopBar extends Node {
     private ImageView settingsIcon = new ImageView(new Image(getClass().getResourceAsStream("../Images/play/settings.png")));
     private Button settingsButton = new Button();
 
-    Text hp = new Text("100 / 100");
+    Label hp = new Label("100 / 100");
+
+
+    public Label getHp(){
+        return hp;
+    }
 
 
     public TopBar(){
@@ -70,7 +75,7 @@ public class TopBar extends Node {
         settingsButton.setStyle("-fx-background-color: transparent;");
 
         hp.setFont(Font.font(30));
-        hp.setFill(Color.RED);
+        hp.setTextFill(Color.RED);
 
 
         anchorPane.getChildren().add(barBackground);

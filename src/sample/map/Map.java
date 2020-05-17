@@ -7,18 +7,18 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Map {
 
-    static int numberOfColumns = 7;
-    static int numberOfRows = 10;
+    int numberOfColumns = 7;
+    int numberOfRows = 10;
     int[][] map = new int[numberOfRows][numberOfColumns];     // 2D integer array with 4 rows
-    static int[][] map2 = new int[numberOfRows][numberOfColumns];
+
 
     @FXML
     private AnchorPane window;
@@ -32,147 +32,183 @@ public class Map {
     String path = "src/sample/map/map.txt";
     File file = new File(path);
     static boolean control = false;
+
     public void initialize() throws IOException {
-        if (!control){
-            addCirclesToGridPane(pn);
+
+        int[][] mapToRead;
+        if (file.exists()) {
+            control = true;
+        }
+        if (!control) {
+            generateCircleToMap();
             textWriter();
             control = true;
         }
-        System.out.println("////////icinde");
-        drawLines2();
+        mapToRead = readTxt();
+        addCircleFromTxt(pn, mapToRead);
+        drawLines2(mapToRead);
+
     }
 
+    /**
+     * It reads the generated circles and writes into map.txt
+     * @throws IOException
+     */
     private void textWriter() throws IOException {
         FileWriter fw = new FileWriter(file);
-        for(int i = 0; i < numberOfRows; i++) {
+        for (int i = 0; i < numberOfRows; i++) {
             for (int j = 0; j < numberOfColumns; j++) {
                 txt += map[i][j];
             }
             txt += "\n";
         }
-
-        for(int i = 0; i < numberOfRows; i++) {
-            for (int j = 0; j < numberOfColumns; j++) {
-                map2 [i][j] = map[i][j];
-            }
-        }
         fw.write(txt);
         fw.close();
     }
 
+    /**
+     * It reads map.txt file, and record the data to map2.
+     *
+     * @return map2 holds map.txt data
+     * @throws FileNotFoundException
+     */
+    private int[][] readTxt() throws FileNotFoundException {
+        int[][] map2 = new int[numberOfRows][numberOfColumns];
+        Scanner scan = new Scanner(file);
+        String line = "";
+        int colIndex = 0;
+        int rowIndex = 0;
+        while (scan.hasNextLine()) {
+            line = scan.nextLine();
+            for (int i = 0; i < line.length(); i++) {
+                if (line.charAt(i) == '1') {
+                    map2[rowIndex][colIndex] = 1;
+                }
+                colIndex++;
+            }
+            colIndex = 0;
+            rowIndex++;
+        }
+        return map2;
+    }
 
-    private void drawLines2(){
-        int singleX = width / (numberOfColumns*2);
+    /**
+     * read data is used in order to add circles to pane
+     *
+     * @param gridPane gridpane to add the circles
+     * @param map2     the 2 dimensional array holding text data
+     */
+    private void addCircleFromTxt(GridPane gridPane, int[][] map2) {
+        for (int i = 0; i < numberOfRows; i++) {
+            for (int j = 0; j < numberOfColumns; j++) {
+                if (map2[i][j] == 1) {
+                    gridPane.add(new Circle(10, Color.RED), j, i);
+                }
+            }
+        }
+    }
+
+    /**
+     * It draw lines of the map
+     *
+     * @param map2 holds the data of the map.txt
+     */
+
+    private void drawLines2(int[][] map2) {
+        int singleX = width / (numberOfColumns * 2);
         int doubleX = width / numberOfColumns;
-        int singleY = height / (numberOfRows*2);
+        int singleY = height / (numberOfRows * 2);
         int doubleY = height / numberOfRows;
 
-        for (int i = 0; i < numberOfRows-1 ; i++) {
+        for (int i = 0; i < numberOfRows - 1; i++) {
             ArrayList<Integer> above = new ArrayList<>();
             ArrayList<Integer> bottom = new ArrayList<>();
-            for(int j = 0; j < numberOfColumns; j++){
-                if (map2[i][j] == 1){
+            for (int j = 0; j < numberOfColumns; j++) {
+                if (map2[i][j] == 1) {
                     above.add(j);
                 }
-                if (map2[i+1][j] == 1){
+                if (map2[i + 1][j] == 1) {
                     bottom.add(j);
                 }
             }
-            System.out.println("above size: " + above.size());
-            System.out.println("bottom size: " + bottom.size());
 
-            if (above.size() > 1 && bottom.size() > 1){
-                while (above.size() > 1 && bottom.size() > 1 ){
-                    System.out.println("above > 1 , bottom > 1");
-                    System.out.println("above.get0 : " + above.get(0) + " Bottom 0 : " + bottom.get(0));
+            if (above.size() > 1 && bottom.size() > 1) {
+                while (above.size() > 1 && bottom.size() > 1) {
 
                     int strtLocX = singleX + (above.get(0) * doubleX);
-                    int strtLocY =  doubleY * i + singleY;
+                    int strtLocY = doubleY * i + singleY;
 
                     int endLocX = singleX + (bottom.get(0) * doubleX);
                     int endLocY = (doubleY * (i + 1) + singleY);
                     above.remove(0);
                     bottom.remove(0);
-                    window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX,endLocY));
+                    window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX, endLocY));
                 }
 
             }
-            if (above.size() == 1 && bottom.size() > 1){
-                System.out.println( "above 1 bottom > 1");
-                System.out.println("above.get0 : " + above.get(0) + " Bottom 0 : " + bottom.get(0));
-                while (bottom.size() != 0){
+            if (above.size() == 1 && bottom.size() > 1) {
+
+                while (bottom.size() != 0) {
                     int strtLocX = singleX + (above.get(0) * doubleX);
-                    int strtLocY =  (doubleY * i + singleY);
+                    int strtLocY = (doubleY * i + singleY);
 
                     int endLocX = singleX + (bottom.get(0) * doubleX);
                     int endLocY = (doubleY * (i + 1) + singleY);
                     bottom.remove(0);
-                    window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX,endLocY));
+                    window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX, endLocY));
                 }
                 above.remove(0);
             }
-            if (above.size() > 1 && bottom.size() == 1){
-                System.out.println( "above > 1 bottom = 1");
-                System.out.println("above.get0 : " + above.get(0) + " Bottom 0 : " + bottom.get(0));
-                while (above.size() != 0){
+            if (above.size() > 1 && bottom.size() == 1) {
+                while (above.size() != 0) {
                     int strtLocX = singleX + (above.get(0) * doubleX);
                     int strtLocY = (doubleY * i + singleY);
 
                     int endLocX = singleX + (bottom.get(0) * doubleX);
                     int endLocY = (doubleY * (i + 1) + singleY);
                     above.remove(0);
-                    window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX,endLocY));
+                    window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX, endLocY));
                 }
                 bottom.remove(0);
             }
-            if(above.size() == 1 && bottom.size() == 1) {
-                System.out.println( "above 1 bottom 1");
-                System.out.println("above.get0 : " + above.get(0) + " Bottom 0 : " + bottom.get(0));
+            if (above.size() == 1 && bottom.size() == 1) {
                 int strtLocX = singleX + (above.get(0) * doubleX);
-                int strtLocY =  (doubleY * i + singleY);
+                int strtLocY = (doubleY * i + singleY);
 
                 int endLocX = singleX + (bottom.get(0) * doubleX);
                 int endLocY = (doubleY * (i + 1) + singleY);
                 bottom.remove(0);
                 above.remove(0);
-                window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX,endLocY));
+                window.getChildren().addAll(new Line(strtLocX, strtLocY, endLocX, endLocY));
             }
         }
     }
 
+    /**
+     * it generates circles randomly
+     */
 
-    public void addCirclesToGridPane(GridPane gridPane)
-    {
+    public void generateCircleToMap() {
         Random random = new Random();
         int rowNumber = random.nextInt(3);
         rowNumber++;
 
         int ranY = 9;
-        String str;
 
-        System.out.println("FIRST ROW");
-        for(int i = 0; i <= rowNumber; i++){
+        for (int i = 0; i <= rowNumber; i++) {
             int ranX = random.nextInt(numberOfColumns); // random value from 0 to width
-            gridPane.add(new Circle(10, Color.RED), ranX, ranY);
-
             // Add 1 to map
             map[ranY][ranX] = 1;
-
-            System.out.println(ranX + "   ,    " + ranY);
         }
 
-
-        System.out.println("OTHER ROWS");
         for (; ranY >= 0; ranY--) {
-            rowNumber = random.nextInt( 2);
+            rowNumber = random.nextInt(2);
             rowNumber++;
 
-            for  (int i = 0; i<= rowNumber; i++){
+            for (int i = 0; i <= rowNumber; i++) {
                 int ranX = random.nextInt(numberOfColumns);  // random value from 0 to width
-                gridPane.add(new Circle(10, Color.RED), ranX, ranY);
                 // Add 1 to map
                 map[ranY][ranX] = 1;
-                System.out.println(ranX + "   ,    " + ranY);
             }
         }
     }

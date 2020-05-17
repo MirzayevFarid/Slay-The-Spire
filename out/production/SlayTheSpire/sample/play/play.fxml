@@ -15,7 +15,7 @@
    <ImageView fx:id="energyView" fitHeight="192.0" fitWidth="213.0" layoutX="124.0" layoutY="576.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../../IMAGES/play/energyImage.png" />
    </ImageView>
-   <Button fx:id="endTurnButton" layoutX="1173.0" layoutY="603.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#endTurn" />
+   <Button fx:id="endTurnButton" layoutX="1173.0" layoutY="603.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" />
    <HBox fx:id="cardBox" layoutX="339.0" layoutY="611.0" prefHeight="276.0" prefWidth="773.0" />
    <VBox layoutX="281.0" layoutY="345.0" prefHeight="200.0" prefWidth="100.0">
       <children>

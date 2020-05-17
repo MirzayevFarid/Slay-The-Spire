@@ -1,6 +1,7 @@
 package sample.play;
 
 import Components.Card.Card;
+import Components.Card.Cards;
 import Components.Character.CharacterJSON.ParseCharacterJSONObjects;
 import Components.Monster.ParseMonsterJSONObjects;
 import Components.TopBar;
@@ -55,15 +56,6 @@ public class Play {
     @FXML
     Label characterEnergy;
 
-    @FXML
-    public void endTurn(){
-        int damage = monster.getMonsters().getMonsters().get(2).getAttackPoint();
-        int newCharacterHP = character.getCharacter().getHp() - damage;
-        character.getCharacter().setHp(newCharacterHP);
-        characterEnergy.setText(character.getCharacter().getEnergy() + "/" + character.getCharacter().getEnergy());
-        refreshScreen();
-    }
-
 
 
     ImageView drawCard = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/drawImage.png")));
@@ -72,6 +64,8 @@ public class Play {
     ParseMonsterJSONObjects monster;
     ParseCharacterJSONObjects character;
     ArrayList<Card> cards = new ArrayList<>();
+    TopBar bar;
+    static int charHP;
 
     {
         try {
@@ -101,17 +95,22 @@ public class Play {
 
     private void createCharacter() throws Exception {
         addCards(character);
-        saveCharacterData();
+        updateDrawJson();
         characterHP.setText(String.valueOf(character.getCharacter().getHp()));
         characterImg.setImage(new Image(getClass().getResourceAsStream("../../" + character.getCharacter().getImage())));
         characterEnergy.setText(character.getCharacter().getEnergy() + "/" + character.getCharacter().getEnergy());
+        bar.getHp().setText(character.getCharacter().getHp() + "/" + character.getCharacter().getHp());
+        charHP = character.getCharacter().getHp();
+
     }
 
     private void addCards(ParseCharacterJSONObjects character) {
-        for(int i = 0; i<= 4; i++) {
+        for(int i = 0; i < 5 - cards.size(); i++) {
             Card card = character.getCharacter().getCardsOfPlayer().getCardList().get(i);
+            character.getCharacter().getCardsOfPlayer().getDrawList().remove(i);
             character.getCharacter().getCardsOfPlayer().getCardList().remove(i);
             cards.add(card);
+            i--;
             ImageView cardView = new ImageView(new Image(getClass().getResourceAsStream("../../" + card.getImage())));
             cardView.onMouseClickedProperty().set((MouseEvent t) -> {
                 int leftEnergy = Integer.parseInt(characterEnergy.getText().substring(0,1));
@@ -171,10 +170,50 @@ public class Play {
                 e.printStackTrace();
             }
         });
+
+
+        endTurnButton.onMouseClickedProperty().set((MouseEvent t) -> {
+            int damage = monster.getMonsters().getMonsters().get(2).getAttackPoint();
+            int newCharacterHP = character.getCharacter().getHp() - damage;
+            character.getCharacter().setHp(newCharacterHP);
+            characterEnergy.setText(character.getCharacter().getEnergy() + "/" + character.getCharacter().getEnergy());
+            bar.getHp().setText(newCharacterHP + "/" + charHP);
+            exposeCards();
+            refreshScreen();
+        });
+    }
+
+    private void exposeCards() {
+        try {
+            Cards charCards =  character.getCharacter().getCardsOfPlayer();
+
+            for(int i = 0; i < cards.size(); i++){
+                charCards.addDiscardList(cards.get(i));
+            }
+            updateDiscardJson();
+            cards.clear();
+            cardBox.getChildren().clear();
+
+            if(charCards.getCardList().size() < 5){
+                for(int i = 0; i < charCards.getDiscardList().size(); i++){
+                    character.getCharacter().addCard(charCards.getDiscardList().get(i));
+                    character.getCharacter().getCardsOfPlayer().getDrawList().add(charCards.getDiscardList().get(i));
+                }
+                charCards.getDiscardList().clear();
+                updateDiscardJson();
+            }
+
+            addCards(character);
+            updateDrawJson();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     void addElements(){
-        TopBar bar = new TopBar();
+        bar = new TopBar();
         AnchorPane.getChildren().add(bar.getTopBar());
         drawButton.setGraphic(drawCard);
         drawButton.setStyle("-fx-background-color: transparent;");
@@ -186,7 +225,7 @@ public class Play {
     }
 
 
-    private void updateDiscardJson() throws IOException {
+    void updateDiscardJson() throws IOException {
         int index = 0;
         FileWriter writer = null;
         File file = new File("src/sample/play/discardPile/JSONFiles");
@@ -199,12 +238,12 @@ public class Play {
         }
     }
 
-    void saveCharacterData() throws IOException {
+    void updateDrawJson() throws IOException {
         int index = 0;
         FileWriter writer = null;
         File file = new File("src/sample/play/drawPile/JSONFiles");
         deleteFolder(file);
-        for(Card card: character.getCharacter().getCardsOfPlayer().getCardList()){
+        for(Card card: character.getCharacter().getCardsOfPlayer().getDrawList()){
             writer = new FileWriter("src/sample/play/drawPile/JSONFiles/" + card.getName() + ".json");
             new Gson().toJson(card, writer);
             index++;
