@@ -55,6 +55,15 @@ public class Play {
     @FXML
     Label characterEnergy;
 
+    @FXML
+    public void endTurn(){
+        int damage = monster.getMonsters().getMonsters().get(2).getAttackPoint();
+        int newCharacterHP = character.getCharacter().getHp() - damage;
+        character.getCharacter().setHp(newCharacterHP);
+        characterEnergy.setText(character.getCharacter().getEnergy() + "/" + character.getCharacter().getEnergy());
+        refreshScreen();
+    }
+
 
 
     ImageView drawCard = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/drawImage.png")));
@@ -135,6 +144,7 @@ public class Play {
 
     private void refreshScreen() {
         monsterHP.setText((monster.getMonsters().getMonsters().get(2).getHp() + "") );
+        characterHP.setText((character.getCharacter().getHp() + "") );
     }
 
     private void playCard(Card card) throws IOException {
@@ -157,14 +167,6 @@ public class Play {
         discardButton.onMouseClickedProperty().set((MouseEvent t) -> {
             try {
                 Methods.changeScreen("play/discardPile/DiscardPile.fxml", discardButton);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        endTurnButton.onMouseClickedProperty().set((MouseEvent t) -> {
-            try {
-                // TODO: Add endTurn.fxml path
-                Methods.changeScreen("",endTurnButton);
             } catch (IOException e) {
                 e.printStackTrace();
             }
