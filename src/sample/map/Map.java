@@ -68,7 +68,6 @@ public class Map {
 
     /**
      * It reads map.txt file, and record the data to map2.
-     *
      * @return map2 holds map.txt data
      * @throws FileNotFoundException
      */
@@ -94,7 +93,6 @@ public class Map {
 
     /**
      * read data is used in order to add circles to pane
-     *
      * @param gridPane gridpane to add the circles
      * @param map2     the 2 dimensional array holding text data
      */
@@ -110,7 +108,6 @@ public class Map {
 
     /**
      * It draw lines of the map
-     *
      * @param map2 holds the data of the map.txt
      */
 

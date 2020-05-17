@@ -4,6 +4,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.play.Play;
+
+import java.io.IOException;
 
 public class Main extends Application {
     private static int width = 1440;
@@ -26,7 +29,8 @@ public class Main extends Application {
         return height;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        Play.music();
         launch(args);
     }
 }

@@ -5,6 +5,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.Methods;
+import sample.play.Play;
+import sun.audio.AudioPlayer;
 
 import java.io.IOException;
 
@@ -36,6 +38,7 @@ public class MainMenu {
     }
 
     public void quitClicked(MouseEvent mouseEvent) {
+        AudioPlayer.player.stop(Play.getMusic());
         Stage stage = (Stage) txtQuit.getScene().getWindow();
         stage.close();
     }
