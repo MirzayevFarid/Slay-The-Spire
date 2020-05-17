@@ -14,10 +14,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import sample.Methods;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 
@@ -72,6 +72,9 @@ public class Play {
     ParseMonsterJSONObjects monster;
     ParseCharacterJSONObjects character;
     ArrayList<Card> cards = new ArrayList<>();
+    static InputStream file;
+    static AudioStream musicc;
+
 
     {
         try {
@@ -80,6 +83,11 @@ public class Play {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    public static AudioStream getMusic() {
+        return musicc;
     }
 
     public void initialize() throws Exception {
@@ -228,4 +236,14 @@ public class Play {
     public ArrayList<Card> getCharacterCards(){
         return character.getCharacter().getCardsOfPlayer().getCardList();
     }
+
+    public static void music() throws IOException {
+        file = new FileInputStream("C:\\Users\\Burcu\\Documents\\1A-SS\\src\\sample\\play\\irmakAski.wav");
+        musicc = new AudioStream(file);
+        AudioPlayer.player.start(musicc);
+
+
+
+    }
+
 }
