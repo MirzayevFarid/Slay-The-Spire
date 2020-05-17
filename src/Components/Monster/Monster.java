@@ -41,7 +41,6 @@ public class Monster {
             this.attackPoint = ThreadLocalRandom.current().nextInt(10, 15 + 1);
             this.defencePoint = ThreadLocalRandom.current().nextInt(10, 15 + 1);
             this.hp = ThreadLocalRandom.current().nextInt(220, 300 + 1);
-
         }
         else if(level == 4){
             this.attackPoint = ThreadLocalRandom.current().nextInt(15, 20 + 1);

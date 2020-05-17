@@ -26,15 +26,15 @@ public class MainMenu {
 
 
     public void playClicked(MouseEvent mouseEvent) throws IOException {
-        Methods.changeScreen("play/play.fxml", txtPlay);
+        Methods.changeScreen("play/play.fxml", txtPlay, true);
     }
 
     public void compendiumClicked(MouseEvent mouseEvent) throws IOException {
-        Methods.changeScreen("rest/Rest.fxml", txtCompendium);
+        Methods.changeScreen("rest/Rest.fxml", txtCompendium, true);
     }
 
     public void settingsClicked(MouseEvent mouseEvent) throws IOException {
-        Methods.changeScreen("settings/settings.fxml", txtSettings);
+        Methods.changeScreen("settings/settings.fxml", txtSettings,true);
     }
 
     public void quitClicked(MouseEvent mouseEvent) {

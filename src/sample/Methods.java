@@ -9,13 +9,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Methods {
-    public static void changeScreen(String path, Node node) throws IOException {
+    public static void changeScreen(String path, Node node, boolean hide) throws IOException {
         FXMLLoader loader = new FXMLLoader(Methods.class.getResource(path));
         loader.load();
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-//        node.getScene().getWindow().hide();
+        if(hide)
+            node.getScene().getWindow().hide();
         stage.setResizable(false);
         stage.show();
     }

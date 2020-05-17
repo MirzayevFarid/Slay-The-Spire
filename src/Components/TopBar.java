@@ -53,7 +53,7 @@ public class TopBar extends Node {
     private void addListeners() {
         settingsButton.onMouseClickedProperty().set((MouseEvent t) -> {
             try {
-                Methods.changeScreen("settings/settings.Fxml",settingsButton);
+                Methods.changeScreen("settings/settings.Fxml",settingsButton, false);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -61,7 +61,7 @@ public class TopBar extends Node {
 
         mapButton.onMouseClickedProperty().set((MouseEvent t) -> {
             try {
-                Methods.changeScreen("map/map.Fxml",mapButton);
+                Methods.changeScreen("map/map.Fxml",mapButton, false);
             } catch (IOException e) {
                 e.printStackTrace();
             }
