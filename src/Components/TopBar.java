@@ -44,7 +44,6 @@ public class TopBar extends Node {
         return hp;
     }
 
-
     public TopBar(){
         addItems();
         addListeners();
