@@ -1,8 +1,1 @@
-{
-  "name": "Card15",
-  "energyCost": 2,
-  "damage": 21,
-  "defence": 0,
-  "description": "Deal 21 damage to ALL enemies. Add a burn into your discard pile.",
-  "image": "IMAGES/cards/attack/Immolate.png"
-}
+{"name":"Card15","energyCost":2,"damage":21,"defence":0,"description":"Deal 21 damage to ALL enemies. Add a burn into your discard pile.","image":"IMAGES/cards/attack/Immolate.png"}

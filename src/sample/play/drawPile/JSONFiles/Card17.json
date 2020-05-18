@@ -1,8 +1,1 @@
-{
-  "name": "Card17",
-  "energyCost": 2,
-  "damage": 6,
-  "defence": 0,
-  "description": "Deal 6 damage. Deals 2 additional damage for ALL your cards containing \u0027strike\u0027.",
-  "image": "IMAGES/cards/attack/PerfectedStrike.png"
-}
+{"name":"Card17","energyCost":2,"damage":6,"defence":0,"description":"Deal 6 damage. Deals 2 additional damage for ALL your cards containing \u0027strike\u0027.","image":"IMAGES/cards/attack/PerfectedStrike.png"}

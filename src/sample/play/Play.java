@@ -7,7 +7,6 @@ import Components.Monster.ParseMonsterJSONObjects;
 import Components.Potion.ParsePotionJSONObjects;
 import Components.Potion.Potion;
 import Components.Relic.ParseRelicJSONObjects;
-import Components.RelicBar;
 import Components.TopBar;
 import com.google.gson.Gson;
 import javafx.animation.KeyFrame;
@@ -89,7 +88,6 @@ public class Play {
     ArrayList<Card> cards = new ArrayList<>();
     public static MediaPlayer player;
     TopBar bar;
-    RelicBar relicBar;
     int charHP;
     int charAttackBoost = 0;
     int charDefence = 0;
@@ -145,7 +143,6 @@ public class Play {
         characterImg.setImage(new Image(getClass().getResourceAsStream("../../" + character.getCharacter().getImage())));
         characterEnergy.setText(character.getCharacter().getEnergy() + "/" + character.getCharacter().getEnergy());
         bar.getHp().setText(character.getCharacter().getHp() + "/" + character.getCharacter().getHp());
-        relicBar.setRelicIconImage(character.getCharacter().getRelicsOfPlayer().getRelics().get(0).getImage());
         charHP = character.getCharacter().getHp();
 
     }
@@ -349,7 +346,6 @@ public class Play {
      */
     void addElements(){
         bar = new TopBar();
-        relicBar = new RelicBar();
         bar.getPotionButton1().onMouseClickedProperty().set((MouseEvent t) -> {
             if ( character.getCharacter().getPotionsOfPlayer().getPotions().size() > 0 ){
                 usePotion(1);

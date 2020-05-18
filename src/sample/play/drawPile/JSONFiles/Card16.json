@@ -1,8 +1,1 @@
-{
-  "name": "Card16",
-  "energyCost": 1,
-  "damage": 5,
-  "defence": 5,
-  "description": "Gain 5 block. Deal 5 damage.",
-  "image": "IMAGES/cards/attack/IronWave.png"
-}
+{"name":"Card16","energyCost":1,"damage":5,"defence":5,"description":"Gain 5 block. Deal 5 damage.","image":"IMAGES/cards/attack/IronWave.png"}
