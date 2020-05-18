@@ -24,7 +24,7 @@ import java.io.IOException;
 
 public class TopBar extends Node {
 
-    private HBox hbox = new HBox(5);
+    private HBox hbox = new HBox(8);
     private AnchorPane anchorPane = new AnchorPane();
 
     private ImageView barBackground = new ImageView(new Image(getClass().getResourceAsStream("../Images/play/bar.png")));
@@ -37,13 +37,20 @@ public class TopBar extends Node {
     private ImageView settingsIcon = new ImageView(new Image(getClass().getResourceAsStream("../Images/play/settings.png")));
     private Button settingsButton = new Button();
 
-    Label hp = new Label("100 / 100");
+    private ImageView potionIcon1 = new ImageView();
+    private Button potionButton1 = new Button();
 
+    private ImageView potionIcon2 = new ImageView();
+    private Button potionButton2 = new Button();
+
+    private ImageView potionIcon3 = new ImageView();
+    private Button potionButton3 = new Button();
+
+    Label hp = new Label("100 / 100");
 
     public Label getHp(){
         return hp;
     }
-
 
     public TopBar(){
         addItems();
@@ -82,16 +89,112 @@ public class TopBar extends Node {
         anchorPane.getChildren().add(hbox);
         HBox.setMargin(heartIcon,new Insets(5,0,0,0));
         hbox.getChildren().add(heartIcon);
-        HBox.setMargin(hp,new Insets(15,Main.getWidth() - 400,0,0));
+        HBox.setMargin(hp,new Insets(15,0,0,0));
         hbox.getChildren().add(hp);
+
+        HBox.setMargin(potionButton1, new Insets(-5, 0, 0, 0));
+        hbox.getChildren().add(potionButton1);
+
+        HBox.setMargin(potionButton2, new Insets(-5, 0, 0, 0));
+        hbox.getChildren().add(potionButton2);
+
+        HBox.setMargin(potionButton3, new Insets(-5, Main.getWidth() - 610, 0, 0));
+        hbox.getChildren().add(potionButton3);
+
         hbox.getChildren().add(mapButton);
         hbox.getChildren().add(settingsButton);
-
     }
 
     public Node getTopBar(){
         return anchorPane;
     }
+
+    public ImageView getPotionIcon1() {
+        return potionIcon1;
+    }
+
+    public void setPotionIcon1(ImageView potionIcon1) {
+        this.potionIcon1 = potionIcon1;
+    }
+
+    public Button getPotionButton1() {
+        return potionButton1;
+    }
+
+    public void setPotionButton1(Button potionButton1) {
+        this.potionButton1 = potionButton1;
+    }
+
+    public ImageView getPotionIcon2() {
+        return potionIcon2;
+    }
+
+    public void setPotionIcon2(ImageView potionIcon2) {
+        this.potionIcon2 = potionIcon2;
+    }
+
+    public Button getPotionButton2() {
+        return potionButton2;
+    }
+
+    public void setPotionButton2(Button potionButton2) {
+        this.potionButton2 = potionButton2;
+    }
+
+    public ImageView getPotionIcon3() {
+        return potionIcon3;
+    }
+
+    public void setPotionIcon3(ImageView potionIcon3) {
+        this.potionIcon3 = potionIcon3;
+    }
+
+    public Button getPotionButton3() {
+        return potionButton3;
+    }
+
+    public void setPotionButton3(Button potionButton3) {
+        this.potionButton3 = potionButton3;
+    }
+
+    public void setPotionImage1(String path){
+        System.out.println(path);
+        potionIcon1 = new ImageView(new Image(getClass().getResourceAsStream("../" + path)));
+        potionIcon1.setFitWidth(70);
+        potionIcon1.setFitHeight(70);
+        potionButton1.setGraphic(potionIcon1);
+        potionButton1.setStyle("-fx-background-color: transparent;");
+    }
+
+    public void setPotionImage2(String path){
+        System.out.println(path);
+        potionIcon2 = new ImageView(new Image(getClass().getResourceAsStream("../" + path)));
+        potionIcon2.setFitWidth(70);
+        potionIcon2.setFitHeight(70);
+        potionButton2.setGraphic(potionIcon2);
+        potionButton2.setStyle("-fx-background-color: transparent;");
+    }
+
+    public void setPotionImage3(String path){
+        System.out.println(path);
+        potionIcon3 = new ImageView(new Image(getClass().getResourceAsStream("../" + path)));
+        potionIcon3.setFitWidth(70);
+        potionIcon3.setFitHeight(70);
+        potionButton3.setGraphic(potionIcon3);
+        potionButton3.setStyle("-fx-background-color: transparent;");
+    }
+
+    /*public void updatePotionImages(int index){
+        if ( index == 1 ){
+
+        }
+        else if ( index == 2 ){
+
+        }
+        else if ( index == 3 ){
+            setPotionImage3("../IMAGES/PotionImages/NoPotion.png");
+        }
+    }*/
 
     @Override
     protected NGNode impl_createPeer() {

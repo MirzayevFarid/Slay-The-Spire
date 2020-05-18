@@ -16,12 +16,13 @@ public class ParsePotionJSONObjects {
     private String path;// File path that includes json libraries
     private Potions potions;
 
-    ParsePotionJSONObjects() throws Exception {
+    public ParsePotionJSONObjects() throws Exception {
         gson = new GsonBuilder().create();                     //creating gson
         directory = System.getProperty("user.dir");
         path = directory + "/src/Components/Potion/PotionJSON";              //path for json files
         potions = new Potions(parseJSONFiles());
     }
+
     public Potions parseJSONFiles() throws Exception{
 
         File folder = new File(path);
@@ -45,15 +46,9 @@ public class ParsePotionJSONObjects {
         }
         return new Potions(potions);
     }
-    public Class<?> typeToClass(String className){
 
-        Class<?> cls = null;
-        try {
-            cls = Class.forName(className);
-        }
-        catch (ClassNotFoundException e){
-        }
-        return cls;
+    public Potions getPotions(){
+        return potions;
     }
 
     @Override

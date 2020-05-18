@@ -1,7 +1,5 @@
 package Components.Relic;
 
-import Components.Card.Card;
-import Components.Card.Cards;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

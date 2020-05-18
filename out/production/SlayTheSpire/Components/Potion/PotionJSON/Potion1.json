@@ -1,6 +1,6 @@
 {
-
   "attackBoost": 7,
   "defendBoost": 5,
-  "hpBoost": 11
+  "hpBoost": 11,
+  "image": "IMAGES/PotionImages/AncientPotion.png"
 }
