@@ -1,17 +1,16 @@
 package Components.Potion;
 
 public class Potion {
-    //Properties of the Card Class       Author: Okan Alp Unver
     private int attackBoost;
     private int defendBoost;
     private int hpBoost;
+    private String image;
 
-    //Methods of the Card Class         Author: Okan Alp Unver
-
-    public Potion(int attackBoost, int defendBoost, int hpBoost) {
+    public Potion(int attackBoost, int defendBoost, int hpBoost, String image) {
         this.attackBoost = attackBoost;
         this.defendBoost = defendBoost;
         this.hpBoost = hpBoost;
+        this.image = image;
     }
 
     public Potion() {
@@ -23,29 +22,39 @@ public class Potion {
         this.attackBoost = otherPotion.attackBoost;
         this.defendBoost = otherPotion.defendBoost;
         this.hpBoost = otherPotion.hpBoost;
+        this.image = otherPotion.image;
     }
+
     public int getAttackBoost() {
         return attackBoost;
-    }
-
-    public int getDefendBoost() {
-        return defendBoost;
-    }
-
-    public int getHpBoost() {
-        return hpBoost;
     }
 
     public void setAttackBoost(int attackBoost) {
         this.attackBoost = attackBoost;
     }
 
+    public int getDefendBoost() {
+        return defendBoost;
+    }
+
     public void setDefendBoost(int defendBoost) {
         this.defendBoost = defendBoost;
     }
 
+    public int getHpBoost() {
+        return hpBoost;
+    }
+
     public void setHpBoost(int hpBoost) {
         this.hpBoost = hpBoost;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override

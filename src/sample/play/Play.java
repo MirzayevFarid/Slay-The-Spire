@@ -6,6 +6,9 @@ import Components.Character.CharacterJSON.ParseCharacterJSONObjects;
 import Components.Monster.ParseMonsterJSONObjects;
 import Components.Relic.ParseRelicJSONObjects;
 import Components.RelicBar;
+import Components.Potion.ParsePotionJSONObjects;
+import Components.Potion.Potion;
+import Components.Relic.ParseRelicJSONObjects;
 import Components.TopBar;
 import com.google.gson.Gson;
 import javafx.animation.KeyFrame;
@@ -83,6 +86,8 @@ public class Play {
     ParseMonsterJSONObjects monster;
     ParseCharacterJSONObjects character;
     ParseRelicJSONObjects relics;
+    ParseRelicJSONObjects relics;
+    ParsePotionJSONObjects potions;
     ArrayList<Card> cards = new ArrayList<>();
     public static MediaPlayer player;
     TopBar bar;
@@ -90,12 +95,19 @@ public class Play {
     int initialCharHP;
     int initialMonsterHP;
     int additionalDefence = 0;
+    int charHP;
+    int charAttackBoost = 0;
+    int charDefence = 0;
+
+
 
     {
         try {
             monster = new ParseMonsterJSONObjects();
             character = new ParseCharacterJSONObjects("Ironclad");
             relics = new ParseRelicJSONObjects();
+            relics = new ParseRelicJSONObjects();
+            potions = new ParsePotionJSONObjects();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -133,10 +145,16 @@ public class Play {
         initialCharHP = character.getCharacter().getHp();
         addCards(character);
         character.getCharacter().addRelic(relics.getRelics().getRelics().get(0));
+        character.getCharacter().addPotion(potions.getPotions().getPotions().get(0));
+        character.getCharacter().addPotion(potions.getPotions().getPotions().get(1));
+        character.getCharacter().addPotion(potions.getPotions().getPotions().get(2));
+        character.getCharacter().addRelic(relics.getRelics().getRelics().get(0));
         character.getCharacter().addRelic(relics.getRelics().getRelics().get(1));
         character.getCharacter().addRelic(relics.getRelics().getRelics().get(2));
         updateDrawJson();
         characterHP.setText(initialCharHP + "/" + initialCharHP);
+        updatePotions();
+        characterHP.setText(String.valueOf(character.getCharacter().getHp()));
         characterImg.setImage(new Image(getClass().getResourceAsStream("../../" + character.getCharacter().getImage())));
         characterEnergy.setText(character.getCharacter().getEnergy() + "/" + character.getCharacter().getEnergy());
     }
@@ -199,6 +217,9 @@ public class Play {
     private void refreshScreen() {
         monsterHP.setText((monster.getMonsters().getMonsters().get(2).getHp() + "/") + initialMonsterHP );
         characterHP.setText((character.getCharacter().getHp() + "/")+ initialCharHP );
+        monsterHP.setText((monster.getMonsters().getMonsters().get(2).getHp() + "") );
+        characterHP.setText((character.getCharacter().getHp() + "") );
+        updatePotions();
     }
 
 
@@ -214,6 +235,8 @@ public class Play {
             character.getCharacter().getCardsOfPlayer().addDiscardList(card);
             updateDiscardJson();
             int updatedHP = monster.getMonsters().getMonsters().get(2).getHp() - card.getDamage();
+            updatedHP -= character.getCharacter().getRelicsOfPlayer().getRelics().get(0).getAttackBoost();
+            updatedHP -= charAttackBoost;
             updatedHP -= character.getCharacter().getRelicsOfPlayer().getRelics().get(0).getAttackBoost();
             monster.getMonsters().getMonsters().get(2).setHp(updatedHP);
 
@@ -256,6 +279,8 @@ public class Play {
         endTurnButton.onMouseClickedProperty().set((MouseEvent t) -> {
             int damage = monster.getMonsters().getMonsters().get(2).getAttackPoint();
             int newCharacterHP = character.getCharacter().getHp() - damage + additionalDefence;
+            int newCharacterHP = character.getCharacter().getHp() - damage;
+            newCharacterHP += charDefence;
             character.getCharacter().setHp(newCharacterHP);
             characterEnergy.setText(character.getCharacter().getEnergy() + "/" + character.getCharacter().getEnergy());
             bar.getHp().setText(newCharacterHP + "/" + initialCharHP);
@@ -351,6 +376,25 @@ public class Play {
         AnchorPane.getChildren().add(bars);
 //        AnchorPane.getChildren().add(bar.getTopBar());
 //        AnchorPane.getChildren().add(relicBar.getRelicBar());
+        bar.getPotionButton1().onMouseClickedProperty().set((MouseEvent t) -> {
+            if ( character.getCharacter().getPotionsOfPlayer().getPotions().size() > 0 ){
+                usePotion(1);
+                updatePotions();
+            }
+        });
+        bar.getPotionButton2().onMouseClickedProperty().set((MouseEvent t) -> {
+            if ( character.getCharacter().getPotionsOfPlayer().getPotions().size() > 1 ){
+                usePotion(2);
+                updatePotions();
+            }
+        });
+        bar.getPotionButton3().onMouseClickedProperty().set((MouseEvent t) -> {
+            if ( character.getCharacter().getPotionsOfPlayer().getPotions().size() > 2 ){
+                usePotion(3);
+                updatePotions();
+            }
+        });
+        AnchorPane.getChildren().add(bar.getTopBar());
         drawButton.setGraphic(drawCard);
         drawButton.setStyle("-fx-background-color: transparent;");
         discardButton.setGraphic(discardCard);
@@ -409,6 +453,7 @@ public class Play {
     public MediaPlayer getPlayer(){
         return player;
     }
+
     public static void music() throws IOException {
         Media file = new Media(new File("src/sample/play/irmakAski.wav").toURI().toString());
         player = new MediaPlayer(file);
@@ -421,5 +466,37 @@ public class Play {
 
     }
 
+    void updatePotions(){
+        int characterPotionNumber = character.getCharacter().getPotionsOfPlayer().getPotions().size();
+        if ( characterPotionNumber == 0 ){
+            bar.setPotionImage1("IMAGES/PotionImages/NoPotion.png");
+            bar.setPotionImage2("IMAGES/PotionImages/NoPotion.png");
+            bar.setPotionImage3("IMAGES/PotionImages/NoPotion.png");
+        }
+        else if ( characterPotionNumber == 1 ) {
+            bar.setPotionImage1(character.getCharacter().getPotionsOfPlayer().getPotions().get(0).getImage());
+            bar.setPotionImage2("IMAGES/PotionImages/NoPotion.png");
+            bar.setPotionImage3("IMAGES/PotionImages/NoPotion.png");
+        }
+        else if ( characterPotionNumber == 2 ){
+            bar.setPotionImage1(character.getCharacter().getPotionsOfPlayer().getPotions().get(0).getImage());
+            bar.setPotionImage2(character.getCharacter().getPotionsOfPlayer().getPotions().get(1).getImage());
+            bar.setPotionImage3("IMAGES/PotionImages/NoPotion.png");
+        }
+        else if ( characterPotionNumber == 3 ){
+            bar.setPotionImage1(character.getCharacter().getPotionsOfPlayer().getPotions().get(0).getImage());
+            bar.setPotionImage2(character.getCharacter().getPotionsOfPlayer().getPotions().get(1).getImage());
+            bar.setPotionImage3(character.getCharacter().getPotionsOfPlayer().getPotions().get(2).getImage());
+        }
+    }
 
+    void usePotion(int index){
+        Potion potionToUse = character.getCharacter().getPotionsOfPlayer().getPotions().get(index - 1);
+        System.out.println(potionToUse.toString());
+        character.getCharacter().setHp(character.getCharacter().getHp() + potionToUse.getHpBoost());
+        charAttackBoost += potionToUse.getAttackBoost();
+        charDefence += potionToUse.getDefendBoost();
+        character.getCharacter().getPotionsOfPlayer().getPotions().remove(index - 1);
+        refreshScreen();
+    }
 }

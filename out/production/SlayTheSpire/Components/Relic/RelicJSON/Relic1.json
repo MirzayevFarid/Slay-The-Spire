@@ -1,0 +1,7 @@
+{
+  "attackBoost": 5,
+  "defenceBoost":  3,
+  "hpBoost":  10,
+  "energyBoost": 1,
+  "image": "IMAGES/RelicImages/BurningBlood.png"
+}
