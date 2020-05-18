@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.play.Play">
+<AnchorPane stylesheets="@play.css" fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.play.Play">
    <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" />
    <ImageView fitHeight="1319.0" fitWidth="2015.0" layoutX="-268.0" layoutY="-352.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../../IMAGES/play/playBackground.jpg" />
@@ -34,5 +34,4 @@
          <Font size="36.0" />
       </font>
    </Label>
-   <Label fx:id="endTurnLabel" layoutX="1231.0" layoutY="672.0" text="END TURN" />
 </AnchorPane>

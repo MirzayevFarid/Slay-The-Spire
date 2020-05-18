@@ -47,18 +47,18 @@ public class Map {
             mapToRead = generateCircleToMap();
             textWriter(mapToRead);
             control = true;
-        }
-        else {
+        } else {
             mapToRead = readTxt();
             textWriter(mapToRead);
         }
-        mapToRead[2][0] = 2;
+
         addCircleFromTxt(pn, mapToRead);
         drawLines2(mapToRead);
     }
 
     /**
      * It reads the generated circles and writes into map.txt
+     *
      * @throws IOException
      */
     private void textWriter(int[][] mapToRead) throws IOException {
@@ -76,6 +76,7 @@ public class Map {
 
     /**
      * It reads map.txt file, and record the data to map2.
+     *
      * @return map2 holds map.txt data
      * @throws FileNotFoundException
      */
@@ -88,21 +89,7 @@ public class Map {
         while (scan.hasNextLine()) {
             line = scan.nextLine();
             for (int i = 0; i < line.length(); i++) {
-                if (line.charAt(i) == '1') {
-                    map2[rowIndex][colIndex] = 1;
-                }
-                if (line.charAt(i) == '2') {
-                    map2[rowIndex][colIndex] = 2;
-                }
-                if (line.charAt(i) == '3') {
-                    map2[rowIndex][colIndex] = 3;
-                }
-                if (line.charAt(i) == '4') {
-                    map2[rowIndex][colIndex] = 4;
-                }
-                if (line.charAt(i) == '5') {
-                    map2[rowIndex][colIndex] = 5;
-                }
+                map2[rowIndex][colIndex] = Integer.parseInt(String.valueOf(line.charAt(i)));
                 colIndex++;
             }
             colIndex = 0;
@@ -113,108 +100,57 @@ public class Map {
 
     /**
      * read data is used in order to add circles to pane
-     * @param gridPane  to add the circles on the screen
-     * @param map2 the 2 dimensional array holding text data
+     *
+     * @param gridPane to add the circles on the screen
+     * @param map2     the 2 dimensional array holding text data
      */
     private void addCircleFromTxt(GridPane gridPane, int[][] map2) {
         for (int i = 0; i < numberOfRows; i++) {
             for (int j = 0; j < numberOfColumns; j++) {
 
-                // 1 means enemy
-                if (map2[i][j] == 1) {
-                    ImageView settingsIcon = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/settings.png")));
-                    Button legendButton = new Button();
-                    legendButton.setGraphic(settingsIcon);
-                    legendButton.setStyle("-fx-background-color: transparent;");
-
-                    legendButton.onMouseClickedProperty().set((MouseEvent t) -> {
-                        try {
-                            Methods.changeScreen("play/play.Fxml",pn, true);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
-
-                    gridPane.add(legendButton, j, i);
-                }
-
-                // 2 means current character location
-                if (map2[i][j] == 2) {
-                    ImageView restIcon = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/rest.png")));
-                    Button currentChar = new Button();
-                    currentChar.setGraphic(restIcon);
-                    currentChar.setStyle("-fx-background-color: transparent;");
-
-                    currentChar.onMouseClickedProperty().set((MouseEvent t) -> {
-                        try {
-                            Methods.changeScreen("play/play.Fxml",pn, true);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
-
-                    gridPane.add(currentChar, j, i);
-                }
-                //3 means merchant
-                if (map2[i][j] == 3) {
-                    ImageView shopIcon = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/monster.png")));
-                    Button currentChar = new Button();
-                    currentChar.setGraphic(shopIcon);
-                    currentChar.setStyle("-fx-background-color: transparent;");
-
-                    currentChar.onMouseClickedProperty().set((MouseEvent t) -> {
-                        try {
-                            //TODO shop fxml will be implemented then fallowing line will be changed.
-                            Methods.changeScreen("play/play.Fxml",pn, true);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
-
-                    gridPane.add(currentChar, j, i);
-                }
-
-                // 4 means treasure
-                if (map2[i][j] == 4) {
-                    ImageView treasureIcon = new ImageView(new Image(getClass().getResourceAsStream("../../IMAGES/play/map.png")));
-                    Button currentChar = new Button();
-                    currentChar.setGraphic(treasureIcon);
-                    currentChar.setStyle("-fx-background-color: transparent;");
-
-                    currentChar.onMouseClickedProperty().set((MouseEvent t) -> {
-                        try {
-                            //TODO treasure fxml will be implemented then fallowing line will be changed.
-                            Methods.changeScreen("play/play.Fxml",pn, true);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
-
-                    gridPane.add(currentChar, j, i);
-                }
-                // 5 means rest
-                if (map2[i][j] == 5){
-                    ImageView restIcon = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/rest.png")));
-                    Button currentChar = new Button();
-                    currentChar.setGraphic(restIcon);
-                    currentChar.setStyle("-fx-background-color: transparent;");
-
-                    currentChar.onMouseClickedProperty().set((MouseEvent t) -> {
-                        try {
-                            Methods.changeScreen("play/play.Fxml",pn, true);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
-
-                    gridPane.add(currentChar, j, i);
+                switch (map2[i][j]) {
+                    case 1:
+                        addButtons("../../Images/play/settings.png", "play/play.Fxml", gridPane, i, j);
+                        break;
+                    case 2:
+                        addButtons("../../Images/play/rest.png", "play/play.Fxml", gridPane, i, j);
+                        break;
+                    case 3:
+                        addButtons("../../Images/play/monster.png", "play/play.Fxml", gridPane, i, j);
+                        break;
+                    case 4:
+                        addButtons("../../IMAGES/play/map.png", "play/play.Fxml", gridPane, i, j);
+                        break;
+                    case 5:
+                        addButtons("../../Images/play/rest.png", "play/play.Fxml", gridPane, i, j);
+                        break;
                 }
             }
         }
     }
 
+
+    public void addButtons(String imagePath, String screenPath, GridPane gridPane, int i, int j) {
+        ImageView restIcon = new ImageView(new Image(getClass().getResourceAsStream(imagePath)));
+        Button currentChar = new Button();
+        currentChar.setGraphic(restIcon);
+        currentChar.setStyle("-fx-background-color: transparent;");
+
+        currentChar.onMouseClickedProperty().set((MouseEvent t) -> {
+            try {
+                Methods.changeScreen(screenPath, pn, true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        gridPane.add(currentChar, j, i);
+    }
+
+
     /**
      * It draw lines of the map
+     *
      * @param map2 holds the data of the map.txt
      */
 
@@ -292,12 +228,13 @@ public class Map {
      * it generates circles randomly
      */
 
-    public int [][] generateCircleToMap() {
+    public int[][] generateCircleToMap() {
         Random random = new Random();
         int rowNumber = random.nextInt(2);
         rowNumber++;
 
         int ranY = 9;
+        int ranNum;
 
         // first row
         for (int i = 0; i <= rowNumber; i++) {
@@ -312,24 +249,19 @@ public class Map {
 
             for (int i = 0; i <= rowNumber; i++) {
                 int ranX = random.nextInt(numberOfColumns);  // random value from 0 to width
-                if(ranY == 0 || ranY == 4 ||ranY == 5){
+                if (ranY == 0) {
                     map[ranY][ranX] = 1;
                 }
-                // merchant
-                if (ranY == 2 || ranY == 6){
-                    map[ranY][ranX] = 3;
+                //Rest
+                if (ranY == 3 || ranY == 7) {
+                    map[ranY][ranX] = 2;
+                } else {
+                    ranNum = random.nextInt(4) + 1;
+                    map[ranY][ranX] = ranNum;
                 }
-                //Treasure
-                if (ranY == 1 ||ranY == 8){
-                    map[ranY][ranX] = 4;
-                }
-                //REst
-                if (ranY == 3 || ranY == 7){
-                    map[ranY][ranX] = 5;
-                }
-
             }
         }
         return map;
     }
 }
+

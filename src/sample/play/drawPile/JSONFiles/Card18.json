@@ -1,1 +1,8 @@
-{"name":"Card18","energyCost":1,"damage":9,"defence":0,"description":"Deal 9 damage. Draw 1 card.","image":"IMAGES/cards/attack/PommelStrike.png"}
+{
+  "name": "Card18",
+  "energyCost": 1,
+  "damage": 9,
+  "defence": 0,
+  "description": "Deal 9 damage. Draw 1 card.",
+  "image": "IMAGES/cards/attack/PommelStrike.png"
+}

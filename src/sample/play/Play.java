@@ -10,6 +10,9 @@ import Components.Relic.ParseRelicJSONObjects;
 import Components.RelicBar;
 import Components.TopBar;
 import com.google.gson.Gson;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -29,6 +32,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import sample.Methods;
 
 import java.io.File;
@@ -72,10 +76,12 @@ public class Play {
     Label characterEnergy;
 
 
-
+    /**
+     * Defining and initializing objects
+     */
     ImageView drawCard = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/drawImage.png")));
     ImageView discardCard = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/discardImage.png")));
-    ImageView endTurnImg = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/endTurnImage.png"),150,150,false,false));
+    ImageView endTurnImg = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/endTurnImage.png"),150, 150, true, false));
     ParseMonsterJSONObjects monster;
     ParseCharacterJSONObjects character;
     ParseRelicJSONObjects relics;
@@ -114,11 +120,19 @@ public class Play {
     }
 
 
-        private void createMonster() throws Exception {
+    /**
+     * Creating monster and setting image
+     * @throws Exception
+     */
+    private void createMonster() throws Exception {
         monsterImg.setImage(new Image(getClass().getResourceAsStream("../../" + monster.getMonsters().getMonsters().get(2).getImage())));
         monsterHP.setText(String.valueOf(monster.getMonsters().getMonsters().get(2).getHp()));
     }
 
+    /**
+     * Creating character, setting character cards, hp, and image
+     * @throws Exception
+     */
     private void createCharacter() throws Exception {
         addCards(character);
         character.getCharacter().addRelic(relics.getRelics().getRelics().get(0));
@@ -133,8 +147,13 @@ public class Play {
         bar.getHp().setText(character.getCharacter().getHp() + "/" + character.getCharacter().getHp());
         relicBar.setRelicIconImage(character.getCharacter().getRelicsOfPlayer().getRelics().get(0).getImage());
         charHP = character.getCharacter().getHp();
+
     }
 
+    /**
+     * Getting cards from character's card list and showing them on combat screen
+     * @param character
+     */
     private void addCards(ParseCharacterJSONObjects character) {
         for(int i = 0; i < 5 - cards.size(); i++) {
             Card card = character.getCharacter().getCardsOfPlayer().getCardList().get(i);
@@ -143,6 +162,8 @@ public class Play {
             cards.add(card);
             i--;
             ImageView cardView = new ImageView(new Image(getClass().getResourceAsStream("../../" + card.getImage())));
+
+            // Adding click listener for every card image
             cardView.onMouseClickedProperty().set((MouseEvent t) -> {
                 int leftEnergy = Integer.parseInt(characterEnergy.getText().substring(0,1));
                 if(leftEnergy >= card.getEnergyCost()) {
@@ -157,6 +178,7 @@ public class Play {
             cardBox.getChildren().add(cardView);
         }
 
+        // Adding click listener to the cardbox for removing card when player uses card
         cardBox.onMouseClickedProperty().set((MouseEvent t) -> {
             int imageWidth = 155;
             int index = (int) ((t.getX()) / imageWidth);
@@ -164,20 +186,40 @@ public class Play {
             Card card = cards.get(index);
             int charEnergy = character.getCharacter().getEnergy();
             if(leftEnergy >= card.getEnergyCost()) {
-                cardBox.getChildren().remove(cardBox.getChildren().get(index));
+                KeyValue widthValue = new KeyValue(cardBox.getChildren().get(index).scaleXProperty(), 0);
+                KeyValue heightValue = new KeyValue(cardBox.getChildren().get(index).scaleYProperty(), 0);
+                KeyFrame frame1 = new KeyFrame(Duration.seconds(0.3), widthValue);
+                KeyFrame frame2 = new KeyFrame(Duration.seconds(0.3), heightValue);
+                Timeline timeline = new Timeline(frame1, frame2);
+                timeline.play();
+                timeline.setOnFinished(finishedEvent -> {
+                    cards.remove(index);
+                    cardBox.getChildren().remove(cardBox.getChildren().get(index));
+                });
                 leftEnergy = leftEnergy - card.getEnergyCost();
                 characterEnergy.setText(leftEnergy + "/" + charEnergy);
-                cards.remove(index);
             }
         });
     }
 
+    /**
+     * Updating monster and character's hp data on the screen
+     */
     private void refreshScreen() {
         monsterHP.setText((monster.getMonsters().getMonsters().get(2).getHp() + "") );
         characterHP.setText((character.getCharacter().getHp() + "") );
         updatePotions();
     }
 
+
+    /**
+     * This method is going to execute when player clicks the cards.
+     * Monsters hp will change based on card's damage property.
+     * @param card represents the card which user played
+     * @throws IOException
+     */
+    // TODO: Defend Can be implemented by
+    //  character.getCharacter().setHp(character.getCharacter().getHp() + card.getDefence());
     private void playCard(Card card) throws IOException {
         if(monster.getMonsters().getMonsters().get(2).getHp() > 0) {
             character.getCharacter().getCardsOfPlayer().addDiscardList(card);
@@ -198,6 +240,9 @@ public class Play {
     }
 
 
+    /**
+     * Adding mouse listeners to the buttons on the screen. Draw, discard and endTurn buttons.
+     */
     private void addListeners() {
         drawButton.onMouseClickedProperty().set((MouseEvent t) -> {
             try {
@@ -232,6 +277,11 @@ public class Play {
         });
     }
 
+    /**
+     * Popup screen that pops up when either game win or over
+     * @param text is a message of popup
+     * @param path represents where to be directed when user clicks exit button on popup
+     */
     private void popUp(String text, String path) {
         VBox pauseRoot = new VBox(15);
         pauseRoot.getChildren().add(new Label(text));
@@ -259,6 +309,12 @@ public class Play {
         popupStage.show();
     }
 
+
+    /**
+     * This method will be executed when the players turn ends.
+     * If there is enough card in draw card part, they will load to play screen.
+     * Otherwise all cards in discardPile will be loaded to drawPile and play screen
+     */
     private void exposeCards() {
         try {
             Cards charCards =  character.getCharacter().getCardsOfPlayer();
@@ -288,6 +344,9 @@ public class Play {
         }
     }
 
+    /**
+     * Adding buttons and top bar to the screen
+     */
     void addElements(){
         bar = new TopBar();
         relicBar = new RelicBar();
@@ -310,13 +369,14 @@ public class Play {
             }
         });
         AnchorPane.getChildren().add(bar.getTopBar());
-        //AnchorPane.getChildren().add(relicBar.getRelicBar());                                                      BURASI RELIC BAR
         drawButton.setGraphic(drawCard);
         drawButton.setStyle("-fx-background-color: transparent;");
         discardButton.setGraphic(discardCard);
         discardButton.setStyle("-fx-background-color: transparent;");
         endTurnButton.setGraphic(endTurnImg);
         endTurnButton.setStyle("-fx-background-color: transparent;");
+        endTurnButton.setOnMouseEntered(e -> endTurnButton.setStyle("-fx-background-color: transparent; -fx-effect: dropshadow(gaussian, #FF00005F, 50, 0.3, 0, 0);"));
+        endTurnButton.setOnMouseExited(e -> endTurnButton.setStyle("-fx-background-color: transparent;"));
         addListeners();
     }
 
@@ -373,7 +433,11 @@ public class Play {
         player = new MediaPlayer(file);
         MediaView mediaView = new MediaView(player);
         player.setAutoPlay(true);
+        player.setVolume(0.5);
+
         player.play();
+
+
     }
 
     void updatePotions(){
