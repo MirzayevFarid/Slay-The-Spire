@@ -7,7 +7,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import sample.play.Play;
-import sun.audio.AudioPlayer;
+
 
 
 public class Settings {
@@ -18,6 +18,53 @@ public class Settings {
 
     public void volumeSlided(MouseEvent mouseEvent){
         System.out.println("volume slider: " + volumeSlider.getValue());
+        int level = (int)((volumeSlider.getValue()) / 10);
+        switch (level) {
+            case 0:
+                Play.player.setVolume(0.05);
+                System.out.println(Play.player.getVolume());
+                break;
+            case 1:
+                Play.player.setVolume(0.1);
+                System.out.println(Play.player.getVolume());
+                break;
+            case 2:
+                Play.player.setVolume(0.2);
+                System.out.println(Play.player.getVolume());
+                break;
+            case 3:
+                Play.player.setVolume(0.3);
+                System.out.println(Play.player.getVolume());
+                break;
+            case 4:
+                Play.player.setVolume(0.4);
+                System.out.println(Play.player.getVolume());
+                break;
+            case 5:
+                Play.player.setVolume(0.5);
+                System.out.println(Play.player.getVolume());
+                break;
+            case 6:
+                Play.player.setVolume(0.6);
+                System.out.println(Play.player.getVolume());
+                break;
+            case 7:
+                Play.player.setVolume(0.7);
+                System.out.println(Play.player.getVolume());
+                break;
+            case 8:
+                Play.player.setVolume(0.8);
+                System.out.println(Play.player.getVolume());
+                break;
+            case 9:
+                Play.player.setVolume(0.9);
+                System.out.println(Play.player.getVolume());
+                break;
+            case 10:
+                Play.player.setVolume(1);
+                System.out.println(Play.player.getVolume());
+        }
+
     }
 
     @FXML
@@ -26,14 +73,15 @@ public class Settings {
     public void muteClicked(MouseEvent mouseEvent){
         System.out.println("mute is selected: " + mute.isSelected());
         if(muted) {
-            AudioPlayer.player.start(Play.getMusic());
+            // AudioPlayer.player.start(Play.getMusic());
+            Play.player.play();
             muted = false;
         }
         else{
-            AudioPlayer.player.stop(Play.getMusic());
+            //AudioPlayer.player.stop(Play.getMusic());
+            Play.player.pause();
             muted = true;
         }
-
     }
 
     @FXML

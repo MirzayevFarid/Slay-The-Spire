@@ -18,6 +18,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -72,8 +75,7 @@ public class Play {
     ParseMonsterJSONObjects monster;
     ParseCharacterJSONObjects character;
     ArrayList<Card> cards = new ArrayList<>();
-    static InputStream file;
-    static AudioStream music;
+    public static MediaPlayer player;
     TopBar bar;
     int charHP;
 
@@ -86,10 +88,6 @@ public class Play {
         }
     }
 
-
-    public static AudioStream getMusic() {
-        return music;
-    }
 
     public void initialize() throws Exception {
         characterEnergy.setId("characterEnergy");
@@ -324,10 +322,19 @@ public class Play {
         return character.getCharacter().getCardsOfPlayer().getCardList();
     }
 
-    public static void music() throws IOException {
-        file = new FileInputStream("src/sample/play/irmakAski.wav");
-        music = new AudioStream(file);
-        AudioPlayer.player.start(music);
+    public MediaPlayer getPlayer(){
+        return player;
     }
+    public static void music() throws IOException {
+        Media file = new Media(new File("C:\\Users\\Burcu\\Documents\\1A-SS\\src\\sample\\play\\irmakAski.wav").toURI().toString());
+        player = new MediaPlayer(file);
+        MediaView mediaView = new MediaView(player);
+        player.setAutoPlay(true);
+
+        player.play();
+
+
+    }
+
 
 }

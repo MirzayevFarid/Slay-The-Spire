@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.mainMenu.MainMenu">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.mainMenu.MainMenu" stylesheets="@../style.css">
    <children>
       <ImageView fitHeight="940.0" fitWidth="1676.0" layoutX="-21.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-29.0" AnchorPane.leftAnchor="-21.0" AnchorPane.rightAnchor="-215.0" AnchorPane.topAnchor="-11.0">
          <image>
@@ -16,22 +16,22 @@
       </ImageView>
       <VBox layoutX="51.0" layoutY="597.0" prefHeight="413.0" prefWidth="308.0" AnchorPane.leftAnchor="51.0" AnchorPane.topAnchor="597.0">
          <children>
-            <Text fx:id="txtPlay" fill="WHITE" onMouseClicked="#playClicked" stroke="#171717" strokeLineCap="ROUND" strokeType="OUTSIDE" text="Play" wrappingWidth="239.26739501953125">
+            <Text id="hover" fx:id="txtPlay" fill="WHITE" onMouseClicked="#playClicked" stroke="#171717" strokeLineCap="ROUND" strokeType="OUTSIDE" text="Play" wrappingWidth="239.26739501953125">
                <font>
                   <Font size="48.0" />
                </font>
             </Text>
-            <Text fx:id="txtCompendium" fill="WHITE" onMouseClicked="#compendiumClicked" stroke="#171717" strokeLineCap="ROUND" strokeType="OUTSIDE" text="Compendium">
+            <Text id="hover" fx:id="txtCompendium" fill="WHITE" onMouseClicked="#compendiumClicked" stroke="#171717" strokeLineCap="ROUND" strokeType="OUTSIDE" text="Compendium">
                <font>
                   <Font size="48.0" />
                </font>
             </Text>
-            <Text fx:id="txtSettings" fill="WHITE" onMouseClicked="#settingsClicked" stroke="#171717" strokeLineCap="ROUND" strokeType="OUTSIDE" text="Settings">
+            <Text  id="hover" fx:id="txtSettings" fill="WHITE" onMouseClicked="#settingsClicked" stroke="#171717" strokeLineCap="ROUND" strokeType="OUTSIDE" text="Settings">
                <font>
                   <Font size="48.0" />
                </font>
             </Text>
-            <Text fx:id="txtQuit" fill="WHITE" onMouseClicked="#quitClicked" stroke="#171717" strokeLineCap="ROUND" strokeType="OUTSIDE" text="Quit">
+            <Text id="hover" fx:id="txtQuit" fill="WHITE" onMouseClicked="#quitClicked" stroke="#171717" strokeLineCap="ROUND" strokeType="OUTSIDE" text="Quit">
                <font>
                   <Font size="48.0" />
                </font>

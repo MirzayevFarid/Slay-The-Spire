@@ -38,7 +38,7 @@ public class MainMenu {
     }
 
     public void quitClicked(MouseEvent mouseEvent) {
-        AudioPlayer.player.stop(Play.getMusic());
+        Play.player.stop();
         Stage stage = (Stage) txtQuit.getScene().getWindow();
         stage.close();
     }
