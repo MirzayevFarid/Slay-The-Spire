@@ -85,6 +85,15 @@ public class Relic {
         this.image = image;
     }
 
+    public String getToolTipString() {
+        return
+                ("Name: " + name + "\n" +
+                        "Attack Boost: " + attackBoost + "\n" +
+                        "Defence Boost: " + defenceBoost + "\n" +
+                        "HP Boost: " + hpBoost + "\n" +
+                        "Energy Boost: " + energyBoost);
+    }
+
     @Override
     public String toString() {
         return "Relic{" +
@@ -95,14 +104,5 @@ public class Relic {
                 ", energyBoost=" + energyBoost +
                 ", image=" + image +
                 '}';
-    }
-
-    public String getToolTipString() {
-        return
-                "Name: " + name + "\n" +
-                "Attack Boost: " + attackBoost + "\n" +
-                "Defence Boost: " + defenceBoost + "\n" +
-                "HP Boost: " + hpBoost + "\n" +
-                "Energy Boost: " + energyBoost;
     }
 }

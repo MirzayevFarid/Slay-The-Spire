@@ -100,7 +100,11 @@ public class Map {
 
     /**
      * read data is used in order to add circles to pane
-     *
+     *  1 - Combat
+     *  2 - Rest
+     *  3 - Treasure
+     *  4 - Shop
+     *  5 - Current
      * @param gridPane to add the circles on the screen
      * @param map2     the 2 dimensional array holding text data
      */
@@ -110,19 +114,19 @@ public class Map {
 
                 switch (map2[i][j]) {
                     case 1:
-                        addButtons("../../Images/play/settings.png", "play/play.Fxml", gridPane, i, j);
+                        addButtons("../../Images/play/combatIcon.png", "play/play.Fxml", gridPane, i, j);
                         break;
                     case 2:
-                        addButtons("../../Images/play/rest.png", "play/play.Fxml", gridPane, i, j);
+                        addButtons("../../Images/play/restIcon.png", "play/play.Fxml", gridPane, i, j);
                         break;
                     case 3:
-                        addButtons("../../Images/play/monster2.png", "play/play.Fxml", gridPane, i, j);
+                        addButtons("../../Images/play/treasureIcon.png", "play/play.Fxml", gridPane, i, j);
                         break;
                     case 4:
-                        addButtons("../../IMAGES/play/map.png", "play/play.Fxml", gridPane, i, j);
+                        addButtons("../../IMAGES/play/shopIcon.png", "play/play.Fxml", gridPane, i, j);
                         break;
                     case 5:
-                        addButtons("../../Images/play/rest.png", "play/play.Fxml", gridPane, i, j);
+                        addButtons("../../Images/play/currentIcon.png", "play/play.Fxml", gridPane, i, j);
                         break;
                 }
             }

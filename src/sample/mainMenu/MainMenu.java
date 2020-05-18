@@ -6,7 +6,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.Methods;
 import sample.play.Play;
-import sun.audio.AudioPlayer;
 
 import java.io.IOException;
 
@@ -34,7 +33,7 @@ public class MainMenu {
     }
 
     public void settingsClicked(MouseEvent mouseEvent) throws IOException {
-        Methods.changeScreen("settings/settings.fxml", txtSettings,true);
+        Methods.changeScreen("settings/settings.fxml", txtSettings,false);
     }
 
     public void quitClicked(MouseEvent mouseEvent) {
