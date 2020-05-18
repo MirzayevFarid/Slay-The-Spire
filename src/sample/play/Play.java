@@ -6,6 +6,9 @@ import Components.Character.CharacterJSON.ParseCharacterJSONObjects;
 import Components.Monster.ParseMonsterJSONObjects;
 import Components.TopBar;
 import com.google.gson.Gson;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -25,6 +28,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import sample.Methods;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
@@ -71,7 +75,7 @@ public class Play {
 
     ImageView drawCard = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/drawImage.png")));
     ImageView discardCard = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/discardImage.png")));
-    ImageView endTurnImg = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/endTurnImage.png"),150,150,false,false));
+    ImageView endTurnImg = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/endTurnImage.png"),150, 150, true, false));
     ParseMonsterJSONObjects monster;
     ParseCharacterJSONObjects character;
     ArrayList<Card> cards = new ArrayList<>();
@@ -146,10 +150,18 @@ public class Play {
             Card card = cards.get(index);
             int charEnergy = character.getCharacter().getEnergy();
             if(leftEnergy >= card.getEnergyCost()) {
-                cardBox.getChildren().remove(cardBox.getChildren().get(index));
+                KeyValue widthValue = new KeyValue(cardBox.getChildren().get(index).scaleXProperty(), 0);
+                KeyValue heightValue = new KeyValue(cardBox.getChildren().get(index).scaleYProperty(), 0);
+                KeyFrame frame1 = new KeyFrame(Duration.seconds(0.3), widthValue);
+                KeyFrame frame2 = new KeyFrame(Duration.seconds(0.3), heightValue);
+                Timeline timeline = new Timeline(frame1, frame2);
+                timeline.play();
+                timeline.setOnFinished(finishedEvent -> {
+                    cards.remove(index);
+                    cardBox.getChildren().remove(cardBox.getChildren().get(index));
+                });
                 leftEnergy = leftEnergy - card.getEnergyCost();
                 characterEnergy.setText(leftEnergy + "/" + charEnergy);
-                cards.remove(index);
             }
         });
     }
@@ -275,6 +287,8 @@ public class Play {
         discardButton.setStyle("-fx-background-color: transparent;");
         endTurnButton.setGraphic(endTurnImg);
         endTurnButton.setStyle("-fx-background-color: transparent;");
+        endTurnButton.setOnMouseEntered(e -> endTurnButton.setStyle("-fx-background-color: transparent; -fx-effect: dropshadow(gaussian, #FF00005F, 50, 0.3, 0, 0);"));
+        endTurnButton.setOnMouseExited(e -> endTurnButton.setStyle("-fx-background-color: transparent;"));
         addListeners();
     }
 
@@ -330,6 +344,7 @@ public class Play {
         player = new MediaPlayer(file);
         MediaView mediaView = new MediaView(player);
         player.setAutoPlay(true);
+        player.setVolume(0.5);
 
         player.play();
 
