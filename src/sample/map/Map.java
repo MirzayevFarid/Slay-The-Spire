@@ -47,8 +47,7 @@ public class Map {
             mapToRead = generateCircleToMap();
             textWriter(mapToRead);
             control = true;
-        }
-        else {
+        } else {
             mapToRead = readTxt();
             textWriter(mapToRead);
         }
@@ -59,6 +58,7 @@ public class Map {
 
     /**
      * It reads the generated circles and writes into map.txt
+     *
      * @throws IOException
      */
     private void textWriter(int[][] mapToRead) throws IOException {
@@ -76,6 +76,7 @@ public class Map {
 
     /**
      * It reads map.txt file, and record the data to map2.
+     *
      * @return map2 holds map.txt data
      * @throws FileNotFoundException
      */
@@ -99,14 +100,15 @@ public class Map {
 
     /**
      * read data is used in order to add circles to pane
-     * @param gridPane  to add the circles on the screen
-     * @param map2 the 2 dimensional array holding text data
+     *
+     * @param gridPane to add the circles on the screen
+     * @param map2     the 2 dimensional array holding text data
      */
     private void addCircleFromTxt(GridPane gridPane, int[][] map2) {
         for (int i = 0; i < numberOfRows; i++) {
             for (int j = 0; j < numberOfColumns; j++) {
 
-                switch (map2[i][j]){
+                switch (map2[i][j]) {
                     case 1:
                         addButtons("../../Images/play/settings.png", "play/play.Fxml", gridPane, i, j);
                         break;
@@ -128,7 +130,7 @@ public class Map {
     }
 
 
-    public void addButtons(String imagePath, String screenPath, GridPane gridPane, int i, int j){
+    public void addButtons(String imagePath, String screenPath, GridPane gridPane, int i, int j) {
         ImageView restIcon = new ImageView(new Image(getClass().getResourceAsStream(imagePath)));
         Button currentChar = new Button();
         currentChar.setGraphic(restIcon);
@@ -148,6 +150,7 @@ public class Map {
 
     /**
      * It draw lines of the map
+     *
      * @param map2 holds the data of the map.txt
      */
 
@@ -225,12 +228,13 @@ public class Map {
      * it generates circles randomly
      */
 
-    public int [][] generateCircleToMap() {
+    public int[][] generateCircleToMap() {
         Random random = new Random();
         int rowNumber = random.nextInt(2);
         rowNumber++;
 
         int ranY = 9;
+        int ranNum;
 
         // first row
         for (int i = 0; i <= rowNumber; i++) {
@@ -245,22 +249,16 @@ public class Map {
 
             for (int i = 0; i <= rowNumber; i++) {
                 int ranX = random.nextInt(numberOfColumns);  // random value from 0 to width
-                if(ranY == 0 || ranY == 4 ||ranY == 5){
+                if (ranY == 0) {
                     map[ranY][ranX] = 1;
                 }
-                // merchant
-                if (ranY == 2 || ranY == 6){
-                    map[ranY][ranX] = 3;
+                //Rest
+                if (ranY == 3 || ranY == 7) {
+                    map[ranY][ranX] = 2;
+                } else {
+                    ranNum = random.nextInt(4) + 1;
+                    map[ranY][ranX] = ranNum;
                 }
-                //Treasure
-                if (ranY == 1 ||ranY == 8){
-                    map[ranY][ranX] = 4;
-                }
-                //REst
-                if (ranY == 3 || ranY == 7){
-                    map[ranY][ranX] = 5;
-                }
-
             }
         }
         return map;
