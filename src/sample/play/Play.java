@@ -4,6 +4,8 @@ import Components.Card.Card;
 import Components.Card.Cards;
 import Components.Character.CharacterJSON.ParseCharacterJSONObjects;
 import Components.Monster.ParseMonsterJSONObjects;
+import Components.Relic.ParseRelicJSONObjects;
+import Components.RelicBar;
 import Components.TopBar;
 import com.google.gson.Gson;
 import javafx.animation.KeyFrame;
@@ -80,15 +82,20 @@ public class Play {
     ImageView endTurnImg = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/endTurnImage.png"),150, 150, true, false));
     ParseMonsterJSONObjects monster;
     ParseCharacterJSONObjects character;
+    ParseRelicJSONObjects relics;
     ArrayList<Card> cards = new ArrayList<>();
     public static MediaPlayer player;
     TopBar bar;
-    int charHP;
+    RelicBar relicBar;
+    int initialCharHP;
+    int initialMonsterHP;
+    int additionalDefence = 0;
 
     {
         try {
             monster = new ParseMonsterJSONObjects();
             character = new ParseCharacterJSONObjects("Ironclad");
+            relics = new ParseRelicJSONObjects();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,12 +104,13 @@ public class Play {
 
     public void initialize() throws Exception {
         characterEnergy.setId("characterEnergy");
-        addElements();
+        additionalDefence = 0;
         File drawFile = new File("src/sample/play/drawPile/JSONFiles");
         deleteFolder(drawFile);
         File discardFile = new File("src/sample/play/discardPile/JSONFiles");
         deleteFolder(discardFile);
         createCharacter();
+        addElements();
         createMonster();
     }
 
@@ -112,8 +120,9 @@ public class Play {
      * @throws Exception
      */
     private void createMonster() throws Exception {
+        initialMonsterHP = monster.getMonsters().getMonsters().get(2).getHp();
         monsterImg.setImage(new Image(getClass().getResourceAsStream("../../" + monster.getMonsters().getMonsters().get(2).getImage())));
-        monsterHP.setText(String.valueOf(monster.getMonsters().getMonsters().get(2).getHp()));
+        monsterHP.setText(initialMonsterHP + "/" + initialMonsterHP);
     }
 
     /**
@@ -121,14 +130,15 @@ public class Play {
      * @throws Exception
      */
     private void createCharacter() throws Exception {
+        initialCharHP = character.getCharacter().getHp();
         addCards(character);
+        character.getCharacter().addRelic(relics.getRelics().getRelics().get(0));
+        character.getCharacter().addRelic(relics.getRelics().getRelics().get(1));
+        character.getCharacter().addRelic(relics.getRelics().getRelics().get(2));
         updateDrawJson();
-        characterHP.setText(String.valueOf(character.getCharacter().getHp()));
+        characterHP.setText(initialCharHP + "/" + initialCharHP);
         characterImg.setImage(new Image(getClass().getResourceAsStream("../../" + character.getCharacter().getImage())));
         characterEnergy.setText(character.getCharacter().getEnergy() + "/" + character.getCharacter().getEnergy());
-        bar.getHp().setText(character.getCharacter().getHp() + "/" + character.getCharacter().getHp());
-        charHP = character.getCharacter().getHp();
-
     }
 
     /**
@@ -187,8 +197,8 @@ public class Play {
      * Updating monster and character's hp data on the screen
      */
     private void refreshScreen() {
-        monsterHP.setText((monster.getMonsters().getMonsters().get(2).getHp() + "") );
-        characterHP.setText((character.getCharacter().getHp() + "") );
+        monsterHP.setText((monster.getMonsters().getMonsters().get(2).getHp() + "/") + initialMonsterHP );
+        characterHP.setText((character.getCharacter().getHp() + "/")+ initialCharHP );
     }
 
 
@@ -198,14 +208,18 @@ public class Play {
      * @param card represents the card which user played
      * @throws IOException
      */
-    // TODO: Defend Can be implemented by
-    //  character.getCharacter().setHp(character.getCharacter().getHp() + card.getDefence());
+    // TODO: update if case by adding relics, potions damage addition
     private void playCard(Card card) throws IOException {
-        if(monster.getMonsters().getMonsters().get(2).getHp() > 0) {
+        if(card.getDamage() < monster.getMonsters().getMonsters().get(2).getHp()) {
             character.getCharacter().getCardsOfPlayer().addDiscardList(card);
             updateDiscardJson();
             int updatedHP = monster.getMonsters().getMonsters().get(2).getHp() - card.getDamage();
+            updatedHP -= character.getCharacter().getRelicsOfPlayer().getRelics().get(0).getAttackBoost();
             monster.getMonsters().getMonsters().get(2).setHp(updatedHP);
+
+            // TODO: Defend Can be implemented by
+            additionalDefence = card.getDefence();
+
         }
         else {
             victory();
@@ -241,10 +255,10 @@ public class Play {
 
         endTurnButton.onMouseClickedProperty().set((MouseEvent t) -> {
             int damage = monster.getMonsters().getMonsters().get(2).getAttackPoint();
-            int newCharacterHP = character.getCharacter().getHp() - damage;
+            int newCharacterHP = character.getCharacter().getHp() - damage + additionalDefence;
             character.getCharacter().setHp(newCharacterHP);
             characterEnergy.setText(character.getCharacter().getEnergy() + "/" + character.getCharacter().getEnergy());
-            bar.getHp().setText(newCharacterHP + "/" + charHP);
+            bar.getHp().setText(newCharacterHP + "/" + initialCharHP);
             exposeCards();
             refreshScreen();
 
@@ -325,8 +339,18 @@ public class Play {
      * Adding buttons and top bar to the screen
      */
     void addElements(){
+        VBox bars = new VBox(-63);
         bar = new TopBar();
-        AnchorPane.getChildren().add(bar.getTopBar());
+
+        relicBar = new RelicBar(character);
+        bar.getHp().setText(character.getCharacter().getHp() + "/" + character.getCharacter().getHp());
+
+        bars.getChildren().add(bar.getTopBar());
+        bars.getChildren().add(relicBar.getRelicBar());
+
+        AnchorPane.getChildren().add(bars);
+//        AnchorPane.getChildren().add(bar.getTopBar());
+//        AnchorPane.getChildren().add(relicBar.getRelicBar());
         drawButton.setGraphic(drawCard);
         drawButton.setStyle("-fx-background-color: transparent;");
         discardButton.setGraphic(discardCard);

@@ -114,7 +114,7 @@ public class Map {
                         addButtons("../../Images/play/rest.png", "play/play.Fxml", gridPane, i, j);
                         break;
                     case 3:
-                        addButtons("../../Images/play/monster.png", "play/play.Fxml", gridPane, i, j);
+                        addButtons("../../Images/play/monster2.png", "play/play.Fxml", gridPane, i, j);
                         break;
                     case 4:
                         addButtons("../../IMAGES/play/map.png", "play/play.Fxml", gridPane, i, j);
