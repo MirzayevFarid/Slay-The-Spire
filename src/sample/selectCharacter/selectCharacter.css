@@ -1,0 +1,38 @@
+#Name{
+    -fx-fill: #ecc45e;
+    -fx-font-size: 55;
+    -fx-stroke: black;
+    -fx-stroke-width: 1;
+}
+
+#HP{
+    -fx-fill: #ff0000;
+    -fx-font-size: 22;
+    -fx-font-weight: bold;
+}
+
+
+#Gold{
+    -fx-fill: #ecc45e;
+    -fx-font-size: 22;
+    -fx-font-weight: bold;
+}
+
+#Desc{
+    -fx-fill: #ffffff;
+    -fx-font-size: 20;
+}
+
+#Relic{
+    -fx-fill: #ecc45e;
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+}
+
+
+#Back{
+    -fx-fill: #ecc45e;
+    -fx-font-size: 44;
+    -fx-font-weight: bold;
+    -fx-margin: 0px 40px 0ox 0px;
+}

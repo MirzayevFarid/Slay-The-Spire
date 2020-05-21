@@ -1,0 +1,9 @@
+{
+  "name": "Card31",
+  "energyCost": 2,
+  "character": "Defect",
+  "damage": 10,
+  "defence": 0,
+  "description": "",
+  "image": "IMAGES/cards/Defect/AllforOne.png"
+}

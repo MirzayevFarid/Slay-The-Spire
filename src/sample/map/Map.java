@@ -19,6 +19,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Map {
+
     @FXML
     private AnchorPane window;
 
@@ -124,6 +125,7 @@ public class Map {
             for (int j = 0; j < numberOfColumns; j++) {
                 legend = map2[i][j];
                 switch (Math.abs(legend)) {
+
                     case 0:
                         continue;
                     case 1:
@@ -141,6 +143,9 @@ public class Map {
                     case 5:
                         addButtons("../../Images/play/currentIcon.png", "play/play.Fxml", gridPane, i, j);
                         break;
+                    case 6:
+                        addButtons("../../IMAGES/play/rest.png", "play/play.Fxml", gridPane, i, j);
+                        break;
                 }
             }
         }
@@ -150,8 +155,8 @@ public class Map {
     public void addButtons(String imagePath, String screenPath, GridPane gridPane, int i, int j) {
         ImageView restIcon = new ImageView(new Image(getClass().getResourceAsStream(imagePath)));
         Button currentChar = new Button();
-        if(legend < 0 )
-        currentChar.setDisable(true);
+        if(legend < 0)
+            currentChar.setDisable(true);
         currentChar.setGraphic(restIcon);
         currentChar.setStyle("-fx-background-color: transparent;");
 
@@ -261,8 +266,9 @@ public class Map {
             // Add 1 to map for enemies
             map[ranY][ranX] = 1;
         }
+        map[0][(numberOfColumns-1) / 2 ] = 6;
 
-        for (; ranY >= 0; ranY--) {
+        for (; ranY > 0; ranY--) {
             rowNumber = random.nextInt(2);
             rowNumber++;
 

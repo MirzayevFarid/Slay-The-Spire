@@ -1,0 +1,9 @@
+{
+  "name": "Card45",
+  "energyCost": 4,
+  "character": "Defect",
+  "damage": 0,
+  "defence": 12,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Defect/ForceField.png"
+}

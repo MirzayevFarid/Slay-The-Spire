@@ -1,0 +1,9 @@
+{
+  "name": "Card63",
+  "energyCost": 3,
+  "character": "Defect",
+  "damage": 7,
+  "defence": 0,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Defect/ThunderStrike.png"
+}

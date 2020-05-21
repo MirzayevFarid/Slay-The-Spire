@@ -1,0 +1,9 @@
+{
+  "name": "Card41",
+  "energyCost": 1,
+  "character": "Defect",
+  "damage": 11,
+  "defence": 0,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Defect/CoreSurge.png"
+}

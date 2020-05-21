@@ -1,0 +1,9 @@
+{
+  "name": "Card86",
+  "energyCost": 3,
+  "character": "Watcher",
+  "damage": 25,
+  "defence": 0,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Watcher/Ragnarok.png"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Card62",
+  "energyCost": 1,
+  "character": "Defect",
+  "damage": 6,
+  "defence": 0,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Defect/SweepingBeam.png"
+}

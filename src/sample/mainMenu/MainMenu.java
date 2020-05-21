@@ -29,7 +29,7 @@ public class MainMenu {
     }
 
     public void compendiumClicked(MouseEvent mouseEvent) throws IOException {
-        Methods.changeScreen("rest/Rest.fxml", txtCompendium, true);
+        Methods.changeScreen("compendium/compendium.fxml", txtCompendium, false);
     }
 
     public void settingsClicked(MouseEvent mouseEvent) throws IOException {

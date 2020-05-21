@@ -1,0 +1,9 @@
+{
+  "name": "Card40",
+  "energyCost": 1,
+  "character": "Defect",
+  "damage": 7,
+  "defence": 0,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Defect/CompileDriver.png"
+}

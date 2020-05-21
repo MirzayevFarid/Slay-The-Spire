@@ -1,0 +1,9 @@
+{
+  "name": "Card46",
+  "energyCost": 0,
+  "character": "Defect",
+  "damage": 5,
+  "defence": 0,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Defect/FTL.png"
+}

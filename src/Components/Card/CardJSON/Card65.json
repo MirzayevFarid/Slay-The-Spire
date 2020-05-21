@@ -1,0 +1,9 @@
+{
+  "name": "Card65",
+  "energyCost": 1,
+  "character": "Watcher",
+  "damage": 6,
+  "defence": 0,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Watcher/CarveReality.png"
+}

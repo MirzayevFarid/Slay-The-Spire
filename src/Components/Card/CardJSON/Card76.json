@@ -1,0 +1,9 @@
+{
+  "name": "Card76",
+  "energyCost": 0,
+  "character": "Watcher",
+  "damage": 4,
+  "defence": 0,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Watcher/FlurryOfBlows.png"
+}

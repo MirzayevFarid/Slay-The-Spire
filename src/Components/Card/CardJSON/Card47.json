@@ -1,0 +1,9 @@
+{
+  "name": "Card47",
+  "energyCost": 1,
+  "character": "Defect",
+  "damage": 0,
+  "defence": 1,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Defect/GeneticAlgorithm.png"
+}

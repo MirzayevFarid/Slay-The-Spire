@@ -1,0 +1,9 @@
+{
+  "name": "Card72",
+  "energyCost": 1,
+  "character": "Watcher",
+  "damage": 9,
+  "defence": 0,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Watcher/EmptyFist.png"
+}

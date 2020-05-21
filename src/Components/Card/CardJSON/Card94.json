@@ -1,0 +1,9 @@
+{
+  "name": "Card94",
+  "energyCost": 2,
+  "character": "Watcher",
+  "damage": 15,
+  "defence": 0,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Watcher/WheelKick.png"
+}

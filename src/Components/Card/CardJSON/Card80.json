@@ -1,0 +1,9 @@
+{
+  "name": "Card80",
+  "energyCost": 0,
+  "character": "Watcher",
+  "damage": 3,
+  "defence": 2,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Watcher/JustLucky.png"
+}

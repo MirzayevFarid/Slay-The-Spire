@@ -1,0 +1,9 @@
+{
+  "name": "Card54",
+  "energyCost": 5,
+  "character": "Defect",
+  "damage":24,
+  "defence": 0,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Defect/MeteorStrike.png"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Card79",
+  "energyCost": 0,
+  "character": "Watcher",
+  "damage": 0,
+  "defence": 10,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Watcher/Halt.png"
+}

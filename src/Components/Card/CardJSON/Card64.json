@@ -1,0 +1,9 @@
+{
+  "name": "Card64",
+  "energyCost": 1,
+  "character": "Watcher",
+  "damage": 12,
+  "defence": 0,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Watcher/Brilliance.png"
+}

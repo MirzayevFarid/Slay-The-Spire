@@ -1,0 +1,9 @@
+{
+  "name": "Card43",
+  "energyCost": 1,
+  "character": "Defect",
+  "damage": 10,
+  "defence": 0,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Defect/DoomandGloom.png"
+}

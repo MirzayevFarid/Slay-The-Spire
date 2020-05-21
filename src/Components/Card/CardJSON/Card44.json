@@ -1,0 +1,9 @@
+{
+  "name": "Card44",
+  "energyCost": 12
+  "character": "Defect",
+  "damage": 0,
+  "defence": 13,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Defect/Equilibrium.png"
+}

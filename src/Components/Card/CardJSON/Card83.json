@@ -1,0 +1,9 @@
+{
+  "name": "Card83",
+  "energyCost": 1,
+  "character": "Watcher",
+  "damage": 0,
+  "defence": 4,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Watcher/Nirvana.png"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Card61",
+  "energyCost": 3,
+  "character": "Defect",
+  "damage": 24,
+  "defence": 0,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/Defect/Sunder.png"
+}
