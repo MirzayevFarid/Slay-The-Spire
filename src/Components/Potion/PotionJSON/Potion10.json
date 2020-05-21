@@ -1,0 +1,7 @@
+{
+  "name": "ExplosivePotion",
+  "attackBoost": 10,
+  "defendBoost": 15,
+  "hpBoost": 10,
+  "image": "IMAGES/PotionImages/ExplosivePotion.png"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "WeakPotion",
+  "attackBoost": 4,
+  "defendBoost": 4,
+  "hpBoost": 4,
+  "image": "IMAGES/PotionImages/WeakPotion.png"
+}

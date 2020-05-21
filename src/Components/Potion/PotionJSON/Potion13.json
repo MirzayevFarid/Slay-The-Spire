@@ -1,0 +1,7 @@
+{
+  "name": "FearPotion",
+  "attackBoost": 5,
+  "defendBoost": 5,
+  "hpBoost": 25,
+  "image": "IMAGES/PotionImages/FearPotion.png"
+}

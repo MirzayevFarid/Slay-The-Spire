@@ -1,0 +1,7 @@
+{
+  "name": "Stance Potion",
+  "attackBoost": 5,
+  "defendBoost": 5,
+  "hpBoost": 10,
+  "image": "IMAGES/PotionImages/StancePotion.png"
+}

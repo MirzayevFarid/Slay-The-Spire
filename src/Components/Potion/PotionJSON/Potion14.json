@@ -1,0 +1,7 @@
+{
+  "name": "FruitJuice",
+  "attackBoost": 0,
+  "defendBoost": 25,
+  "hpBoost": 0,
+  "image": "IMAGES/PotionImages/FruitJuice.png"
+}

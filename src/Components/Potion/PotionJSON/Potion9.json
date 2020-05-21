@@ -1,0 +1,7 @@
+{
+  "name": "SteroidPotion",
+  "attackBoost": 4,
+  "defendBoost": 4,
+  "hpBoost": 20,
+  "image": "IMAGES/PotionImages/SteroidPotion.png"
+}

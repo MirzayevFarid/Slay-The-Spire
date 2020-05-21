@@ -1,0 +1,7 @@
+{
+  "name": "FairyinaBottle",
+  "attackBoost": 10,
+  "defendBoost": 1,
+  "hpBoost": 0,
+  "image": "IMAGES/PotionImages/FairyinaBottle.png"
+}

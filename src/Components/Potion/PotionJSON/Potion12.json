@@ -1,0 +1,7 @@
+{
+  "name": "SwiftPotion",
+  "attackBoost": 20,
+  "defendBoost": 0,
+  "hpBoost": 0,
+  "image": "IMAGES/PotionImages/SwiftPotion.png"
+}

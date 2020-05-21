@@ -1,0 +1,7 @@
+{
+  "name": "Elixir",
+  "attackBoost": 8,
+  "defendBoost": 3,
+  "hpBoost": 16,
+  "image": "IMAGES/PotionImages/Elixir.png"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "CultistPotion",
+  "attackBoost": 3,
+  "defendBoost": 5,
+  "hpBoost": 4,
+  "image": "IMAGES/PotionImages/CultistPotion.png"
+}

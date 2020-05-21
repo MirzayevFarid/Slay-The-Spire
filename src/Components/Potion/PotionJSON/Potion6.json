@@ -1,0 +1,7 @@
+{
+  "name": "EssenceOfDarkness",
+  "attackBoost": 6,
+  "defendBoost": 2,
+  "hpBoost": 3,
+  "image": "IMAGES/PotionImages/EssenceOfDarkness.png"
+}
