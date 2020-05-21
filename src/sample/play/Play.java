@@ -33,6 +33,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import sample.Constants;
 import sample.Methods;
 
 import java.io.File;
@@ -82,8 +83,8 @@ public class Play {
     ImageView drawCard = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/drawImage.png")));
     ImageView discardCard = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/discardImage.png")));
     ImageView endTurnImg = new ImageView(new Image(getClass().getResourceAsStream("../../Images/play/endTurnImage.png"),150, 150, true, false));
+    ParseCharacterJSONObjects mainCharacter;
     ParseMonsterJSONObjects monster;
-    ParseCharacterJSONObjects character;
     ParseRelicJSONObjects relics;
     ParsePotionJSONObjects potions;
     ArrayList<Card> cards = new ArrayList<>();
@@ -100,7 +101,6 @@ public class Play {
     {
         try {
             monster = new ParseMonsterJSONObjects();
-            character = new ParseCharacterJSONObjects("Ironclad");
             relics = new ParseRelicJSONObjects();
             relics = new ParseRelicJSONObjects();
             potions = new ParsePotionJSONObjects();
@@ -111,6 +111,7 @@ public class Play {
 
 
     public void initialize() throws Exception {
+        mainCharacter = Constants.mainCharacter;
         characterEnergy.setId("characterEnergy");
         File drawFile = new File("src/sample/play/drawPile/JSONFiles");
         deleteFolder(drawFile);
@@ -137,18 +138,19 @@ public class Play {
      * @throws Exception
      */
     private void createCharacter() throws Exception {
-        initialCharHP = character.getCharacter().getHp();
-        addCards(character);
-        character.getCharacter().addPotion(potions.getPotions().getPotions().get(0));
-        character.getCharacter().addPotion(potions.getPotions().getPotions().get(1));
-        character.getCharacter().addPotion(potions.getPotions().getPotions().get(2));
-        character.getCharacter().addRelic(relics.getRelics().getRelics().get(0));
-        character.getCharacter().addRelic(relics.getRelics().getRelics().get(1));
-        character.getCharacter().addRelic(relics.getRelics().getRelics().get(2));
+        initialCharHP = mainCharacter.getCharacter().getHp();
+        addCards(mainCharacter);
+        mainCharacter.getCharacter().addPotion(potions.getPotions().getPotions().get(0));
+        mainCharacter.getCharacter().addPotion(potions.getPotions().getPotions().get(1));
+        mainCharacter.getCharacter().addPotion(potions.getPotions().getPotions().get(2));
+        mainCharacter.getCharacter().addRelic(relics.getRelics().getRelics().get(0));
+        mainCharacter.getCharacter().addRelic(relics.getRelics().getRelics().get(1));
+        mainCharacter.getCharacter().addRelic(relics.getRelics().getRelics().get(2));
         updateDrawJson();
         characterHP.setText(initialCharHP + "/" + initialCharHP);
-        characterImg.setImage(new Image(getClass().getResourceAsStream("../../" + character.getCharacter().getImage())));
-        characterEnergy.setText(character.getCharacter().getEnergy() + "/" + character.getCharacter().getEnergy());
+        characterImg.setImage(new Image(getClass().getResourceAsStream("../../" + mainCharacter.getCharacter().getImage())));
+        characterEnergy.setText(mainCharacter.getCharacter().getEnergy() + "/" + mainCharacter.getCharacter().getEnergy());
+        Methods.mainChar = mainCharacter.getCharacter();
     }
 
     /**
@@ -208,7 +210,7 @@ public class Play {
      */
     private void refreshScreen() {
         monsterHP.setText((monster.getMonsters().getMonsters().get(2).getHp() + "/") + initialMonsterHP );
-        characterHP.setText((character.getCharacter().getHp() + "/")+ initialCharHP );
+        characterHP.setText((mainCharacter.getCharacter().getHp() + "/")+ initialCharHP );
         updatePotions();
     }
 
@@ -222,10 +224,10 @@ public class Play {
     // TODO: update if case by adding relics, potions damage addition
     private void playCard(Card card) throws IOException {
         if(card.getDamage() < monster.getMonsters().getMonsters().get(2).getHp()) {
-            character.getCharacter().getCardsOfPlayer().addDiscardList(card);
+            mainCharacter.getCharacter().getCardsOfPlayer().addDiscardList(card);
             updateDiscardJson();
             int updatedHP = monster.getMonsters().getMonsters().get(2).getHp() - card.getDamage();
-            updatedHP -= character.getCharacter().getRelicsOfPlayer().getRelics().get(0).getAttackBoost();
+            updatedHP -= mainCharacter.getCharacter().getRelicsOfPlayer().getRelics().get(0).getAttackBoost();
             updatedHP -= charAttackBoost;
             monster.getMonsters().getMonsters().get(2).setHp(updatedHP);
             charDefence += card.getDefence();
@@ -264,14 +266,14 @@ public class Play {
 
         endTurnButton.onMouseClickedProperty().set((MouseEvent t) -> {
             int damage = monster.getMonsters().getMonsters().get(2).getAttackPoint();
-            int newCharacterHP = character.getCharacter().getHp() - damage + charDefence;
-            character.getCharacter().setHp(newCharacterHP);
-            characterEnergy.setText(character.getCharacter().getEnergy() + "/" + character.getCharacter().getEnergy());
+            int newCharacterHP = mainCharacter.getCharacter().getHp() - damage + charDefence;
+            mainCharacter.getCharacter().setHp(newCharacterHP);
+            characterEnergy.setText(mainCharacter.getCharacter().getEnergy() + "/" + mainCharacter.getCharacter().getEnergy());
             topBar.getHp().setText(newCharacterHP + "/" + initialCharHP);
             exposeCards();
             refreshScreen();
 
-            if(character.getCharacter().getHp() <= 0){
+            if(mainCharacter.getCharacter().getHp() <= 0){
                 popUp("Game Over","mainMenu/mainMenu.fxml");
             }
         });
@@ -317,7 +319,7 @@ public class Play {
      */
     private void exposeCards() {
         try {
-            Cards charCards =  character.getCharacter().getCardsOfPlayer();
+            Cards charCards =  mainCharacter.getCharacter().getCardsOfPlayer();
 
             for(int i = 0; i < cards.size(); i++){
                 charCards.addDiscardList(cards.get(i));
@@ -328,14 +330,14 @@ public class Play {
 
             if(charCards.getCardList().size() < 5){
                 for(int i = 0; i < charCards.getDiscardList().size(); i++){
-                    character.getCharacter().addCard(charCards.getDiscardList().get(i));
-                    character.getCharacter().getCardsOfPlayer().getDrawList().add(charCards.getDiscardList().get(i));
+                    mainCharacter.getCharacter().addCard(charCards.getDiscardList().get(i));
+                    mainCharacter.getCharacter().getCardsOfPlayer().getDrawList().add(charCards.getDiscardList().get(i));
                 }
                 charCards.getDiscardList().clear();
                 updateDiscardJson();
             }
 
-            addCards(character);
+            addCards(mainCharacter);
             updateDrawJson();
 
 
@@ -351,8 +353,8 @@ public class Play {
         VBox bars = new VBox(-63);
         topBar = new TopBar();
 
-        relicBar = new RelicBar(character);
-        topBar.getHp().setText(character.getCharacter().getHp() + "/" + character.getCharacter().getHp());
+        relicBar = new RelicBar(mainCharacter);
+        topBar.getHp().setText(mainCharacter.getCharacter().getHp() + "/" + mainCharacter.getCharacter().getHp());
 
         bars.getChildren().add(topBar.getTopBar());
         bars.getChildren().add(relicBar.getRelicBar());
@@ -377,19 +379,19 @@ public class Play {
 
     private void addPotionListeners() {
         topBar.getPotionButton1().onMouseClickedProperty().set((MouseEvent t) -> {
-            if ( character.getCharacter().getPotionsOfPlayer().getPotions().size() > 0 ){
+            if ( mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().size() > 0 ){
                 usePotion(1);
                 updatePotions();
             }
         });
         topBar.getPotionButton2().onMouseClickedProperty().set((MouseEvent t) -> {
-            if ( character.getCharacter().getPotionsOfPlayer().getPotions().size() > 1 ){
+            if ( mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().size() > 1 ){
                 usePotion(2);
                 updatePotions();
             }
         });
         topBar.getPotionButton3().onMouseClickedProperty().set((MouseEvent t) -> {
-            if ( character.getCharacter().getPotionsOfPlayer().getPotions().size() > 2 ){
+            if ( mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().size() > 2 ){
                 usePotion(3);
                 updatePotions();
             }
@@ -402,7 +404,7 @@ public class Play {
         FileWriter writer = null;
         File file = new File("src/sample/play/discardPile/JSONFiles");
         deleteFolder(file);
-        for(Card card: character.getCharacter().getCardsOfPlayer().getDiscardList()){
+        for(Card card: mainCharacter.getCharacter().getCardsOfPlayer().getDiscardList()){
             writer = new FileWriter("src/sample/play/discardPile/JSONFiles/" + card.getName() + ".json");
             new Gson().toJson(card, writer);
             index++;
@@ -415,7 +417,7 @@ public class Play {
         FileWriter writer = null;
         File file = new File("src/sample/play/drawPile/JSONFiles");
         deleteFolder(file);
-        for(Card card: character.getCharacter().getCardsOfPlayer().getDrawList()){
+        for(Card card: mainCharacter.getCharacter().getCardsOfPlayer().getDrawList()){
             writer = new FileWriter("src/sample/play/drawPile/JSONFiles/" + card.getName() + ".json");
             new Gson().toJson(card, writer);
             index++;
@@ -437,7 +439,7 @@ public class Play {
     }
 
     public ArrayList<Card> getCharacterCards(){
-        return character.getCharacter().getCardsOfPlayer().getCardList();
+        return mainCharacter.getCharacter().getCardsOfPlayer().getCardList();
     }
 
     public MediaPlayer getPlayer(){
@@ -457,36 +459,35 @@ public class Play {
     }
 
     void updatePotions(){
-        int characterPotionNumber = character.getCharacter().getPotionsOfPlayer().getPotions().size();
+        int characterPotionNumber = mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().size();
         if ( characterPotionNumber == 0 ){
             topBar.setPotionImage1("IMAGES/PotionImages/NoPotion.png");
             topBar.setPotionImage2("IMAGES/PotionImages/NoPotion.png");
             topBar.setPotionImage3("IMAGES/PotionImages/NoPotion.png");
         }
         else if ( characterPotionNumber == 1 ) {
-            topBar.setPotionImage1(character.getCharacter().getPotionsOfPlayer().getPotions().get(0).getImage());
+            topBar.setPotionImage1(mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(0).getImage());
             topBar.setPotionImage2("IMAGES/PotionImages/NoPotion.png");
             topBar.setPotionImage3("IMAGES/PotionImages/NoPotion.png");
         }
         else if ( characterPotionNumber == 2 ){
-            topBar.setPotionImage1(character.getCharacter().getPotionsOfPlayer().getPotions().get(0).getImage());
-            topBar.setPotionImage2(character.getCharacter().getPotionsOfPlayer().getPotions().get(1).getImage());
+            topBar.setPotionImage1(mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(0).getImage());
+            topBar.setPotionImage2(mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(1).getImage());
             topBar.setPotionImage3("IMAGES/PotionImages/NoPotion.png");
         }
         else if ( characterPotionNumber == 3 ){
-            topBar.setPotionImage1(character.getCharacter().getPotionsOfPlayer().getPotions().get(0).getImage());
-            topBar.setPotionImage2(character.getCharacter().getPotionsOfPlayer().getPotions().get(1).getImage());
-            topBar.setPotionImage3(character.getCharacter().getPotionsOfPlayer().getPotions().get(2).getImage());
+            topBar.setPotionImage1(mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(0).getImage());
+            topBar.setPotionImage2(mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(1).getImage());
+            topBar.setPotionImage3(mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(2).getImage());
         }
     }
 
     void usePotion(int index){
-        Potion potionToUse = character.getCharacter().getPotionsOfPlayer().getPotions().get(index - 1);
-        System.out.println(potionToUse.toString());
-        character.getCharacter().setHp(character.getCharacter().getHp() + potionToUse.getHpBoost());
+        Potion potionToUse = mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(index - 1);
+        mainCharacter.getCharacter().setHp(mainCharacter.getCharacter().getHp() + potionToUse.getHpBoost());
         charAttackBoost += potionToUse.getAttackBoost();
         charDefence += potionToUse.getDefendBoost();
-        character.getCharacter().getPotionsOfPlayer().getPotions().remove(index - 1);
+        mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().remove(index - 1);
         refreshScreen();
     }
 }

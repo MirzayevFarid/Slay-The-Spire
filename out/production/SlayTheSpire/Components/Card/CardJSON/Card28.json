@@ -1,0 +1,9 @@
+{
+  "name": "Card28",
+  "energyCost": 1,
+  "character": "Ironclad",
+  "damage": 5,
+  "defence": 0,
+  "description": "Deal 5 damage twice.",
+  "image": "IMAGES/cards/attack/TwinStrike.png"
+}

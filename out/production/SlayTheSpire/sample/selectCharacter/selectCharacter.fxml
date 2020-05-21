@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="AnchorPane" prefHeight="900.0" prefWidth="1440.0" style="-fx-background-image: url('../../Images/play/ironcladPortrait.jpg');" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.selectCharacter.SelectCharacter">
+   <children>
+      <ImageView fx:id="imageView" fitHeight="900.0" fitWidth="1440.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="backBtn" layoutX="59.0" layoutY="794.0" mnemonicParsing="false" text="Button" />
+      <HBox fx:id="Hbox" layoutX="434.0" layoutY="613.0" prefHeight="100.0" prefWidth="577.0" />
+   </children>
+</AnchorPane>

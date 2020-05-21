@@ -1,0 +1,9 @@
+{
+  "name": "Card2",
+  "energyCost": 2,
+  "character": "Ironclad",
+  "damage": 8,
+  "defence": 0,
+  "description": "Deal 8 damage. Apply 2 vulnerable.",
+  "image": "IMAGES/cards/attack/Bash.png"
+}

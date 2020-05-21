@@ -1,0 +1,9 @@
+{
+  "name": "Card21",
+  "energyCost": 2,
+  "character": "Ironclad",
+  "damage": 4,
+  "defence": 0,
+  "description": "Deal 4 damage to ALL enemies.",
+  "image": "IMAGES/cards/attack/Reaper.png"
+}

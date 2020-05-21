@@ -1,0 +1,9 @@
+{
+  "name": "Card26",
+  "energyCost": 1,
+  "character": "Ironclad",
+  "damage": 3,
+  "defence": 0,
+  "description": "Deal 3 damage to a random enemy 3 times.",
+  "image": "IMAGES/cards/attack/SwordBoomerang.png"
+}

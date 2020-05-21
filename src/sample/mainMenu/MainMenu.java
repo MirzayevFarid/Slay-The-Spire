@@ -25,7 +25,7 @@ public class MainMenu {
 
 
     public void playClicked(MouseEvent mouseEvent) throws IOException {
-        Methods.changeScreen("play/play.fxml", txtPlay, true);
+        Methods.changeScreen("selectCharacter/selectCharacter.fxml", txtPlay, true);
     }
 
     public void compendiumClicked(MouseEvent mouseEvent) throws IOException {

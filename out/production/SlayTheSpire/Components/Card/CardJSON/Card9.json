@@ -1,0 +1,9 @@
+{
+  "name": "Card9",
+  "energyCost": 1,
+  "character": "Ironclad",
+  "damage": 5,
+  "defence": 0,
+  "description": "Deal 5 damage. If the enemy has vulnerable, gain energy and draw 1 card.",
+  "image": "IMAGES/cards/attack/Dropkick.png"
+}

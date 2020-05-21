@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.rest.Rest">
+   <children>
+      <ImageView fx:id="background" fitHeight="400.0" fitWidth="600.0" layoutX="420.0" layoutY="250.0" pickOnBounds="true" smooth="false" />
+   </children>
+</AnchorPane>

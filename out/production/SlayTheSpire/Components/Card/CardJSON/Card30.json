@@ -1,0 +1,9 @@
+{
+  "name": "Card30",
+  "energyCost": 1,
+  "character": "Ironclad",
+  "damage": 12,
+  "defence": 0,
+  "description": "Deal 12 damage.",
+  "image": "IMAGES/cards/attack/WildStrike.png"
+}

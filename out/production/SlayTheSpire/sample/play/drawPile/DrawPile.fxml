@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<AnchorPane fx:id="drawAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.play.drawPile.DrawPile" stylesheets="@DrawPile.css">
+    <children>
+        <ImageView fx:id="imageView" fitHeight="900.0" fitWidth="1440.0" pickOnBounds="true" preserveRatio="true" />
+        <ScrollPane fx:id="scroll" layoutX="330.0" layoutY="96.0" prefHeight="738.0" prefWidth="805.0">
+            <content>
+                <AnchorPane fx:id="insideAnchor" prefHeight="800.0" prefWidth="786.0">
+               <children>
+                  <VBox fx:id="VBox" alignment="TOP_CENTER" prefHeight="800.0" prefWidth="786.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox fx:id="defaultHBox" alignment="CENTER" prefHeight="12.0" prefWidth="1066.0" />
+                     </children>
+                  </VBox>
+               </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>

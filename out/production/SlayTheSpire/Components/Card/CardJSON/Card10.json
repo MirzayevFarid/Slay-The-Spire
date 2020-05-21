@@ -1,0 +1,9 @@
+{
+  "name": "Card10",
+  "energyCost": 1,
+  "character": "Ironclad",
+  "damage": 10,
+  "defence": 0,
+  "description": "Deal 10 damage. If fatal, raise Max HP by 2.",
+  "image": "IMAGES/cards/attack/Feed.png"
+}

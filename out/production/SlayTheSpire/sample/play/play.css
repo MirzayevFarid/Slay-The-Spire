@@ -1,0 +1,12 @@
+#drawButton:hover{
+    -fx-effect: dropshadow(gaussian, #FF00005F, 50, 0.3, 0, 0);
+}
+
+#discardButton:hover {
+    -fx-effect: dropshadow(gaussian, #FF00005F, 50, 0.3, 0, 0);
+}
+
+HBox ImageView:hover{
+    -fx-effect: dropshadow(gaussian, #FF00005F, 50, 0.3, 0, 0);
+    -fx-translate-y: -30px;
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Card17",
+  "energyCost": 2,
+  "character": "Ironclad",
+  "damage": 6,
+  "defence": 0,
+  "description": "Deal 6 damage. Deals 2 additional damage for ALL your cards containing 'strike'.",
+  "image": "IMAGES/cards/attack/PerfectedStrike.png"
+}

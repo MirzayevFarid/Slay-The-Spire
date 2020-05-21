@@ -23,7 +23,7 @@ public class Map {
     int numberOfColumns = 7;
     int numberOfRows = 10;
     int[][] map = new int[numberOfRows][numberOfColumns];     // 2D integer array with 4 rows
-
+    int legend;
     @FXML
     private AnchorPane window;
 
@@ -89,30 +89,44 @@ public class Map {
         while (scan.hasNextLine()) {
             line = scan.nextLine();
             for (int i = 0; i < line.length(); i++) {
-                map2[rowIndex][colIndex] = Integer.parseInt(String.valueOf(line.charAt(i)));
+                if (line.charAt(i) == '-'){
+                    map2[rowIndex][colIndex] = Integer.parseInt(String.valueOf(line.charAt(++i))) * -1;
+                }
+                else {
+                    map2[rowIndex][colIndex] = Integer.parseInt(String.valueOf(line.charAt(i)));
+                }
                 colIndex++;
             }
             colIndex = 0;
             rowIndex++;
+        }
+        for (int i = 0; i < numberOfRows; i++){
+            for (int j = 0; j < numberOfColumns; j++){
+                System.out.print(map2[i][j]);
+            }
+            System.out.println();
         }
         return map2;
     }
 
     /**
      * read data is used in order to add circles to pane
-     *  1 - Combat
-     *  2 - Rest
-     *  3 - Treasure
-     *  4 - Shop
-     *  5 - Current
+     * 1 - Combat
+     * 2 - Rest
+     * 3 - Treasure
+     * 4 - Shop
+     * 5 - Current
+     *
      * @param gridPane to add the circles on the screen
      * @param map2     the 2 dimensional array holding text data
      */
     private void addCircleFromTxt(GridPane gridPane, int[][] map2) {
         for (int i = 0; i < numberOfRows; i++) {
             for (int j = 0; j < numberOfColumns; j++) {
-
-                switch (map2[i][j]) {
+                legend = map2[i][j];
+                switch (Math.abs(legend)) {
+                    case 0:
+                        continue;
                     case 1:
                         addButtons("../../Images/play/combatIcon.png", "play/play.Fxml", gridPane, i, j);
                         break;
@@ -137,6 +151,10 @@ public class Map {
     public void addButtons(String imagePath, String screenPath, GridPane gridPane, int i, int j) {
         ImageView restIcon = new ImageView(new Image(getClass().getResourceAsStream(imagePath)));
         Button currentChar = new Button();
+
+        if(legend < 0)
+            currentChar.setDisable(true);
+
         currentChar.setGraphic(restIcon);
         currentChar.setStyle("-fx-background-color: transparent;");
 
@@ -268,4 +286,3 @@ public class Map {
         return map;
     }
 }
-
