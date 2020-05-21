@@ -5,5 +5,5 @@
   "damage": 13,
   "defence": 0,
   "description": "Deal 13 damage. Apply 1 vulnerable and 1 weak.",
-  "image": "IMAGES/cards/attack/Uppercut.png"
+  "image": "IMAGES/cards/Ironclad/Uppercut.png"
 }
