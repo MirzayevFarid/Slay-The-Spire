@@ -102,7 +102,6 @@ public class Play {
             monster = new ParseMonsterJSONObjects();
             character = new ParseCharacterJSONObjects("Ironclad");
             relics = new ParseRelicJSONObjects();
-            relics = new ParseRelicJSONObjects();
             potions = new ParsePotionJSONObjects();
         } catch (Exception e) {
             e.printStackTrace();
@@ -209,6 +208,7 @@ public class Play {
     private void refreshScreen() {
         monsterHP.setText((monster.getMonsters().getMonsters().get(2).getHp() + "/") + initialMonsterHP );
         characterHP.setText((character.getCharacter().getHp() + "/")+ initialCharHP );
+        topBar.getGold().setText("" + character.getCharacter().getGold());
         updatePotions();
     }
 
@@ -268,6 +268,7 @@ public class Play {
             character.getCharacter().setHp(newCharacterHP);
             characterEnergy.setText(character.getCharacter().getEnergy() + "/" + character.getCharacter().getEnergy());
             topBar.getHp().setText(newCharacterHP + "/" + initialCharHP);
+            topBar.getGold().setText("" + character.getCharacter().getGold());
             exposeCards();
             refreshScreen();
 
@@ -353,6 +354,7 @@ public class Play {
 
         relicBar = new RelicBar(character);
         topBar.getHp().setText(character.getCharacter().getHp() + "/" + character.getCharacter().getHp());
+        topBar.getGold().setText(character.getCharacter().getGold() + "");
 
         bars.getChildren().add(topBar.getTopBar());
         bars.getChildren().add(relicBar.getRelicBar());
@@ -482,7 +484,6 @@ public class Play {
 
     void usePotion(int index){
         Potion potionToUse = character.getCharacter().getPotionsOfPlayer().getPotions().get(index - 1);
-        System.out.println(potionToUse.toString());
         character.getCharacter().setHp(character.getCharacter().getHp() + potionToUse.getHpBoost());
         charAttackBoost += potionToUse.getAttackBoost();
         charDefence += potionToUse.getDefendBoost();

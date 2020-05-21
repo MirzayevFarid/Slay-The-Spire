@@ -13,12 +13,14 @@ import java.util.stream.Stream;
 public class ParseCardJSONObjects {
     private Gson gson;//Google gson library for json-pojo object mapping!
     private String directory;
+    private String characterType;
     private String path;// File path that includes json libraries
     private Cards cardDeck;
 
-    public ParseCardJSONObjects() throws Exception {
+    public ParseCardJSONObjects(String characterType) throws Exception {
         gson = new GsonBuilder().create();                     //creating gson
         directory = System.getProperty("user.dir");
+        this.characterType = characterType;
         path = directory + "/src/Components/Card/CardJSON";              //path for json files
         cardDeck = new Cards(parseJSONFiles());
     }
@@ -36,10 +38,9 @@ public class ParseCardJSONObjects {
 
                 Object object = gson.fromJson(new FileReader(file.getAbsolutePath()), Card.class);
 
-                if(object instanceof Card) {
+                if(object instanceof Card && ((Card) object).getCharacterType().equals(this.characterType)) {
                     cardList.add((Card) object);
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
