@@ -24,7 +24,7 @@ import java.io.IOException;
 
 public class TopBar extends Node {
 
-    private HBox hbox = new HBox(8);
+    private HBox hbox = new HBox(10);
     private AnchorPane anchorPane = new AnchorPane();
 
     private ImageView barBackground = new ImageView(new Image(getClass().getResourceAsStream("../Images/play/bar.png")));
@@ -46,10 +46,18 @@ public class TopBar extends Node {
     private ImageView potionIcon3 = new ImageView();
     private Button potionButton3 = new Button();
 
+    private ImageView gold = new ImageView(new Image(getClass().getResourceAsStream("../Images/play/gold.png")));
+    private Button goldButton = new Button();
+
     Label hp = new Label("100 / 100");
+    Label goldLabel = new Label("100");
 
     public Label getHp(){
         return hp;
+    }
+
+    public Label getGold(){
+        return goldLabel;
     }
 
     public TopBar(){
@@ -80,9 +88,13 @@ public class TopBar extends Node {
         mapButton.setStyle("-fx-background-color: transparent;");
         settingsButton.setGraphic(settingsIcon);
         settingsButton.setStyle("-fx-background-color: transparent;");
+        goldButton.setGraphic(gold);
+        goldButton.setStyle("-fx-background-color: transparent;");
 
         hp.setFont(Font.font(30));
         hp.setTextFill(Color.RED);
+        goldLabel.setFont(Font.font(30));
+        goldLabel.setTextFill(Color.YELLOW);
 
 
         anchorPane.getChildren().add(barBackground);
@@ -98,8 +110,14 @@ public class TopBar extends Node {
         HBox.setMargin(potionButton2, new Insets(-5, 0, 0, 0));
         hbox.getChildren().add(potionButton2);
 
-        HBox.setMargin(potionButton3, new Insets(-5, Main.getWidth() - 610, 0, 0));
+        HBox.setMargin(potionButton3, new Insets(-5, 25, 0, 0));
         hbox.getChildren().add(potionButton3);
+
+        HBox.setMargin(goldButton, new Insets(-5, -20, 0, 0));
+        hbox.getChildren().add(goldButton);
+
+        HBox.setMargin(goldLabel, new Insets(10, Main.getWidth() - 775, 0, 0));
+        hbox.getChildren().add(goldLabel);
 
         hbox.getChildren().add(mapButton);
         hbox.getChildren().add(settingsButton);
@@ -160,8 +178,8 @@ public class TopBar extends Node {
     public void setPotionImage1(String path){
         System.out.println(path);
         potionIcon1 = new ImageView(new Image(getClass().getResourceAsStream("../" + path)));
-        potionIcon1.setFitWidth(70);
-        potionIcon1.setFitHeight(70);
+        potionIcon1.setFitWidth(60);
+        potionIcon1.setFitHeight(60);
         potionButton1.setGraphic(potionIcon1);
         potionButton1.setStyle("-fx-background-color: transparent;");
     }
@@ -169,8 +187,8 @@ public class TopBar extends Node {
     public void setPotionImage2(String path){
         System.out.println(path);
         potionIcon2 = new ImageView(new Image(getClass().getResourceAsStream("../" + path)));
-        potionIcon2.setFitWidth(70);
-        potionIcon2.setFitHeight(70);
+        potionIcon2.setFitWidth(60);
+        potionIcon2.setFitHeight(60);
         potionButton2.setGraphic(potionIcon2);
         potionButton2.setStyle("-fx-background-color: transparent;");
     }
@@ -178,8 +196,8 @@ public class TopBar extends Node {
     public void setPotionImage3(String path){
         System.out.println(path);
         potionIcon3 = new ImageView(new Image(getClass().getResourceAsStream("../" + path)));
-        potionIcon3.setFitWidth(70);
-        potionIcon3.setFitHeight(70);
+        potionIcon3.setFitWidth(60);
+        potionIcon3.setFitHeight(60);
         potionButton3.setGraphic(potionIcon3);
         potionButton3.setStyle("-fx-background-color: transparent;");
     }

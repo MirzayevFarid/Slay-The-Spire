@@ -102,7 +102,6 @@ public class Play {
         try {
             monster = new ParseMonsterJSONObjects();
             relics = new ParseRelicJSONObjects();
-            relics = new ParseRelicJSONObjects();
             potions = new ParsePotionJSONObjects();
         } catch (Exception e) {
             e.printStackTrace();
@@ -210,6 +209,8 @@ public class Play {
      */
     private void refreshScreen() {
         monsterHP.setText((monster.getMonsters().getMonsters().get(2).getHp() + "/") + initialMonsterHP );
+        characterHP.setText((character.getCharacter().getHp() + "/")+ initialCharHP );
+        topBar.getGold().setText("" + character.getCharacter().getGold());
         characterHP.setText((mainCharacter.getCharacter().getHp() + "/")+ initialCharHP );
         updatePotions();
     }
@@ -270,6 +271,7 @@ public class Play {
             mainCharacter.getCharacter().setHp(newCharacterHP);
             characterEnergy.setText(mainCharacter.getCharacter().getEnergy() + "/" + mainCharacter.getCharacter().getEnergy());
             topBar.getHp().setText(newCharacterHP + "/" + initialCharHP);
+            topBar.getGold().setText("" + character.getCharacter().getGold());
             exposeCards();
             refreshScreen();
 
@@ -353,6 +355,9 @@ public class Play {
         VBox bars = new VBox(-63);
         topBar = new TopBar();
 
+        relicBar = new RelicBar(character);
+        topBar.getHp().setText(character.getCharacter().getHp() + "/" + character.getCharacter().getHp());
+        topBar.getGold().setText(character.getCharacter().getGold() + "");
         relicBar = new RelicBar(mainCharacter);
         topBar.getHp().setText(mainCharacter.getCharacter().getHp() + "/" + mainCharacter.getCharacter().getHp());
 
@@ -483,6 +488,8 @@ public class Play {
     }
 
     void usePotion(int index){
+        Potion potionToUse = character.getCharacter().getPotionsOfPlayer().getPotions().get(index - 1);
+        character.getCharacter().setHp(character.getCharacter().getHp() + potionToUse.getHpBoost());
         Potion potionToUse = mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(index - 1);
         mainCharacter.getCharacter().setHp(mainCharacter.getCharacter().getHp() + potionToUse.getHpBoost());
         charAttackBoost += potionToUse.getAttackBoost();
