@@ -103,7 +103,7 @@ public class SelectCharacter {
         ParseRelicJSONObjects newRelic = new ParseRelicJSONObjects();
         newChar.getCharacter().addRelic(newRelic.getRelics().getRelics().get(index));
         RelicBar relicBar = new RelicBar(newChar);
-        Text charRelic = new Text("" + newChar.getCharacter().getRelicsOfPlayer().getRelics().get(index).getName());
+        Text charRelic = new Text("" + newChar.getCharacter().getRelicsOfPlayer().getRelics().get(0).getName());
         charRelic.setId("Relic");
         HBox.setMargin(charRelic,new Insets(15,0,0,0));
         charRelics.getChildren().addAll(relicBar.getRelicBar(), charRelic);
@@ -140,7 +140,7 @@ public class SelectCharacter {
             try {
                 ParseCharacterJSONObjects newChar = new ParseCharacterJSONObjects("Defect");
 
-                updateInfo(newChar,"The remaining soldier of the Ironclads.\nSold his soul to harness demonic energies", 0);
+                updateInfo(newChar,"The remaining soldier of the Ironclads.\nSold his soul to harness demonic energies", 1);
 
                 imageView.setImage(new Image(getClass().getResourceAsStream("../../Images/play/defectPortrait.png")));
             } catch (Exception e) {
@@ -162,7 +162,7 @@ public class SelectCharacter {
             try {
                 ParseCharacterJSONObjects newChar = new ParseCharacterJSONObjects("Watcher");
 
-                updateInfo(newChar,"The remaining soldier of the Ironclads.\nSold his soul to harness demonic energies", 0);
+                updateInfo(newChar,"The remaining soldier of the Ironclads.\nSold his soul to harness demonic energies", 2);
 
                 imageView.setImage(new Image(getClass().getResourceAsStream("../../Images/play/watcherPortrait.png")));
             } catch (Exception e) {
