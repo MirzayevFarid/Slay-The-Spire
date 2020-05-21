@@ -23,7 +23,6 @@ public class RelicBar extends Node {
     private HBox hbox = new HBox(4);
     private AnchorPane anchorPane = new AnchorPane();
     private ImageView relicIcon = new ImageView();
-    final Tooltip tooltip = new Tooltip();
     ArrayList<Relic> relics = new ArrayList<>();
 
 
@@ -39,6 +38,7 @@ public class RelicBar extends Node {
 
     void addRelics(){
         for(int i = 0; i< relics.size(); i++) {
+            final Tooltip tooltip = new Tooltip();
             // Create Button
             Button relicButton = new Button();
 
