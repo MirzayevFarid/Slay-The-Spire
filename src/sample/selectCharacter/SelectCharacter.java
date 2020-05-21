@@ -1,5 +1,6 @@
 package sample.selectCharacter;
 
+import Components.Card.ParseCardJSONObjects;
 import Components.Character.CharacterJSON.ParseCharacterJSONObjects;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -74,6 +75,7 @@ public class SelectCharacter {
         ironcladButton.onMouseClickedProperty().set((MouseEvent t) -> {
             try {
                 Constants.mainCharacter = new ParseCharacterJSONObjects("Ironclad");
+                Constants.usableCards = new ParseCardJSONObjects("Ironclad");
                 Methods.changeScreen("play/play.fxml", backBtn,true);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -83,6 +85,7 @@ public class SelectCharacter {
         defectButton.onMouseClickedProperty().set((MouseEvent t) -> {
             try {
                 Constants.mainCharacter = new ParseCharacterJSONObjects("Defect");
+                Constants.usableCards = new ParseCardJSONObjects("Defect");
                 Methods.changeScreen("play/play.fxml", backBtn,true);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -92,6 +95,7 @@ public class SelectCharacter {
         watcherButton.onMouseClickedProperty().set((MouseEvent t) -> {
             try {
                 Constants.mainCharacter = new ParseCharacterJSONObjects("Watcher");
+                Constants.usableCards = new ParseCardJSONObjects("Watcher");
                 Methods.changeScreen("play/play.fxml", backBtn,true);
             } catch (Exception e) {
                 e.printStackTrace();

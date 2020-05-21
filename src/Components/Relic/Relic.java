@@ -37,6 +37,15 @@ public class Relic {
         this.image = image;
     }
 
+    public Relic(Relic relic) {
+        this.name = relic.name;
+        this.attackBoost = relic.attackBoost;
+        this.defenceBoost = relic.defenceBoost;
+        this.hpBoost = relic.hpBoost;
+        this.energyBoost = relic.energyBoost;
+        this.image = relic.image;
+    }
+
     public String getName() {
         return name;
     }
