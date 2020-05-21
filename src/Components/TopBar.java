@@ -9,6 +9,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -51,6 +52,8 @@ public class TopBar extends Node {
 
     Label hp = new Label("100 / 100");
     Label goldLabel = new Label("100");
+
+    final Tooltip tooltip = new Tooltip();
 
     public Label getHp(){
         return hp;
@@ -200,6 +203,27 @@ public class TopBar extends Node {
         potionIcon3.setFitHeight(60);
         potionButton3.setGraphic(potionIcon3);
         potionButton3.setStyle("-fx-background-color: transparent;");
+    }
+
+    public void setToolTipText1(String info){
+        tooltip.setText(
+                info
+        );
+        potionButton1.setTooltip(tooltip);
+    }
+
+    public void setToolTipText2(String info){
+        tooltip.setText(
+                info
+        );
+        potionButton2.setTooltip(tooltip);
+    }
+
+    public void setToolTipText3(String info){
+        tooltip.setText(
+                info
+        );
+        potionButton3.setTooltip(tooltip);
     }
 
     /*public void updatePotionImages(int index){
