@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@play.css" fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.play.Play">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@play.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.play.Play">
    <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" />
    <ImageView fitHeight="1319.0" fitWidth="2015.0" layoutX="-268.0" layoutY="-352.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../../IMAGES/play/playBackground.jpg" />
@@ -17,16 +22,22 @@
    </ImageView>
    <Button fx:id="endTurnButton" layoutX="1173.0" layoutY="603.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" />
    <HBox fx:id="cardBox" layoutX="339.0" layoutY="611.0" prefHeight="276.0" prefWidth="773.0" />
-   <VBox layoutX="281.0" layoutY="345.0" prefHeight="200.0" prefWidth="100.0">
+   <VBox layoutX="283.0" layoutY="213.0" prefHeight="314.0" prefWidth="278.0">
       <children>
-         <ImageView fx:id="characterImg" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-         <Label fx:id="characterHP" text="100" />
+         <ImageView fx:id="characterImg" fitHeight="286.0" fitWidth="282.0" pickOnBounds="true" preserveRatio="true" />
+         <Label fx:id="characterHP" text="100">
+            <font>
+               <Font size="36.0" />
+            </font></Label>
       </children>
    </VBox>
-   <VBox layoutX="1105.0" layoutY="359.0" prefHeight="200.0" prefWidth="100.0">
+   <VBox layoutX="942.0" layoutY="230.0" prefHeight="314.0" prefWidth="278.0">
       <children>
-         <ImageView fx:id="monsterImg" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-         <Label fx:id="monsterHP" text="100" />
+         <ImageView fx:id="monsterImg" fitHeight="289.0" fitWidth="283.0" pickOnBounds="true" preserveRatio="true" />
+         <Label fx:id="monsterHP" text="100">
+            <font>
+               <Font size="36.0" />
+            </font></Label>
       </children>
    </VBox>
    <Label fx:id="characterEnergy" layoutX="193.0" layoutY="650.0" text="3/3" textFill="#ff5200">
@@ -34,4 +45,5 @@
          <Font size="36.0" />
       </font>
    </Label>
+
 </AnchorPane>
