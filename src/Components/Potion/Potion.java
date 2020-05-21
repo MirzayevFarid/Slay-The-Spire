@@ -1,26 +1,30 @@
 package Components.Potion;
 
 public class Potion {
+    private String name;
     private int attackBoost;
-    private int defendBoost;
+    private int defenceBoost;
     private int hpBoost;
     private String image;
 
-    public Potion(int attackBoost, int defendBoost, int hpBoost, String image) {
+    public Potion(String name, int attackBoost, int defenceBoost, int hpBoost, String image) {
+        this.name = name;
         this.attackBoost = attackBoost;
-        this.defendBoost = defendBoost;
+        this.defenceBoost = defenceBoost;
         this.hpBoost = hpBoost;
         this.image = image;
     }
 
     public Potion() {
+        this.name = "";
         this.attackBoost = 0;
-        this.defendBoost = 0;
+        this.defenceBoost = 0;
         this.hpBoost = 0;
     }
     public Potion(Potion otherPotion){
+        this.name = otherPotion.name;
         this.attackBoost = otherPotion.attackBoost;
-        this.defendBoost = otherPotion.defendBoost;
+        this.defenceBoost = otherPotion.defenceBoost;
         this.hpBoost = otherPotion.hpBoost;
         this.image = otherPotion.image;
     }
@@ -33,12 +37,12 @@ public class Potion {
         this.attackBoost = attackBoost;
     }
 
-    public int getDefendBoost() {
-        return defendBoost;
+    public int getDefenceBoost() {
+        return defenceBoost;
     }
 
-    public void setDefendBoost(int defendBoost) {
-        this.defendBoost = defendBoost;
+    public void setDefenceBoost(int defenceBoost) {
+        this.defenceBoost = defenceBoost;
     }
 
     public int getHpBoost() {
@@ -57,11 +61,19 @@ public class Potion {
         this.image = image;
     }
 
+    public String getToolTipString() {
+        return
+                ("Name: " + name + "\n" +
+                        "Attack Boost: " + attackBoost + "\n" +
+                        "Defence Boost: " + defenceBoost + "\n" +
+                        "HP Boost: " + hpBoost);
+    }
+
     @Override
     public String toString() {
         return "Potion{" +
                 "attackBoost=" + attackBoost +
-                ", defendBoost=" + defendBoost +
+                ", defendBoost=" + defenceBoost +
                 ", hpBoost=" + hpBoost +
                 '}';
     }

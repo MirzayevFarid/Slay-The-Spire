@@ -98,6 +98,7 @@ public class Play {
 
 
 
+
     {
         try {
             monster = new ParseMonsterJSONObjects();
@@ -467,23 +468,35 @@ public class Play {
         int characterPotionNumber = mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().size();
         if ( characterPotionNumber == 0 ){
             topBar.setPotionImage1("IMAGES/PotionImages/NoPotion.png");
+            topBar.setToolTipText1("No Potion");
             topBar.setPotionImage2("IMAGES/PotionImages/NoPotion.png");
+            topBar.setToolTipText2("No Potion");
             topBar.setPotionImage3("IMAGES/PotionImages/NoPotion.png");
+            topBar.setToolTipText3("No Potion");
         }
         else if ( characterPotionNumber == 1 ) {
             topBar.setPotionImage1(mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(0).getImage());
+            topBar.setToolTipText1(mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(0).getToolTipString());
             topBar.setPotionImage2("IMAGES/PotionImages/NoPotion.png");
+            topBar.setToolTipText2("No Potion");
             topBar.setPotionImage3("IMAGES/PotionImages/NoPotion.png");
+            topBar.setToolTipText3("No Potion");
         }
         else if ( characterPotionNumber == 2 ){
             topBar.setPotionImage1(mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(0).getImage());
+            topBar.setToolTipText1(mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(0).getToolTipString());
             topBar.setPotionImage2(mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(1).getImage());
+            topBar.setToolTipText2(mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(1).getToolTipString());
             topBar.setPotionImage3("IMAGES/PotionImages/NoPotion.png");
+            topBar.setToolTipText3("No Potion");
         }
         else if ( characterPotionNumber == 3 ){
             topBar.setPotionImage1(mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(0).getImage());
+            topBar.setToolTipText1(mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(0).getToolTipString());
             topBar.setPotionImage2(mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(1).getImage());
+            topBar.setToolTipText2(mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(1).getToolTipString());
             topBar.setPotionImage3(mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(2).getImage());
+            topBar.setToolTipText3(mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(2).getToolTipString());
         }
     }
 
@@ -491,7 +504,7 @@ public class Play {
         Potion potionToUse = mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().get(index - 1);
         mainCharacter.getCharacter().setHp(mainCharacter.getCharacter().getHp() + potionToUse.getHpBoost());
         charAttackBoost += potionToUse.getAttackBoost();
-        charDefence += potionToUse.getDefendBoost();
+        charDefence += potionToUse.getDefenceBoost();
         mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().remove(index - 1);
         refreshScreen();
     }
