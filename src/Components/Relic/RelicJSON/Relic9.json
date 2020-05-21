@@ -1,0 +1,8 @@
+{
+  "name": "Ginger",
+  "attackBoost": 5,
+  "defenceBoost": 5,
+  "hpBoost": 5,
+  "energyBoost": 1,
+  "image": "IMAGES/RelicImages/Ginger.png"
+}

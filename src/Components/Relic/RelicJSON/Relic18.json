@@ -1,0 +1,8 @@
+{
+  "name": "Empty Cage",
+  "attackBoost": 0,
+  "defenceBoost": 0,
+  "hpBoost": 0,
+  "energyBoost": 3,
+  "image": "IMAGES/RelicImages/EmptyCage.png"
+}

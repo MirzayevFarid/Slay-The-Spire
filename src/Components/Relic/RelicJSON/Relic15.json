@@ -1,0 +1,8 @@
+{
+  "name": "Cursed Key",
+  "attackBoost": 10,
+  "defenceBoost": 0,
+  "hpBoost": 0,
+  "energyBoost": 2,
+  "image": "IMAGES/RelicImages/CursedKey.png"
+}

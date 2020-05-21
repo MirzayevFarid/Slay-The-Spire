@@ -1,8 +1,8 @@
 {
   "name": "Cracked Core",
-  "attackBoost": 0,
-  "defenceBoost": 20,
-  "hpBoost": 20,
+  "attackBoost": 10,
+  "defenceBoost": 15,
+  "hpBoost": 0,
   "energyBoost": 0,
   "image": "IMAGES/RelicImages/CrackedCore.png"
 }

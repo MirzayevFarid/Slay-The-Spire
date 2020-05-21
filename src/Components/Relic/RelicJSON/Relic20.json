@@ -1,0 +1,8 @@
+{
+  "name": "Blue Candle",
+  "attackBoost": 10,
+  "defenceBoost": 5,
+  "hpBoost": 30,
+  "energyBoost": 0,
+  "image": "IMAGES/RelicImages/BlueCandle.png"
+}

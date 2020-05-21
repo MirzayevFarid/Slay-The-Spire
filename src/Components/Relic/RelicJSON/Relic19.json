@@ -1,0 +1,8 @@
+{
+  "name": "Happy Flower",
+  "attackBoost": 5,
+  "defenceBoost": 10,
+  "hpBoost": 15,
+  "energyBoost": 1,
+  "image": "IMAGES/RelicImages/HappyFlower.png"
+}

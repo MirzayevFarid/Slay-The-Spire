@@ -1,0 +1,8 @@
+{
+  "name": "Emotion Chip",
+  "attackBoost": 15,
+  "defenceBoost": 10,
+  "hpBoost": 10,
+  "energyBoost": 1,
+  "image": "IMAGES/RelicImages/EmotionChip.png"
+}

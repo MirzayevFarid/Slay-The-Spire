@@ -1,0 +1,8 @@
+{
+  "name": "Damaru",
+  "attackBoost": 0,
+  "defenceBoost": 20,
+  "hpBoost": 20,
+  "energyBoost": 1,
+  "image": "IMAGES/RelicImages/Damaru.png"
+}

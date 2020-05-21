@@ -1,0 +1,8 @@
+{
+  "name": "Eternal Feather",
+  "attackBoost": 20,
+  "defenceBoost": 0,
+  "hpBoost": 0,
+  "energyBoost": 1,
+  "image": "IMAGES/RelicImages/EternalFeather.png"
+}

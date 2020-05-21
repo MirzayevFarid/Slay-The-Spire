@@ -1,0 +1,8 @@
+{
+  "name": "Champion Belt",
+  "attackBoost": 0,
+  "defenceBoost": 0,
+  "hpBoost": 0,
+  "energyBoost": 2,
+  "image": "IMAGES/RelicImages/ChampionBelt.png"
+}

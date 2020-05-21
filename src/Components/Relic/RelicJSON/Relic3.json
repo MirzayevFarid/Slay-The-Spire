@@ -1,8 +1,8 @@
 {
   "name": "Ring of the Snake",
-  "attackBoost": 12,
-  "defenceBoost": 1,
-  "hpBoost": 123,
-  "energyBoost": 1,
+  "attackBoost": 8,
+  "defenceBoost": 3,
+  "hpBoost": 4,
+  "energyBoost": 0,
   "image": "IMAGES/RelicImages/RingoftheSnake.png"
 }

@@ -1,0 +1,8 @@
+{
+  "name": "Ceramic Fish",
+  "attackBoost": 9,
+  "defenceBoost": 5,
+  "hpBoost": 15,
+  "energyBoost": 0,
+  "image": "IMAGES/RelicImages/CeramicFish.png"
+}

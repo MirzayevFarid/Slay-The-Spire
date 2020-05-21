@@ -1,0 +1,8 @@
+{
+  "name": "Busted Crown",
+  "attackBoost": 0,
+  "defenceBoost": 0,
+  "hpBoost": 40,
+  "energyBoost": 0,
+  "image": "IMAGES/RelicImages/BustedCrown.png"
+}

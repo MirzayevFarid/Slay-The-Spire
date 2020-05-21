@@ -1,0 +1,8 @@
+{
+  "name": "Akabeko",
+  "attackBoost": 10,
+  "defenceBoost": 10,
+  "hpBoost": 10,
+  "energyBoost": 0,
+  "image": "IMAGES/RelicImages/Akabeko.png"
+}

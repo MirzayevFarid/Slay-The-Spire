@@ -1,0 +1,8 @@
+{
+  "name": "Fusion Hammer",
+  "attackBoost": 5,
+  "defenceBoost": 5,
+  "hpBoost": 15,
+  "energyBoost": 1,
+  "image": "IMAGES/RelicImages/FusionHammer.png"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Cables",
+  "attackBoost": 7,
+  "defenceBoost": 5,
+  "hpBoost": 5,
+  "energyBoost": 1,
+  "image": "IMAGES/RelicImages/Cables.png"
+}

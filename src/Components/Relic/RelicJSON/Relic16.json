@@ -1,0 +1,8 @@
+{
+  "name": "Art of War",
+  "attackBoost": 15,
+  "defenceBoost": 15,
+  "hpBoost": 20,
+  "energyBoost": 0,
+  "image": "IMAGES/RelicImages/ArtofWar.png"
+}
