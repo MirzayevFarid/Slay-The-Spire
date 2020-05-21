@@ -53,7 +53,9 @@ public class TopBar extends Node {
     Label hp = new Label("100 / 100");
     Label goldLabel = new Label("100");
 
-    final Tooltip tooltip = new Tooltip();
+    final Tooltip tooltip1 = new Tooltip();
+    final Tooltip tooltip2 = new Tooltip();
+    final Tooltip tooltip3 = new Tooltip();
 
     public Label getHp(){
         return hp;
@@ -206,24 +208,24 @@ public class TopBar extends Node {
     }
 
     public void setToolTipText1(String info){
-        tooltip.setText(
+        tooltip1.setText(
                 info
         );
-        potionButton1.setTooltip(tooltip);
+        potionButton1.setTooltip(tooltip1);
     }
 
     public void setToolTipText2(String info){
-        tooltip.setText(
+        tooltip2.setText(
                 info
         );
-        potionButton2.setTooltip(tooltip);
+        potionButton2.setTooltip(tooltip2);
     }
 
     public void setToolTipText3(String info){
-        tooltip.setText(
+        tooltip3.setText(
                 info
         );
-        potionButton3.setTooltip(tooltip);
+        potionButton3.setTooltip(tooltip3);
     }
 
     /*public void updatePotionImages(int index){

@@ -5,5 +5,5 @@
   "damage": 6,
   "defence": 0,
   "description": "Deal 6 damage. Deals 2 additional damage for ALL your cards containing 'strike'.",
-  "image": "IMAGES/cards/attack/PerfectedStrike.png"
+  "image": "IMAGES/cards/Ironclad/PerfectedStrike.png"
 }
