@@ -16,6 +16,12 @@ public class Settings {
     @FXML
     Slider volumeSlider;
 
+    @FXML
+    RadioButton mute;
+
+    @FXML
+    Button quit;
+
     public void volumeSlided(MouseEvent mouseEvent){
         System.out.println("volume slider: " + volumeSlider.getValue());
         int level = (int)((volumeSlider.getValue()) / 10);
@@ -64,11 +70,9 @@ public class Settings {
                 Play.player.setVolume(1);
                 System.out.println(Play.player.getVolume());
         }
-
+        mute.setSelected(false);
+        Play.player.play();
     }
-
-    @FXML
-    RadioButton mute;
 
     public void muteClicked(MouseEvent mouseEvent){
         System.out.println("mute is selected: " + mute.isSelected());
@@ -76,24 +80,19 @@ public class Settings {
             // AudioPlayer.player.start(Play.getMusic());
             Play.player.play();
             muted = false;
+            mute.setSelected(false);
         }
         else{
             //AudioPlayer.player.stop(Play.getMusic());
             Play.player.pause();
             muted = true;
+            mute.setSelected(true);
         }
     }
-
-    @FXML
-    Button quit;
 
     public void quitClicked(MouseEvent mouseEvent){
         System.out.println("quit is pressed: " + !(quit.isPressed()));
         Stage stage = (Stage) quit.getScene().getWindow();
         stage.close();
-
-
     }
-
-
 }
