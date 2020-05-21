@@ -143,14 +143,9 @@ public class Character {
 
     @Override
     public String toString() {
-        return "Character{" + "\n" +
-                "name='" + name + "\n" + '\'' +
-                ", energy=" + energy + "\n" +
-                ", hp=" + hp + "\n" +
-                ", cardsOfPlayer=" + cardsOfPlayer.toString() + "\n" +
-                ", relicsOfPlayer=" + relicsOfPlayer.toString() + "\n" +
-                ", potionsOfPlayer=" + potionsOfPlayer.toString() + "\n" +
-                ", image=" + image + "\n" +
-                '}' + "\n";
+        return "Character Name: The " + name + "\n" + '\'' +
+                "Starting Energy: " + energy + "\n" +
+                "Starting Health Points: " + hp + "\n" +
+                "Starting Relic: ";
     }
 }
