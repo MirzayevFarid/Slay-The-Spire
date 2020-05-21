@@ -1,1 +1,1 @@
-{"name":"Card7","energyCost":1,"damage":8,"defence":0,"description":"Deal 8 damage to ALL enemies.","image":"IMAGES/cards/attack/Cleave.png"}
+{"name":"Card7","character":"Ironclad","energyCost":1,"value":0,"damage":8,"defence":0,"description":"Deal 8 damage to ALL enemies.","image":"IMAGES/cards/attack/Cleave.png"}

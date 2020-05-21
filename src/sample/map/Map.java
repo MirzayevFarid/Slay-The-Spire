@@ -19,23 +19,22 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Map {
-
-    int numberOfColumns = 7;
-    int numberOfRows = 10;
-    int[][] map = new int[numberOfRows][numberOfColumns];     // 2D integer array with 4 rows
-    int legend;
     @FXML
     private AnchorPane window;
 
     @FXML
     private GridPane pn;
 
+    int numberOfColumns = 7;
+    int numberOfRows = 10;
+    int[][] map = new int[numberOfRows][numberOfColumns];     // 2D integer array with 4 rows
     int width = 1440;
     int height = 900;
     String txt = "";
     String path = "src/sample/map/map.txt";
     File file = new File(path);
     static boolean control = false;
+    int legend;
 
     public void initialize() throws IOException {
 
@@ -151,10 +150,8 @@ public class Map {
     public void addButtons(String imagePath, String screenPath, GridPane gridPane, int i, int j) {
         ImageView restIcon = new ImageView(new Image(getClass().getResourceAsStream(imagePath)));
         Button currentChar = new Button();
-
-        if(legend < 0)
-            currentChar.setDisable(true);
-
+        if(legend < 0 )
+        currentChar.setDisable(true);
         currentChar.setGraphic(restIcon);
         currentChar.setStyle("-fx-background-color: transparent;");
 
