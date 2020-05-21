@@ -5,5 +5,5 @@
   "damage": 10,
   "defence": 0,
   "description": "Deal 10 damage. If fatal, raise Max HP by 2.",
-  "image": "IMAGES/cards/attack/Feed.png"
+  "image": "IMAGES/cards/Ironclad/Feed.png"
 }

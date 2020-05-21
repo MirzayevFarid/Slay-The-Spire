@@ -80,7 +80,7 @@ public class SelectCharacter {
             }
         });
 
-        defectChar.onMouseClickedProperty().set((MouseEvent t) -> {
+        defectButton.onMouseClickedProperty().set((MouseEvent t) -> {
             try {
                 Constants.mainCharacter = new ParseCharacterJSONObjects("Defect");
                 Methods.changeScreen("play/play.fxml", backBtn,true);
@@ -89,7 +89,7 @@ public class SelectCharacter {
             }
         });
 
-        watcherChar.onMouseClickedProperty().set((MouseEvent t) -> {
+        watcherButton.onMouseClickedProperty().set((MouseEvent t) -> {
             try {
                 Constants.mainCharacter = new ParseCharacterJSONObjects("Watcher");
                 Methods.changeScreen("play/play.fxml", backBtn,true);

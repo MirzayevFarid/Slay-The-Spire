@@ -1,0 +1,7 @@
+{
+  "name": "Defect",
+  "image": "IMAGES/play/Defect.png",
+  "energy": 3,
+  "hp": 120,
+  "gold": 100
+}

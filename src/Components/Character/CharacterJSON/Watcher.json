@@ -1,0 +1,7 @@
+{
+  "name": "Watcher",
+  "image": "IMAGES/play/Watcher.png",
+  "energy": 3,
+  "hp": 120,
+  "gold": 100
+}
