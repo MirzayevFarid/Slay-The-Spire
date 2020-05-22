@@ -2,6 +2,8 @@ package sample.selectCharacter;
 
 import Components.Card.ParseCardJSONObjects;
 import Components.Character.CharacterJSON.ParseCharacterJSONObjects;
+import Components.Monster.ParseMonsterJSONObjects;
+import Components.Potion.ParsePotionJSONObjects;
 import Components.Relic.ParseRelicJSONObjects;
 import Components.RelicBar;
 import javafx.fxml.FXML;
@@ -67,7 +69,6 @@ public class SelectCharacter {
         stackPane.getChildren().addAll(backBtn, text);
         imageView.setImage(new Image(getClass().getResourceAsStream("../../Images/play/ironcladPortrait.png")));
 
-
         addListeners();
         Hbox.getChildren().addAll(ironcladButtonImage, defectButtonImage, watcherButtonImage);
     }
@@ -129,7 +130,13 @@ public class SelectCharacter {
             try {
                 Constants.mainCharacter = new ParseCharacterJSONObjects("Ironclad");
                 Constants.usableCards = new ParseCardJSONObjects("Ironclad");
-                Methods.changeScreen("play/play.fxml", quitButtonImage,true);
+                Constants.allRelics = new ParseRelicJSONObjects();
+                Constants.allPotions = new ParsePotionJSONObjects();
+                Constants.monsters = new ParseMonsterJSONObjects();
+                for(int i = 0; i <= 14; i++)
+                    Methods.removeCardFromShop(0);
+
+                Methods.changeScreen("map/map.fxml", quitButtonImage,true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -152,6 +159,10 @@ public class SelectCharacter {
             try {
                 Constants.mainCharacter = new ParseCharacterJSONObjects("Defect");
                 Constants.usableCards = new ParseCardJSONObjects("Defect");
+                Constants.allRelics = new ParseRelicJSONObjects();
+                Constants.allPotions = new ParsePotionJSONObjects();
+                Constants.monsters = new ParseMonsterJSONObjects();
+
                 Methods.changeScreen("play/play.fxml", quitButtonImage,true);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -176,6 +187,10 @@ public class SelectCharacter {
             try {
                 Constants.mainCharacter = new ParseCharacterJSONObjects("Watcher");
                 Constants.usableCards = new ParseCardJSONObjects("Watcher");
+                Constants.allRelics = new ParseRelicJSONObjects();
+                Constants.allPotions = new ParsePotionJSONObjects();
+                Constants.monsters = new ParseMonsterJSONObjects();
+
                 Methods.changeScreen("play/play.fxml", quitButtonImage,true);
             } catch (Exception e) {
                 e.printStackTrace();

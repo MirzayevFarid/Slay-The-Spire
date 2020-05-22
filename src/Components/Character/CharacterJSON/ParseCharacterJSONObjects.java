@@ -4,6 +4,7 @@ import Components.Card.ParseCardJSONObjects;
 import Components.Character.Character;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import sample.Constants;
 
 import java.io.File;
 import java.io.FileReader;
@@ -29,18 +30,8 @@ public class ParseCharacterJSONObjects {
         if(object instanceof Character) {
             character = new Character((Character) object);
         }
-        addCards();
-
     }
 
-    private void addCards() throws Exception {
-        ParseCardJSONObjects cards = new ParseCardJSONObjects(characterType);
-        // TODO: Change Default Card Count
-        for(int i = 0; i <= 9; i++){
-            this.character.getCardsOfPlayer().getCardList().add(cards.getCardDeck().getCardList().get(i));
-            this.character.getCardsOfPlayer().getDrawList().add(cards.getCardDeck().getCardList().get(i));
-        }
-    }
 
     public Character getCharacter() {
         return character;

@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Line;
+import sample.Constants;
 import sample.Methods;
 
 import java.io.File;
@@ -29,8 +30,8 @@ public class Map {
     int numberOfColumns = 7;
     int numberOfRows = 10;
     int[][] map = new int[numberOfRows][numberOfColumns];     // 2D integer array with 4 rows
-    int width = 1440;
-    int height = 900;
+    int width = Constants.width;
+    int height = Constants.height;
     String txt = "";
     String path = "src/sample/map/map.txt";
     File file = new File(path);
@@ -100,12 +101,7 @@ public class Map {
             colIndex = 0;
             rowIndex++;
         }
-        for (int i = 0; i < numberOfRows; i++){
-            for (int j = 0; j < numberOfColumns; j++){
-                System.out.print(map2[i][j]);
-            }
-            System.out.println();
-        }
+
         return map2;
     }
 
@@ -135,7 +131,7 @@ public class Map {
                         addButtons("../../Images/play/restIcon.png", "play/play.Fxml", gridPane, i, j);
                         break;
                     case 3:
-                        addButtons("../../Images/play/treasureIcon.png", "play/play.Fxml", gridPane, i, j);
+                        addButtons("../../Images/play/treasureIcon.png", "treasure/treasure.Fxml", gridPane, i, j);
                         break;
                     case 4:
                         addButtons("../../IMAGES/play/shopIcon.png", "play/play.Fxml", gridPane, i, j);

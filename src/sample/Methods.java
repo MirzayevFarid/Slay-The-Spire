@@ -26,7 +26,7 @@ public class Methods {
         return Constants.mainCharacter.getCharacter();
     }
 
-    public void addCard(Card card){
+    public static void addCard(Card card){
         Constants.mainCharacter.getCharacter().getCardsOfPlayer().getCardList().add(card);
     }
 
@@ -34,7 +34,7 @@ public class Methods {
         Constants.mainCharacter.getCharacter().getCardsOfPlayer().getCardList().remove(index);
     }
 
-    public void addRelic(Relic relic){
+    public static void addRelic(Relic relic){
         Constants.mainCharacter.getCharacter().getRelicsOfPlayer().getRelics().add(relic);
     }
 
@@ -42,7 +42,7 @@ public class Methods {
         Constants.mainCharacter.getCharacter().getRelicsOfPlayer().getRelics().remove(index);
     }
 
-    public void addPotion(Potion potion){
+    public static void addPotion(Potion potion){
         Constants.mainCharacter.getCharacter().getPotionsOfPlayer().getPotions().add(potion);
     }
 
@@ -66,7 +66,7 @@ public class Methods {
         Constants.mainCharacter.getCharacter().setEnergy(Constants.mainCharacter.getCharacter().getEnergy() - energy);
     }
 
-    public void addGold(int gold){
+    public static void addGold(int gold){
         Constants.mainCharacter.getCharacter().setGold(Constants.mainCharacter.getCharacter().getGold() + gold);
     }
 
@@ -74,19 +74,19 @@ public class Methods {
         Constants.mainCharacter.getCharacter().setGold(Constants.mainCharacter.getCharacter().getGold() - gold);
     }
 
-    public void removeCardFromShop(int index){
+    public static void removeCardFromShop(int index){
         Card card = new Card(Constants.usableCards.getCardDeck().getCardList().get(index));
         Constants.usableCards.getCardDeck().getCardList().remove(index);
         addCard(card);
     }
 
-    public void removeRelicFromShop(int index){
+    public static void removeRelicFromShop(int index){
         Relic relic = new Relic(Constants.allRelics.getRelics().getRelics().get(index));
         Constants.allRelics.getRelics().getRelics().remove(index);
         addRelic(relic);
     }
 
-    public void removePotionFromShop(int index){
+    public static void removePotionFromShop(int index){
         Potion potion = new Potion(Constants.allPotions.getPotions().getPotions().get(index));
         Constants.allPotions.getPotions().getPotions().remove(index);
         addPotion(potion);

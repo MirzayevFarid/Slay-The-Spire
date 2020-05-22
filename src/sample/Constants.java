@@ -12,4 +12,8 @@ public class Constants {
     public static ParseCardJSONObjects usableCards;
     public static ParseRelicJSONObjects allRelics;
     public static ParsePotionJSONObjects allPotions;
+
+    public static int width = 1440;
+    public static int height = 900;
+
 }

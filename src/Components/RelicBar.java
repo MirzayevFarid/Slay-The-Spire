@@ -32,12 +32,14 @@ public class RelicBar extends Node {
     }
 
     void addItems(){
+        hbox.getChildren().clear();
         anchorPane.getChildren().add(hbox);
         addRelics();
     }
 
     void addRelics(){
         for(int i = 0; i< relics.size(); i++) {
+            System.out.println(i);
             final Tooltip tooltip = new Tooltip();
             // Create Button
             Button relicButton = new Button();
