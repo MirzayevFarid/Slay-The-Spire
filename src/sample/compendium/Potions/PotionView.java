@@ -39,11 +39,11 @@ public class PotionView {
 
         for (int i = 0; i < potions.getPotions().getPotions().size() ; i++ ) {
             try {
-                System.out.println(potions.getPotions().getPotions().get(i).getImage());
-                ImageView potionView = new ImageView(new Image(getClass().getResourceAsStream("../../../" + potions.getPotions().getPotions().get(i).getImage())));
+                ImageView potionView = new ImageView(new Image(getClass().getResourceAsStream("../../../" + potions.getPotions().getPotions().get(i).getImage()), 100, 100, false, false));
                 final Tooltip tooltip = new Tooltip();
                 Button potionButton = new Button();
                 potionButton.setGraphic(potionView);
+                potionButton.setStyle("-fx-background-color: transparent;");
                 // Add Info
                 tooltip.setText(
                         potions.getPotions().getPotions().get(i).getToolTipString()

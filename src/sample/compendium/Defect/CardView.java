@@ -37,7 +37,6 @@ public class CardView {
 
         for (int i = 0 ; i < defectCards.getCardDeck().getCardList().size() ; i++ ) {
             try {
-                System.out.println(defectCards.getCardDeck().getCardList().get(i).getImage());
                 ImageView cardView = new ImageView(new Image(getClass().getResourceAsStream("../../../" + defectCards.getCardDeck().getCardList().get(i).getImage())));
 
                 if(i%5 == 0){

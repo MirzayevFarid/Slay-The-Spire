@@ -40,11 +40,11 @@ public class RelicView {
 
         for (int i = 0; i < relics.getRelics().getRelics().size() ; i++ ) {
             try {
-                System.out.println(relics.getRelics().getRelics().get(i).getImage());
-                ImageView potionView = new ImageView(new Image(getClass().getResourceAsStream("../../../" + relics.getRelics().getRelics().get(i).getImage())));
+                ImageView relicView = new ImageView(new Image(getClass().getResourceAsStream("../../../" + relics.getRelics().getRelics().get(i).getImage()), 100, 100, false, false));
                 final Tooltip tooltip = new Tooltip();
                 Button potionButton = new Button();
-                potionButton.setGraphic(potionView);
+                potionButton.setGraphic(relicView);
+                potionButton.setStyle("-fx-background-color: transparent;");
                 // Add Info
                 tooltip.setText(
                         relics.getRelics().getRelics().get(i).getToolTipString()
