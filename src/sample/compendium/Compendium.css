@@ -1,5 +1,5 @@
-#drawAnchor {
-    -fx-background-image:url("../../../IMAGES/play/bg.png");
+#compendiumAnchor {
+    -fx-background-image:url("../../IMAGES/play/bg.png");
     -fx-background-size: 100% 100%;
 }
 

@@ -1,82 +1,72 @@
-package sample.play.drawPile;
+package sample.compendium;
 
-import Components.Card.Card;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import sample.Methods;
 
-import java.io.File;
-import java.io.FileReader;
-import java.util.ArrayList;
-
+import java.io.IOException;
 
 public class Compendium {
-    @FXML
-    private AnchorPane drawAnchor;
 
     @FXML
-    private AnchorPane insideAnchor;
+    Button ironcladCardsButton;
 
     @FXML
-    private VBox VBox;
+    Button defectCardsButton;
 
     @FXML
-    private HBox defaultHBox;
+    Button watcherCardsButton;
 
+    @FXML
+    Button relicsButton;
 
-    private ArrayList<Card> cardsOfPlayer = new ArrayList<>();
-    private Gson gson;//Google gson library for json-pojo object mapping!
-    private String directory;
-    private String path;// File path that includes json libraries
+    @FXML
+    Button potionsButton;
 
-    public void initialize() {
-        gson = new GsonBuilder().create();                     //creating gson
-        directory = System.getProperty("user.dir");
-        path = directory + "/src/sample/play/drawPile/JSONFiles";              //path for json files
-        File folder = new File(path);
-        File[] files = folder.listFiles();
-        int index = 0;
+    public void initialize(){
+        addListeners();
+    }
 
-        for (File file: files) {
+    private void addListeners(){
+        ironcladCardsButton.onMouseClickedProperty().set((MouseEvent t) -> {
             try {
-                Object object = gson.fromJson(new FileReader(file.getAbsolutePath()), Card.class);
-
-                if(object instanceof Card) {
-                    cardsOfPlayer.add((Card) object);
-
-                    ImageView cardView = new ImageView(new Image(getClass().getResourceAsStream("../../../" + cardsOfPlayer.get(index).getImage())));
-
-                    if(index%5 == 0){
-                        HBox hBox = new HBox();
-                        hBox.getChildren().add(cardView);
-                        defaultHBox = hBox;
-                        VBox.getChildren().add(hBox);
-                    }
-                    else {
-                        defaultHBox.getChildren().add(cardView);
-                    }
-
-                    index++;
-
-                }
-
-            } catch (Exception e) {
+                Methods.changeScreen("compendium/Ironclad/cardView.fxml", ironcladCardsButton,false);
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-    }
+        });
 
-    public Card getCard(){
-        return cardsOfPlayer.get(0);
-    }
+        defectCardsButton.onMouseClickedProperty().set((MouseEvent t) -> {
+            try {
+                Methods.changeScreen("compendium/Defect/cardView.fxml", defectCardsButton,false);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
-    public void addCard(Card card){
-        cardsOfPlayer.add(card);
+        watcherCardsButton.onMouseClickedProperty().set((MouseEvent t) -> {
+            try {
+                Methods.changeScreen("compendium/Watcher/cardView.fxml", watcherCardsButton,false);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        potionsButton.onMouseClickedProperty().set((MouseEvent t) -> {
+            try {
+                Methods.changeScreen("compendium/Potions/potionView.fxml", potionsButton,false);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        relicsButton.onMouseClickedProperty().set((MouseEvent t) -> {
+            try {
+                Methods.changeScreen("compendium/Relics/relicView.fxml", relicsButton,false);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }
